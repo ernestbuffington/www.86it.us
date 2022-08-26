@@ -1,3 +1,4 @@
+zend_cache*
 _notes
 Titanium_SandBox
 2gb.mp4
@@ -14,6 +15,7 @@ _vti_pvt
 desktop.ini
 _private
 tpl_*.php
+error_log
 86it-Cortex
 86it-Titanium
 86it-Z3
