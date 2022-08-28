@@ -1,47 +1,12 @@
-<h2>Changes in the US Version of PHP-Nuke Titanium</h2>
+<a href="https://www.php-nuke-titanium.86it.us" rel="nofollow"><img src="/images/github/github_rip_open2.png" alt="PHP-NUke Titanium" style="max-width: 100%;"></a>
 
-<ul>
-    <li><strong>Added</strong> - Google Titanium SDK v5 - This adds all the support you need for Google Developers</li>
-	<li><strong>Added</strong> - New Theme Dragon Skull v1.04</li>
-	<li><strong>Added</strong> - New Theme Limo Tint v1.9</li>
-	<li><strong>Added</strong> - New Default Theme Inferno v1.0</li>
-	<li><strong>Added</strong> - fbconfig.php configuration file for the Titanium Facebook SDK v5</li>
-	<li><strong>Added</strong> - Deactivate Account for Titanium Facebook SDK v5</li>
-	<li><strong>Added</strong> - Google Site Map v1.0 for <strong><span style="color:#3498db">PHP 7.xx&nbsp;</span></strong></li>
-	<li><strong>Added</strong> - Titanium Facebook SDK v5</li>
-	<li><strong>Added</strong> - Facebook Likes for Blogs</li>
-	<li><strong>Added</strong> - Facebook Commenting for Blogs</li>
-	<li><strong>Added</strong> - Portals now come with a preconfigured facebook app (associated with your web portal)</li>
-	<li><strong>Added</strong> - <strong>Blog</strong> This is the main portal Blog module</li>
-	<li><strong>Added</strong> - <strong>Blog_Archive</strong> This is the archives module it keeps a history of your blogs</li>
-	<li><strong>Added</strong> - <strong>Blog_Submit</strong> This allows people to submit Blogs to your portal</li>
-	<li><strong>Added</strong> - <strong>Blog_Top</strong> This is a module that displays the top 10 Blogs on your portal</li>
-	<li><strong>Added</strong> - <strong>Blog_Topics</strong> This is a module thats lists all your Blog topics</li>
-	<li><strong>Added</strong> - <strong>Network_Advertising</strong> Module by <strong>NukeScripts.Net</strong></li>
-	<li><strong>Added</strong> - <strong>Loan</strong> Module by <strong>ScottybCoder</strong> A 30/360 Rule loan caluclator</li>
-	<li><strong>Added</strong> - <strong>Network Bookmarks</strong> (private bookmark vault for users)</li>
-	<li><strong>Added</strong> - <strong>Proof_Of_God</strong> Module by <strong>ScottyBcoder</strong></li>
-	<li><strong>Added</strong> - Resolution Checking for Advanced Themes</li>
-	<li><strong>Added</strong> - Flykit for designing themes on the Fly (used to edit CSS in realtime)</li>
-	<li><strong>Added</strong> - Network Projects for network use, to report errors with themes modules or general code bugs</li>
-	<li><strong>Added</strong> - Each theme will automatically switch to the needed mime-type on the Fly! (awesome for old themes)</li>
-	<li><strong>Update</strong> - nuke_session database table uname and module was set to VARCHAR 255</li>
-	<li><strong>Update</strong> - Admin <strong>Portal Menu v5</strong>&nbsp;updated for <strong><span style="color:#3498db">PHP 7.xx&nbsp;</span></strong></li>
-	<li><strong>Update</strong> - Admin <strong>Authors Panel</strong> updated for <strong><span style="color:#3498db">PHP 7.xx</span></strong></li>
-	<li><strong>Update</strong> - Admin <strong>Blocks Panel</strong> updated for <strong><span style="color:#3498db">PHP 7.xx</span></strong></li>
-	<li><strong>Update</strong> - Admin <strong>Backup Panel</strong> updated for <strong><span style="color:#3498db">PHP 7.xx</span></strong></li>
-	<li><strong>Update</strong> - Admin <strong>Modules Panel</strong> updated for <strong><span style="color:#3498db">PHP 7.xx</span></strong></li>
-	<li><strong>Re-Write</strong> - <strong>of the title_and_meta_tags(); function</strong> for Facebook SDK v5</li>
-	<li><strong>Re-Write</strong> - <strong>Web_Links</strong> Module</li>
-	<li><strong>Removed</strong> - News Module</li>
-    <li><strong>Removed</strong> - Stories_Archive Module</li>
-    <li><strong>Removed</strong> - Top Module</li>
-	<li><strong>Removed</strong> - Topics Module</li>
-	<li><strong>Removed</strong> - Site_Map Module</li>
-</ul>
+<h2>Changes in PHP-Nuke Titanium Dev 4</h2>
+Support Website https://www.php-nuke-titanium.86it.us SIGN UP AND CHECK IT OUT!!!
+<br />
+<h2>2022 Nightly Build Repo</h2>
+<p>This code is running live at https://www.php-nuke-titanium.86it.us</p>
 
-
-<h2>Server Requirements</h2>
+<h2>PHP-Nuke Titanium Dev 4 Server Requirements</h2>
 
 <ul>
 	<li>EasyApache 4</li>
@@ -56,43 +21,43 @@
 	<li>Minimum of 5 GB/s bandwidth (5 TB/s or unmetered is recommended)</li>
 </ul>
 
-<h2>Local Development</h2>
+<h2>PHP-Nuke Titanium Dev 4 Local Development</h2>
 
 <p>PHP-Nuke Titanium while advanced can be easily installed using local development servers including MAMP, WAMP, and XAMPP but you can also use IIS or compile your own AMP (Apache, MySQL, PHP) server if you wish to. Please ensure that your local server meets the first 3 server requirements in order to achieve the best possible development results when building your custom add-ons, modules, and mods.</p>
 
-<h2>Installation and Upgrade</h2>
+<h2>PHP-Nuke Titanium Dev 4 Installation and Upgrade</h2>
 
 <p>While PHP-Nuke Titanium uses the same core as PHP-Nuke Evolution Xtreme there have been a lot of updates to it which improve performance and security, please see the following links for installing a fresh copy or upgrading.</p>
 
 <h5>NOTE</h5>
 
-<p><a href="https://www.86it.us/modules.php?name=Network_Projects&amp;op=Project&amp;project_id=76" rel="nofollow" target="_tab">Fresh install</a><br />
-<a href="https://www.86it.us/modules.php?name=Network_Projects&amp;op=Project&amp;project_id=76" rel="nofollow" target="_tab">Upgrade</a></p>
+<p><a href="https://php-nuke-titanium.86it.us/modules.php?name=Network_Projects&amp;op=Project&amp;project_id=76" rel="nofollow" target="_tab">Fresh install</a><br />
+<a href="https://php-nuke-titanium.86it.us/modules.php?name=Network_Projects&amp;op=Project&amp;project_id=76" rel="nofollow" target="_tab">Upgrade</a></p>
 
-<h2>Security</h2>
+<h2>PHP-Nuke Titanium Dev 4 Security</h2>
 
 <p>Security is the top priority for this CMS, the core of PHP-Nuke Titanium uses a comprehensive integrated module called Nuke Sentinel (tm). Nuke Sentinel (tm) protects your website against DDOS, CLIKE, Union, and many more attacks, Nuke Sentinel (tm) is so advanced you don&#39;t even have to worry about protecting your admin panel as it watches for failed logins and can ban anonymous users automatically from your website.</p>
 
 <p>Hopefully, you will never have to visit the admin panel for Nuke Sentinel (tm) as 99% of all web hosts now have DDOS protection and many more security features which prevent attacks and such.</p>
 
-<h2>Help</h2>
+<h2>PHP-Nuke Titanium Dev 4 Help</h2>
 
-<p>If you are having issues with your installation please do not hesitate to submit a report by clicking <a href="https://www.86it.us/modules.php?name=Network_Projects&amp;op=RequestSubmit&amp;project_id=76" target="_tab">HERE</a><br />
-If you need help with an install do not hesitate to submit a request by clicking <a href="https://www.86it.us/modules.php?name=Network_Projects&amp;op=RequestSubmit&amp;project_id=76" target="_tab">HERE</a></p>
+<p>If you are having issues with your installation please do not hesitate to submit a report by clicking <a href="https://php-nuke-titanium.86it.us/modules.php?name=Network_Projects&amp;op=RequestSubmit&amp;project_id=76" target="_tab">HERE</a><br />
+If you need help with an install do not hesitate to submit a request by clicking <a href="https://php-nuke-titanium.86it.us/modules.php?name=Network_Projects&amp;op=RequestSubmit&amp;project_id=76" target="_tab">HERE</a></p>
 
-<h2>Feedback, Bugs, and Improvements</h2>
+<h2>PHP-Nuke Titanium Dev 4 Feedback, Bugs, and Improvements</h2>
 
 <p>If you have any suggestions, feedback, or ideas you feel will be a nice contribution to PHP-Nuke Titanium please use the following links</p>
 
-<p><a href="https://www.86it.us/modules.php?name=Network_Projects&amp;op=RequestSubmit&amp;project_id=76" target="_tab">Help improve the US version of PHP-Nuke Titanium</a><br />
-<a href="https://www.86it.us/modules.php?name=Network_Projects&amp;op=ReportSubmit&amp;project_id=76" target="_tab">Report a PHP-Nuke Titanium bug</a><br />
-<a href="https://www.86it.us/modules.php?name=Feedback" target="_tab">Your PHP-Nuke Titanium feedback</a></p>
+<p><a href="https://php-nuke-titanium.86it.us/modules.php?name=Network_Projects&amp;op=RequestSubmit&amp;project_id=76" target="_tab">Help improve the US version of PHP-Nuke Titanium</a><br />
+<a href="https://php-nuke-titanium.86it.us/modules.php?name=Network_Projects&amp;op=ReportSubmit&amp;project_id=76" target="_tab">Report a PHP-Nuke Titanium bug</a><br />
+<a href="https://php-nuke-titanium.86it.us/modules.php?name=Feedback" target="_tab">Your PHP-Nuke Titanium feedback</a></p>
 
 <hr />
 <p>Thanks for using our enhanced PHP-Nuke Web Portal System and we hope you enjoy it&nbsp;&nbsp;</p>
 
 <p><strong>The PHP-Nuke Titanium Team </strong>(This is the US Support Team)<br />
-<a href="https://www.86it.us/index.php">http://www.86it.us/index.php</a></p>
+<a href="https://php-nuke-titanium.86it.us/index.php">http://php-nuke-titanium.86it.us/index.php</a></p>
 
 <h2>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</h2>
 
