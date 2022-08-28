@@ -4,7 +4,7 @@
 Support Website https://www.php-nuke-titanium.86it.us SIGN UP AND CHECK IT OUT!!!
 <br />
 <h2>2022 Nightly Build Repo</h2>
-<p>This code is running live at https://www.php-nuke-titanium.86it.us</p>
+<p>This code is running live at https://www.86it.us</p>
 
 <h2>PHP-Nuke Titanium Dev 4 Server Requirements</h2>
 
