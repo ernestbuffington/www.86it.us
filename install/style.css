@@ -1,5 +1,5 @@
 /**
- * Stylesheet for the PHP-Nuke Titanium Installer
+ * Stylesheet for the Xtreme Installer
  *
  * @filename:  style.css
  * @author  :  Evolution-Xtreme
@@ -76,9 +76,9 @@ a:hover {
  *--------------------------------------------------
 */
 #logo {
-	background: url('images/logo.png');
-	width: 484px;
-	height: 79px;
+    background: url('images/logo.png');
+	width: 400px;
+	height: 110px;
 	text-align:right;
 	margin:auto;
 }
