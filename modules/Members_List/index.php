@@ -64,17 +64,6 @@ $page = (isset($pageroot)) ? intval($pageroot) : 1;
 $calc = $board_config['topics_per_page'] * $page;
 $start = $calc - $board_config['topics_per_page'];
 
-# just another instance where code is changed without explanation START
-
-# it appears as if a new function was created called get_query_var and
-# was used to replace the original code.
-// if(isset($HTTP_GET_VARS['mode']) || isset($HTTP_POST_VARS['mode']))
-// 	$mode = (isset($HTTP_POST_VARS['mode'])) ? htmlspecialchars($HTTP_POST_VARS['mode']) : htmlspecialchars($HTTP_GET_VARS['mode']);
-// else
-// 	$mode = 'joined';
-
-# just another instance where code is changed without explanation END
-
 $mode = get_query_var('mode', '_REQUEST', 'string', 'joined');
 $sort_order = get_query_var('order', '_REQUEST', 'string');
 $sort_order = ($sort_order == 'DESC') ? $sort_order : 'ASC';
