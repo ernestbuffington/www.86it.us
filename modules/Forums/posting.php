@@ -52,7 +52,13 @@
 
 
 
-if (!defined('MODULE_FILE')){ die ("You can't access this file directly...");}
+if (!defined('MODULE_FILE')) {
+
+   die ("You can't access this file directly...");
+
+}
+
+
 
 if ($popup != "1"){
 

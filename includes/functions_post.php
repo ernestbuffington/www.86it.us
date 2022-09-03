@@ -2,6 +2,8 @@
 /*======================================================================= 
   PHP-Nuke Titanium | Nuke-Evolution Xtreme : PHP-Nuke Web Portal System
  =======================================================================*/
+
+
 /***************************************************************************
  *                            functions_post.php
  *                            -------------------
@@ -12,6 +14,7 @@
  *   Id: functions_post.php,v 1.9.2.37 2004/11/18 17:49:44 acydburn Exp
  *
  ***************************************************************************/
+
 /***************************************************************************
  *
  *   This program is free software; you can redistribute it and/or modify
@@ -20,6 +23,7 @@
  *   (at your option) any later version.
  *
  ***************************************************************************/
+
 /*****[CHANGES]**********************************************************
 -=[Base]=-
       Caching System                           v1.0.0       10/30/2005
@@ -47,10 +51,6 @@ $html_entities_replace = array('&amp;', '&lt;', '&gt;', '&quot;');
 $unhtml_specialchars_match = array('#&gt;#', '#&lt;#', '#&quot;#', '#&amp;#');
 $unhtml_specialchars_replace = array('>', '<', '"', '&');
 
-
-
-
-
 //
 // This function will prepare a posted message for
 // entry into the database.
@@ -75,10 +75,8 @@ function prepare_message($message, $html_on, $bbcode_on, $smile_on, $bbcode_uid 
          		// If HTML is on, we try to make it safe
          		// This approach is quite agressive and anything that does not look like a valid tag
          		// is going to get converted to HTML entities
-         		//$message = stripslashes($message);
-      
-	  /*
-	     		$html_match = '#<[^\w<]*(\w+)((?:"[^"]*"|\'[^\']*\'|[^<>\'"])+)?>#';
+         		$message = stripslashes($message);
+         		$html_match = '#<[^\w<]*(\w+)((?:"[^"]*"|\'[^\']*\'|[^<>\'"])+)?>#';
          		$matches = array();
 
          		$message_split = preg_split($html_match, $message);
@@ -94,10 +92,7 @@ function prepare_message($message, $html_on, $bbcode_on, $smile_on, $bbcode_uid 
 
         		$message = addslashes($message);
         		$message = str_replace('&quot;', '\&quot;', $message);
-        
-		*/
-
-		}
+        }
         else
         {
 /*****[BEGIN]******************************************

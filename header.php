@@ -2,7 +2,6 @@
 /*======================================================================= 
   PHP-Nuke Titanium | Nuke-Evolution Xtreme : PHP-Nuke Web Portal System
  =======================================================================*/
-
 /************************************************************************/
 /* PHP-NUKE: Advanced Content Management System                         */
 /* ============================================                         */
@@ -14,7 +13,6 @@
 /* it under the terms of the GNU General Public License as published by */
 /* the Free Software Foundation; either version 2 of the License.       */
 /************************************************************************/
-
 /*****[CHANGES]**********************************************************
 -=[Base]=-
       NukeSentinel                             v2.5.00      07/11/2006
@@ -26,12 +24,15 @@
       Collapsing Blocks                        v1.0.0       08/16/2005
 	  NSN Center Blocks                        v2.2.1       05/26/2009
  ************************************************************************/
-if(!defined('HEADER')) 
-define('HEADER', true); 
-else 
-return; 
+if(!defined('HEADER')) {
+    define('HEADER', true);
+} else {
+    return;
+}
 
-if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) 
+//if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) 
+
+if (realpath(__FILE__) == realpath($_SERVER['DOCUMENT_ROOT'].$_SERVER['SCRIPT_NAME']))
 exit('Access Denied'); 
 
 require_once(dirname(__FILE__).'/mainfile.php');
@@ -52,8 +53,6 @@ function head()
 							$browser, 
 							$ThemeSel;
 
-	$ThemeSel = get_theme();
-	
     global $eighty_six_it;
 	$eighty_six_it = '<a class = "small" href="https://www.86it.us" target="_self">Programmers Making Connections. Coders Making a Difference.</a>';
     
@@ -62,7 +61,9 @@ function head()
     include(NUKE_THEMES_DIR.$ThemeSel.'/includes/mimetype.php');
 	else: 
       echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd" />'."\n";
-      echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'._LANGCODE.'" />'."\n";
+      echo '<!DOCTYPE html>'."\n";
+	  
+	  echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'._LANGCODE.'" />'."\n";
       echo '<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="https://www.facebook.com/2008/fbml" />'."\n"; 
       echo "<!-- START <head> -->\n";
       echo '<head>'."\n";
@@ -79,11 +80,16 @@ function head()
     include_once(NUKE_INCLUDE_DIR.'meta.php');
 
     # START function to grab the page title. - 09/07/2019
-    echo "<!-- START title_and_meta_tags(); -->\n";
+ 	echo "\n\n<!-- START title_and_meta_tags(); -->\n";
  	title_and_meta_tags();
-    echo "<!-- END title_and_meta_tags(); -->\n\n";
+    echo "<!-- END title_and_meta_tags(); -->\n\n\n\n\n\n";
     # END function to grab the page title. - 09/07/2019
 
+	################################################################
+	if (@file_exists(TITANIUM_CLASSES_DIR . 'class.autoflash.php'))#      Added by Ernest Buffington
+	include(TITANIUM_CLASSES_DIR . 'class.autoflash.php');         ###### Load Browser class - used for checking your browser types
+    #                                                              #      Start date Jan 1st 2012 till Present - It is a work in progress!
+    ################################################################
 	################################################################
 	if (@file_exists(TITANIUM_CLASSES_DIR . 'class.browsers.php')) #      Added by Ernest Buffington
 	include(TITANIUM_CLASSES_DIR . 'class.browsers.php');          ###### Load Browser class - used for checking your browser types
@@ -99,29 +105,10 @@ function head()
 	if (@file_exists(NUKE_THEMES_DIR.$ThemeSel.'/includes/javascript.php')) # CHECK FOR THEME JAVASCRIPT Added by Ernest Buffington 3/16/2021 10:58am
     include_once(NUKE_THEMES_DIR.$ThemeSel.'/includes/javascript.php');
     echo "<!-- CHECKING FOR pre 2019 themes -> javascript.php in Theme Dir END -->\n\n";
-
+    echo '<script src="includes/ruffle-core/ruffle.js"></script>';
 	global $titanium_browser;
     $titanium_browser = new Browser();
 	
-    # START uploadcare PLUGIN for CKeditor 4 - 09/07/2019
-    echo "\n\n<!-- START uploadcare -->\n\n";
-    echo "<script type=\"text/javascript\">\n";
-    echo "UPLOADCARE_PUBLIC_KEY = 'df691884c0a749427aa1';\n";
-    echo "UPLOADCARE_TABS = 'file camera url facebook gdrive gphotos dropbox instagram evernote flickr onedrive box vk huddle';\n";
-    echo "UPLOADCARE_EFFECTS = 'crop,rotate,mirror,flip,enhance,sharp,blur,grayscale,invert';\n";
-    echo "UPLOADCARE_PREVIEW_STEP = true;\n";
-    echo "UPLOADCARE_CLEARABLE = true;\n";
-    echo "</script>\n";
-
-    echo "<script src=\"https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js\"></script>\n";
-    echo "<script src=\"https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js\"></script>\n";
-        
-    echo "<script type=\"text/javascript\">\n";
-    echo "uploadcare.registerTab('preview', uploadcareTabEffects)\n";
-    echo "</script>\n";
-    echo "\n\n<!-- END uploadcare -->\n\n";
-	# START uploadcare PLUGIN for CKeditor 4 - 09/07/2019
-
     # FlyKit Mod v1.0.0 START
 	# used to add rounded corners to user avatars!
 	addPHPCSSToHead(NUKE_BASE_DIR.'includes/css/cms_css.php','file');
@@ -156,14 +143,8 @@ function head()
 
     global $browser;
     
-	if(isset($modheader)) 
-	echo $modheader; 
-
-    echo "\n\n<!-- START writeHEAD() -->\n\n";
-    writeHEAD();
-    echo "\n<!-- END writeHEAD() -->\n\n";
-
-    echo "\n\n<!-- START custom_head -->\n\n";
+    /*
+	echo "\n\n<!-- START custom_head -->\n\n";
 	if ((($custom_head = $cache->load('custom_head', 'config')) === false) || empty($custom_head)): 
         $custom_head = array();
 	    if (file_exists(NUKE_INCLUDE_DIR.'custom_files/custom_head.php')) 
@@ -184,8 +165,10 @@ function head()
         endif;
     endif;
     echo "\n<!-- END custom_head -->\n\n";
+    */
 
-    /* ----- as you can probably tell this is used for IE compatibility ----- */
+    
+	/* ----- as you can probably tell this is used for IE compatibility ----- */
     echo '<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->'."\n";
     echo "</head>\n";
     echo "\n<!-- END </head> -->\n\n";
@@ -194,7 +177,18 @@ function head()
 	echo "<body>\n";
 	echo "<!-- END Top Primary Body Tags -->\n\n";
 
+	$ThemeSel = get_theme();
+
+    echo "\n\n<!-- START writeHEAD() -->\n\n";
+    writeHEAD();
+    echo "\n<!-- END writeHEAD() -->\n\n";
+
     themeheader();
+
+	// used for class ckeditor
+	if(isset($modheader)) 
+	echo $modheader; 
+
 
 /*****[BEGIN]******************************************
  [ Base:    NukeSentinel                      v2.5.00 ]
@@ -205,6 +199,8 @@ function head()
  [ Base:    NukeSentinel                      v2.5.00 ]
  ******************************************************/
 }
+
+head();
 
 function online() 
 {
@@ -449,7 +445,6 @@ function online()
 }
 
 online();
-head();
 
 /*****[BEGIN]******************************************
  [ Mod:    NSN Center Blocks                   v2.2.1 ]

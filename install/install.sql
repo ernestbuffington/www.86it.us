@@ -1,3 +1,23 @@
+CREATE TABLE `network_cemetery` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `name` varchar(256) NOT NULL,
+  `category_id` int(11) NOT NULL DEFAULT 0,
+  `url` varchar(256) NOT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  `mod_date` date NOT NULL DEFAULT '0000-00-00',
+  `popup` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `network_cemetery_cat` (
+  `category_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(256) NOT NULL,
+  `mod_date` date NOT NULL DEFAULT '0000-00-00'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `network_bookmarks` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
@@ -66,17 +86,18 @@ CREATE TABLE `nuke_banner` (
   `alttext` varchar(255) NOT NULL DEFAULT '',
   `date` datetime DEFAULT NULL,
   `dateend` datetime DEFAULT NULL,
-  `position` int(10) NOT NULL DEFAULT 0,
+  `position` int(11) NOT NULL DEFAULT 0,
   `active` tinyint(1) NOT NULL DEFAULT 1,
   `ad_class` varchar(5) NOT NULL DEFAULT '',
   `ad_code` text NOT NULL,
-  `ad_width` int(4) DEFAULT 0,
-  `ad_height` int(4) DEFAULT 0,
+  `ad_width` int(11) DEFAULT 0,
+  `ad_height` int(11) DEFAULT 0,
   `type` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_banner` (`bid`, `cid`, `name`, `imptotal`, `impmade`, `clicks`, `imageurl`, `clickurl`, `alttext`, `date`, `dateend`, `position`, `active`, `ad_class`, `ad_code`, `ad_width`, `ad_height`, `type`) VALUES
-(1, 1, 'Xtreme', 0, 425, 0, 'https://dev-php-nuke-evolution-xtreme.86it.us/themes/Xtreme_Core/images/HEADER/banner_02.png', 'https://dev-php-nuke-evolution-xtreme.86it.us/index.php', 'PHP-Nuke Evolution Xtreme', '2021-05-09 09:26:55', '0000-00-00 00:00:00', 0, 1, 'image', '', 484, 79, '');
+(4, 1, '86it', 0, 515357, 614, 'https://php-nuke-titanium.86it.us/images/banners/10.png', 'index.php', 'PHP-Nuke Titanium Dev 4', '2019-09-17 17:36:30', '0000-00-00 00:00:00', 0, 1, 'image', '', 472, 79, ''),
+(5, 1, 'Xtreme', 0, 4532, 54, 'https://dev-php-nuke-evolution-xtreme.86it.us/themes/Xtreme_Core/images/HEADER/banner_02.png', 'index.php', 'PHP-Nuke Evolution Xtreme', '2021-05-28 02:54:43', '0000-00-00 00:00:00', 0, 0, 'image', '', 484, 79, '');
 
 CREATE TABLE `nuke_banner_clients` (
   `cid` int(11) NOT NULL,
@@ -89,7 +110,7 @@ CREATE TABLE `nuke_banner_clients` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_banner_clients` (`cid`, `name`, `contact`, `email`, `login`, `passwd`, `extrainfo`) VALUES
-(1, 'WebMaster', 'WebMaster', 'ernest.bufffington@gmail.com', 'WebMaster', '28up4meoru', 'Extra Info');
+(1, 'TheGhost', 'Ernest Buffington', 'ernest.buffington@gmail.com', 'TheGhost', '28up4meoru', '');
 
 CREATE TABLE `nuke_banner_plans` (
   `pid` int(10) NOT NULL,
@@ -132,7 +153,8 @@ INSERT INTO `nuke_bbadvanced_username_color` (`group_id`, `group_name`, `group_c
 (1, 'Portal Admins', 'ff632a', 1),
 (2, 'Portal Moderators', 'd38d01', 2),
 (3, 'VIP Members', '00aa00', 3),
-(4, 'Portal Members', '00b3ff', 4);
+(4, 'Portal Members', '00b3ff', 4),
+(5, 'CKEditor 4 Access', 'bf0000', 5);
 
 CREATE TABLE `nuke_bbarcade` (
   `arcade_name` varchar(255) NOT NULL DEFAULT '',
@@ -288,12 +310,6 @@ CREATE TABLE `nuke_bbcategories` (
   `cat_order` mediumint(8) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_bbcategories` (`cat_id`, `cat_title`, `cat_order`) VALUES
-(1, 'General', 10),
-(2, 'Support Forums', 20),
-(3, 'Modules Forums', 30),
-(4, 'Blocks Forums', 40);
-
 CREATE TABLE `nuke_bbconfig` (
   `config_name` varchar(255) NOT NULL DEFAULT '',
   `config_value` varchar(255) NOT NULL DEFAULT ''
@@ -304,11 +320,11 @@ INSERT INTO `nuke_bbconfig` (`config_name`, `config_value`) VALUES
 ('board_disable', '0'),
 ('board_disable_adminview', '1'),
 ('board_disable_msg', 'The board is currently disabled...'),
-('sitename', 'http://dev.thoseguysgaming.86it.us'),
-('site_desc', 'dev.thoseguysgaming.86it.us'),
-('cookie_name', 'thoseguysgaming'),
+('sitename', 'http://yourdomainname.com'),
+('site_desc', 'Your Forum Dezscription'),
+('cookie_name', 'titanium'),
 ('cookie_path', '/'),
-('cookie_domain', 'dev.thoseguysgaming.86it.us'),
+('cookie_domain', 'yourdomainname.com'),
 ('cookie_secure', '0'),
 ('session_length', '3600'),
 ('allow_html', '1'),
@@ -331,8 +347,8 @@ INSERT INTO `nuke_bbconfig` (`config_name`, `config_value`) VALUES
 ('max_inbox_privmsgs', '1000'),
 ('max_sentbox_privmsgs', '1000'),
 ('max_savebox_privmsgs', '1000'),
-('board_email_sig', 'Thanks, webmaster@dev.thoseguysgaming.86it.us'),
-('board_email', 'webmaster@dev.thoseguysgaming.86it.us'),
+('board_email_sig', 'Thanks, webmaster@yourdomain.com'),
+('board_email', 'webmaster@yourdomain.com'),
 ('smtp_delivery', '0'),
 ('smtp_host', ''),
 ('require_activation', '0'),
@@ -359,7 +375,7 @@ INSERT INTO `nuke_bbconfig` (`config_name`, `config_value`) VALUES
 ('smtp_password', ''),
 ('record_online_users', ''),
 ('record_online_date', '1620385879'),
-('server_name', 'dev.thoseguysgaming.86it.us'),
+('server_name', 'yourdomain.com'),
 ('server_port', '80'),
 ('script_path', '/modules/Forums/'),
 ('version', '.0.23'),
@@ -463,8 +479,8 @@ INSERT INTO `nuke_bbconfig` (`config_name`, `config_value`) VALUES
 ('ftr_active', '0'),
 ('ftr_who', '2'),
 ('ftr_installed', '1241642769'),
-('global_title', 'dev.thoseguysgaming.86it.us'),
-('global_announcement', 'Evolution Xtreme brings you a fully loaded version of Nuke-Evolution.'),
+('global_title', 'yourdomain.com'),
+('global_announcement', 'PHP-Nuke Titanium brings you a 30 year old CMS revived!'),
 ('global_enable', '1'),
 ('marquee_disable', '0'),
 ('version_check_delay', '1241641548'),
@@ -813,25 +829,6 @@ CREATE TABLE `nuke_bbforums` (
   `forum_password` varchar(20) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_bbforums` (`forum_id`, `cat_id`, `forum_name`, `forum_desc`, `forum_status`, `forum_order`, `forum_posts`, `forum_topics`, `forum_last_post_id`, `prune_next`, `prune_enable`, `auth_view`, `auth_read`, `auth_post`, `auth_reply`, `auth_edit`, `auth_delete`, `auth_sticky`, `auth_announce`, `auth_globalannounce`, `auth_vote`, `auth_pollcreate`, `auth_attachments`, `forum_display_sort`, `forum_display_order`, `auth_download`, `forum_parent`, `forum_color`, `title_is_link`, `weblink`, `forum_link_icon`, `forum_link_count`, `forum_link_target`, `forum_icon`, `forum_thank`, `forum_password`) VALUES
-(1, 1, 'Announcements', 'Read me first before posting anywhere!', 0, 10, 1, 1, 14, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, 'e9ab0', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_megaphone5.png', 1, ''),
-(2, 1, 'The 86it Development Board', 'Visit the 86it development board, PHP-Nuke Titanium and PHP-Nuke Evolution Xtreme\'s testing ground of bleeding edge developmental code, to discuss development & code changes, RFCs, future versions of Titanium and Xtreme, and also take a peek at the currently available development version of Titanium and Xtreme, if one is available.', 0, 20, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 1, 'https://www.86it.us/modules.php?name=Forums', '', 1, 0, 'images/forum_icons/folder_big_86ita.png', 1, ''),
-(3, 2, '[3.0.x] Support Forum', 'Get help with installation and running PHP-Nuke Evolution Xtreme 3.0.x here. Please do not post bug reports, feature requests, or extension related questions here.', 0, 10, 2, 1, 21, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_30help.png', 1, ''),
-(4, 2, '[2.0.x] Support Forum', 'Get help with installation and running PHP-Nuke Evolution Xtreme 2.0.x here. Please do not post bug reports, feature requests, or extension related questions here.', 0, 20, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_20help.png', 1, ''),
-(5, 2, 'Custom BBCode Development and Requests', 'Get help developing custom BBCodes or request one.', 0, 30, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_help_alone.png', 1, ''),
-(6, 3, 'Modules Support', 'All modules releases will be announced in here. All support for released modules needs to take place in the proper Module support sub forum.', 0, 10, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_module.png', 1, ''),
-(7, 3, 'Link_us', 'Module Name: Link_Us \nAuthor: DarkForgeGFX \nVersion: v1.0.0 \nCore: PHP-Nuke Evolution Xtreme v3.0.1a <> v3.0.1b', 0, 20, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 6, '', 0, 'http://', '', 0, 0, 'images/forum_icons/general.png', 1, ''),
-(8, 4, 'Blocks Support', 'All block releases will be announced in here. All support for released blocks needs to take place in the proper block support sub forum. Each block has it\'s own support area.', 0, 10, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_blocks.png', 1, ''),
-(9, 3, 'Module Feature Requests', 'All module requests will be announced in here. All feature requests for released modules needs to take place in the proper module request sub forum.', 0, 30, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_module.png', 1, ''),
-(10, 3, 'Link_us', 'Module Name: Link_Us \nAuthor: DarkForgeGFX \nVersion: v1.0.0 \nCore: PHP-Nuke Evolution Xtreme v3.0.1a <> v3.0.1b', 0, 40, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 9, '', 0, 'http://', '', 0, 0, 'images/forum_icons/general.png', 1, ''),
-(11, 4, 'Blocks Feature Requests', 'All block requests will be announced in here. All feature requests for released blocks needs to take place in the proper block request sub forum.', 0, 20, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_blocks.png', 1, ''),
-(12, 3, 'Modules in Development', 'A place for Module Authors to post and receive feedback on Modules still in development. No Modules within this forum should be used within a live environment!', 0, 50, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_module.png', 1, ''),
-(13, 4, 'Blocks in Development', 'A place for block Authors to post and receive feedback on blocks still in development. No blocks within this forum should be used within a live environment!', 0, 30, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 0, '', 0, 'http://', '', 0, 0, 'images/forum_icons/folder_big_blocks.png', 1, ''),
-(14, 3, 'Google-Site-Map', 'Module Name: Google-Site-Map\nAuthor: Ernest Buffington\nVersion: v1.0\nCore: PHP-Nuke Evolution Xtreme v3.0.1a <> v3.0.1b', 0, 60, 2, 1, 19, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 12, '', 0, 'http://', '', 0, 0, 'images/forum_icons/general.png', 1, ''),
-(15, 3, 'Link_us', 'Module Name: Link_Us \nAuthor: DarkForgeGFX \nVersion: v1.0.0 \nCore: PHP-Nuke Evolution Xtreme v3.0.1a <> v3.0.1b', 0, 70, 1, 1, 15, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 12, '', 0, 'http://', '', 0, 0, 'images/forum_icons/general.png', 1, ''),
-(16, 3, 'Google-Site-Map', 'Module Name: Google-Site-Map \nAuthor: Ernest Buffington \nVersion: v1.0 \nCore: PHP-Nuke Evolution Xtreme v3.0.1a <> v3.0.1b', 0, 80, 2, 1, 18, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 6, '', 0, 'http://', '', 0, 0, 'images/forum_icons/general.png', 1, ''),
-(17, 3, 'Google-Site-Map', 'Module Name: Google-Site-Map \nAuthor: Ernest Buffington \nVersion: v1.0 \nCore: PHP-Nuke Evolution Xtreme v3.0.1a <> v3.0.1b', 0, 90, 0, 0, 0, NULL, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 1, 9, '', 0, 'http://', '', 0, 0, 'images/forum_icons/general.png', 1, '');
-
 CREATE TABLE `nuke_bbforum_prune` (
   `prune_id` mediumint(8) UNSIGNED NOT NULL,
   `forum_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
@@ -845,19 +842,6 @@ CREATE TABLE `nuke_bbgamehash` (
   `user_id` mediumint(8) NOT NULL,
   `hash_date` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_bbgamehash` (`gamehash_id`, `game_id`, `user_id`, `hash_date`) VALUES
-('2831531a4b315cface4aa7b4b407737e', 1, 14, 1243799167),
-('af91f2f362cf263b05d87c969560e6ed', 1, 14, 1243798783),
-('bc45ca43ec051ff1c3e81aa0f7853397', 1, 14, 1243798574),
-('aa63eacff0b985227853ebbab58a3d2f', 1, 14, 1243798654),
-('d5daabfb1c1cf7ac3533114a5c26c2f5', 1, 14, 1243798569),
-('c5176e5b8e7f3c711d91ab608885f6f2', 1, 14, 1243799172),
-('04887b4f7591c9d5a755d073e488fd09', 1, 26, 1243869607),
-('e1a8c5aaf0a057af8884d3db957a773b', 1, 26, 1243869608),
-('c93c35ada756d320067e4e81692aed00', 1, 26, 1243869608),
-('5b6258ef67e44bfdf399861be8a511e5', 1, 26, 1243869797),
-('183552c7d3a11a68211e89f6199f3cb2', 1, 26, 1243869797);
 
 CREATE TABLE `nuke_bbgames` (
   `game_id` mediumint(8) NOT NULL,
@@ -876,9 +860,6 @@ CREATE TABLE `nuke_bbgames` (
   `game_set` mediumint(8) NOT NULL DEFAULT 0,
   `arcade_catid` mediumint(8) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_bbgames` (`game_id`, `game_pic`, `game_desc`, `game_highscore`, `game_highdate`, `game_highuser`, `game_name`, `game_swf`, `game_scorevar`, `game_type`, `game_width`, `game_height`, `game_order`, `game_set`, `arcade_catid`) VALUES
-(1, 'airport1.gif', '', 0, 0, 0, 'airport', 'airport.swf', 'airport', 3, 550, '380', 10, 0, 1);
 
 CREATE TABLE `nuke_bbgroups` (
   `group_id` mediumint(8) NOT NULL,
@@ -904,9 +885,15 @@ CREATE TABLE `nuke_bbgroups` (
 INSERT INTO `nuke_bbgroups` (`group_id`, `group_type`, `group_name`, `group_description`, `group_moderator`, `group_single_user`, `group_allow_pm`, `group_color`, `group_rank`, `max_inbox`, `max_sentbox`, `max_savebox`, `override_max_inbox`, `override_max_sentbox`, `override_max_savebox`, `group_count`, `group_count_max`, `group_count_enable`) VALUES
 (1, 1, 'Anonymous', 'Personal User', 0, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 99999999, 99999999, 0),
 (2, 2, 'Portal Moderators', 'Portal Moderators', 2, 0, 5, '2', '2', 0, 0, 0, 0, 0, 0, 99999999, 99999999, 0),
-(3, 0, 'Portal Members', 'Default Portal Usergroup', 2, 0, 5, '4', '3', 0, 0, 0, 0, 0, 0, 99999999, 99999999, 0),
-(4, 0, 'VIP Members', 'VIP Portal Members', 2, 0, 5, '3', '0', 100000, 100000, 100000, 0, 0, 0, 99999999, 99999999, 0),
-(5, 0, 'Portal Admins', 'Portal Admins', 2, 0, 5, '1', '1', 100000, 100000, 100000, 0, 0, 0, 99999999, 99999999, 0);
+(3, 0, 'Portal Members', 'Default Portal Usergroup', 2, 0, 5, '4', '6', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(4, 0, 'VIP Members', 'VIP Portal Members', 2, 0, 5, '3', '7', 100000, 100000, 100000, 0, 0, 0, 99999999, 99999999, 0),
+(5, 0, 'Portal Admins', 'Portal Admins', 2, 0, 5, '1', '4', 100000, 100000, 100000, 1, 1, 1, 99999999, 99999999, 0),
+(25, 0, 'CKEditor 4 Access', 'CKEditor 4 Access', 2, 0, 5, '5', '0', 1000, 1000, 1000, 0, 0, 0, 99999999, 99999999, 0),
+(26, 1, '', 'Personal User', 0, 1, 5, '', '0', 100, 100, 100, 0, 0, 0, 99999999, 99999999, 0),
+(27, 1, '', 'Personal User', 0, 1, 5, '', '0', 100, 100, 100, 0, 0, 0, 99999999, 99999999, 0),
+(28, 1, '', 'Personal User', 0, 1, 5, '', '0', 100, 100, 100, 0, 0, 0, 99999999, 99999999, 0),
+(29, 1, '', 'Personal User', 0, 1, 5, '', '0', 100, 100, 100, 0, 0, 0, 99999999, 99999999, 0);
+
 
 CREATE TABLE `nuke_bbhackgame` (
   `user_id` mediumint(8) NOT NULL,
@@ -961,32 +948,12 @@ CREATE TABLE `nuke_bbposts` (
   `post_icon` tinyint(2) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_bbposts` (`post_id`, `topic_id`, `forum_id`, `poster_id`, `post_time`, `poster_ip`, `post_username`, `enable_bbcode`, `enable_html`, `enable_smilies`, `enable_sig`, `post_edit_time`, `post_edit_count`, `post_attachment`, `post_move`, `post_icon`) VALUES
-(14, 8, 1, 5, 1620567668, '2fced8c4', '', 1, 1, 1, 0, NULL, 0, 0, 0, 5),
-(15, 9, 15, 5, 1620568076, '2fced8c4', '', 1, 1, 1, 0, NULL, 0, 0, 0, 5),
-(16, 10, 14, 5, 1620569758, '2fced8c4', '', 0, 1, 1, 0, NULL, 0, 0, 0, 5),
-(17, 11, 16, 11, 1620571562, 'ada8f4cc', '', 1, 1, 1, 0, NULL, 0, 0, 0, 5),
-(18, 11, 16, 5, 1620571751, '2fced8c4', '', 1, 1, 1, 0, NULL, 0, 0, 0, 5),
-(19, 10, 14, 11, 1620572188, 'ada8f4cc', '', 1, 1, 1, 0, NULL, 0, 0, 0, 5),
-(20, 12, 3, 3, 1620584943, 'ada8f4cc', '', 1, 1, 1, 0, NULL, 0, 0, 0, 15),
-(21, 12, 3, 2, 1620594835, '2fced8c4', '', 1, 1, 1, 0, NULL, 0, 0, 0, 0);
-
 CREATE TABLE `nuke_bbposts_text` (
   `post_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
   `bbcode_uid` varchar(10) NOT NULL DEFAULT '',
   `post_subject` varchar(60) DEFAULT NULL,
   `post_text` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_bbposts_text` (`post_id`, `bbcode_uid`, `post_subject`, `post_text`) VALUES
-(14, '8a4d310917', 'Welcome to PHP-Nuke Evolution Xtreme v3.0.1b', 'The US version of [b:8a4d310917]PHP-Nuke Evolution Xtreme[/b:8a4d310917] CMS is not compatible with the UK version as far as themes go, however it does support modules and blocks from the UK version. What exactly is Xtreme? It is an open-source CMS wrote in PHP as a programming language and development was first started in 2005. The software comes with a set of basic features like a WYSIWYG editor, an admin interface with drag and drop blocks, spam protection, and image processing. [b:8a4d310917]Nuke Evolution-Xtreme[/b:8a4d310917] CMS comes with the ability to use various modules that will extend the current functionality of your portal/website. The latest version available for download is 3.0.1b and is still in beta.\n\n[b:8a4d310917]PHP-Nuke Evolution Xtreme[/b:8a4d310917] now comes with v5 of the Titanium Facebook SDK kit. It\'s already set up. All you have to do is add your app ID and secret... If you need help, we would be glad to set it up for FREE.\n\n[b:8a4d310917]PHP-Nuke Evolution Xtreme[/b:8a4d310917] now comes with v5 of the Titanium Google SDK. Everything you need to be a Google developer is already there, just have a look inside your includes directory.'),
-(15, 'b16308c651', 'The Link Us Module is now in development status.', 'Module Name: Link Us\nOriginal Author: DarkForgeGFX\nContributor(s): TheGhost and AlphaClient\nVersion: v1.0.0\nCore: PHP-Nuke Evolution Xtreme v2.0.9d &lt;&gt; 3.0.1b\nDescription: To show and administrate several methods of backlinks to your website/portal.\n\nI updated the display on the Link_Us index page. It needed to be displayed properly, which may just be a matter of opinion however I\'m OCD and I could not take it any longer. I went ahead and took the time to lay out the table and add a fieldset to the default image section. I have not added any other size link back images so I have no idea what those will end up looking like. In that event, I am sure I will log in and re-write those areas as well. This website has only the standard default link back image sizes in use, so I will wait until I have to cross that bridge to fix it.\n\nI modified the index.php file located in the &quot;modules/Link_Us/public&quot; directory.\n\nThis module was written some years ago and as of now I will be updating the cosmetics of the module and maybe, possibly adding some new features. So far I changed the layout of the buttons. When you click <i class=\"bi bi-link\"></i> [url=https://dev-php-nuke-evolution-xtreme.86it.us/modules.php?name=Link_Us]View All Buttons[/url] <i class=\"bi bi-link\"></i> you will see that I changed the way the button layout is and added a fieldset as well as added some bootstrap bling to make it look better.'),
-(16, '', 'Google Site Map Generator is now in development status.', 'Module Name: Google-Site-Map\nAuthor: Ernest Buffington\nVersion: v1.0\nCore: PHP-Nuke Evolution Xtreme v3.0.1a &lt;&gt; v3.0.1b\n\nThe original sitemap was an abandoned project and idea, not by me but whoever was working on it originally. The new one is awesome and works great. I\'m not sure people really understand how important this little module is. Contrary to popular belief, this is an important part of being found on the internet. The class.sitemap.php file can be found in the includes/classes directory.\n\nI used some of the old code, not much just a few lines here and there, and the old sitemap\'s admin panel is the same.\n\nThis uses sitemap 0.9\n\nThe new Google Site Map Generator works better than just about anything I have seen. You will need to delete the old sitemap.xml file that is in the root directory of your portal/website as it is no longer used. The new sitemap.xml file is generated in the xmls/sitemap folder. This is not the file you tell google to look at.\n\nYou will need to point Google to your sitemap-index.xml file which resides in that very same directory.\n\nYou will do this by telling Google where the file is at like so https://yourwebsite.com/xmls/sitemap/sitemap-index.xml\n\nYou can do so by going here https://search.google.com/search-console?resource_id=sc-domain:yourdomain.com\n\nI used a fast and lightweight class for generating Google-Site-Map XML files and index of sitemap files. Written in PHP and uses XMLWriter extension (wrapper for libxml xmlWriter API) for creating XML files. XMLWriter extension is enabled by default in PHP 5.1.2 and up. If you have more than 50000 URLs, it will split items into separated files. (In benchmarks, 1.000.000 URLs were generating in 8 seconds) The version we are using is a slightly modified version of the original.\n\nThe Sitemap class is now added to a SitemapPHP namespace.'),
-(17, '6565bd6dca', 'How do I get this to update my XML with forums posts?', 'It does not look like it is writing information to my sitemap.xml file for forum posts. Is there something I can enable to get this to work?\n\nI am new at this but I think it is suppose to write info for each post to the xml file.\n\nI know this is still in development so maybe this feature has not been added yet.\n\nAny help will be appreciated.\n\nThanks,\nShakey'),
-(18, '2bcff0ad57', 'Re: How do I get this to update my XML with forums posts?', '[quote:2bcff0ad57=\"Shakey\";p=\"17\"]It does not look like it is writing information to my sitemap.xml file for forum posts. Is there something I can enable to get this to work?\n\nI am new at this but I think it is suppose to write info for each post to the xml file.\n\nI know this is still in development so maybe this feature has not been added yet.\n\nAny help will be appreciated.\n\nThanks,\nShakey[/quote:2bcff0ad57]\n\nThere are quite a few things that still have yet to be added. It should be in the next release or you can download the nightly build tomorrow and I will try to get it added in for you.'),
-(19, '6cee80d69c', 'Re: Google Site Map Generator is now in development status.', '[quote:6cee80d69c=\"TheGhost\";p=\"16\"]Module Name: Google-Site-Map\nAuthor: Ernest Buffington\nVersion: v1.0\nCore: PHP-Nuke Evolution Xtreme v3.0.1a &lt;&gt; v3.0.1b\n\nThe original sitemap was an abandoned project and idea, not by me but whoever was working on it originally. The new one is awesome and works great. I\'m not sure people really understand how important this little module is. Contrary to popular belief, this is an important part of being found on the internet. The class.sitemap.php file can be found in the includes/classes directory.\n\nI used some of the old code, not much just a few lines here and there, and the old sitemap\'s admin panel is the same.\n\nThis uses sitemap 0.9\n\nThe new Google Site Map Generator works better than just about anything I have seen. You will need to delete the old sitemap.xml file that is in the root directory of your portal/website as it is no longer used. The new sitemap.xml file is generated in the xmls/sitemap folder. This is not the file you tell google to look at.\n\nYou will need to point Google to your sitemap-index.xml file which resides in that very same directory.\n\nYou will do this by telling Google where the file is at like so https://yourwebsite.com/xmls/sitemap/sitemap-index.xml\n\nYou can do so by going here https://search.google.com/search-console?resource_id=sc-domain:yourdomain.com\n\nI used a fast and lightweight class for generating Google-Site-Map XML files and index of sitemap files. Written in PHP and uses XMLWriter extension (wrapper for libxml xmlWriter API) for creating XML files. XMLWriter extension is enabled by default in PHP 5.1.2 and up. If you have more than 50000 URLs, it will split items into separated files. (In benchmarks, 1.000.000 URLs were generating in 8 seconds) The version we are using is a slightly modified version of the original.\n\nThe Sitemap class is now added to a SitemapPHP namespace.[/quote:6cee80d69c]\n\nThis is really great, the old one from my other site had an incomplete version or something. This seems to be a pretty thorough sitemap tool.\n\nI look forward to using it and I have noticed quite a few changes in the code. Looks like my site will be just about as SEO as I can get.'),
-(20, '317f47cf2e', 'Admin SQL Error log problems', 'All the sudden the error log is not opening. This happened after you started working on the new menu and deleted the modules in the admin panel that were not being used.\n\nAdmin error log is working but not the SQL error log. bottom half of the tabled is not loading at all.'),
-(21, 'bd57b14257', 'Re: Admin SQL Error log problems', 'Someone tried to use a very old hack , it fixed itself.\n\nScript kiddies gotta love um...');
 
 CREATE TABLE `nuke_bbpost_reports` (
   `report_id` mediumint(8) NOT NULL,
@@ -1065,9 +1032,10 @@ CREATE TABLE `nuke_bbranks` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_bbranks` (`rank_id`, `rank_title`, `rank_min`, `rank_special`, `rank_image`) VALUES
-(1, 'Portal Admin', -1, 1, 'images/ranks/administrator.png'),
-(2, 'Portal Moderator', -1, 1, 'images/ranks/moderator.png'),
-(3, 'Portal Member', -1, 1, 'images/ranks/regular-member.png');
+(4, 'Administrator', -1, 1, 'images/ranks/administrator.png'),
+(5, 'Developer', -1, 1, 'images/ranks/developer.png'),
+(6, 'Portal Member', -1, 1, 'images/ranks/regular-member.png'),
+(7, 'VIP Member', -1, 1, 'images/ranks/vip.png');
 
 CREATE TABLE `nuke_bbreputation` (
   `user_id` mediumint(8) NOT NULL DEFAULT 0,
@@ -1439,13 +1407,6 @@ CREATE TABLE `nuke_bbtopics` (
   `topic_icon` tinyint(2) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_bbtopics` (`topic_id`, `forum_id`, `topic_title`, `topic_poster`, `topic_time`, `topic_views`, `topic_replies`, `topic_status`, `topic_vote`, `topic_type`, `topic_last_post_id`, `topic_first_post_id`, `topic_moved_id`, `topic_priority`, `topic_attachment`, `topic_glance_priority`, `topic_icon`) VALUES
-(8, 1, 'Welcome to PHP-Nuke Evolution Xtreme v3.0.1b', 5, 1620567668, 16, 0, 0, 0, 1, 14, 14, 0, 0, 0, 0, 5),
-(9, 15, 'The Link Us Module is now in development status.', 5, 1620568076, 25, 0, 0, 0, 0, 15, 15, 0, 0, 0, 0, 5),
-(10, 14, 'Google Site Map Generator is now in development status.', 5, 1620569758, 19, 1, 0, 0, 0, 19, 16, 0, 0, 0, 0, 5),
-(11, 16, 'How do I get this to update my XML with forums posts?', 11, 1620571562, 5, 1, 0, 0, 0, 18, 17, 0, 0, 0, 0, 5),
-(12, 3, 'Admin SQL Error log problems', 3, 1620584943, 8, 1, 0, 0, 0, 21, 20, 0, 0, 0, 0, 15);
-
 CREATE TABLE `nuke_bbtopics_email` (
   `user_id` mediumint(8) NOT NULL,
   `friend_name` varchar(100) NOT NULL,
@@ -1461,8 +1422,6 @@ CREATE TABLE `nuke_bbtopics_watch` (
   `notify_status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_bbtopics_watch` (`topic_id`, `user_id`, `notify_status`) VALUES
-(12, 2, 0);
 
 CREATE TABLE `nuke_bbtopic_moved` (
   `moved_id` mediumint(8) UNSIGNED NOT NULL,
@@ -1483,47 +1442,6 @@ CREATE TABLE `nuke_bbtopic_view` (
   `view_count` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_bbtopic_view` (`topic_id`, `user_id`, `view_time`, `view_count`) VALUES
-(2, 2, 1620416529, 152),
-(2, 1, 1620353324, 40),
-(2, 4, 1620348528, 30),
-(2, 6, 1619596768, 6),
-(2, 10, 1619568473, 8),
-(2, 11, 1620546347, 7),
-(2, 5, 1620567467, 58),
-(2, 7, 1619846451, 2),
-(2, 3, 1620406504, 1),
-(3, 20, 1620406568, 1),
-(3, 5, 1620567442, 2),
-(3, 3, 1620409077, 1),
-(3, 1, 1620459617, 1),
-(2, 21, 1620460237, 1),
-(5, 20, 1620464910, 1),
-(6, 20, 1620465284, 1),
-(4, 21, 1620465669, 1),
-(6, 21, 1620465677, 1),
-(4, 5, 1620567409, 2),
-(3, 11, 1620540631, 2),
-(6, 11, 1620539506, 2),
-(7, 11, 1620540689, 7),
-(7, 5, 1620567451, 2),
-(6, 5, 1620567427, 2),
-(8, 5, 1620570714, 10),
-(9, 5, 1620583076, 19),
-(9, 2, 1620583286, 3),
-(10, 5, 1620583146, 10),
-(8, 11, 1620570999, 2),
-(10, 11, 1620582683, 9),
-(9, 11, 1620571179, 3),
-(11, 11, 1620582385, 3),
-(11, 5, 1620571754, 2),
-(8, 2, 1620623482, 3),
-(12, 3, 1620621765, 2),
-(12, 2, 1620594924, 5),
-(10, 2, 1620594958, 1),
-(12, 1, 1620623590, 1),
-(8, 3, 1620625732, 1);
-
 CREATE TABLE `nuke_bbuser_group` (
   `group_id` mediumint(8) NOT NULL DEFAULT 0,
   `user_id` mediumint(8) NOT NULL DEFAULT 0,
@@ -1534,9 +1452,6 @@ INSERT INTO `nuke_bbuser_group` (`group_id`, `user_id`, `user_pending`) VALUES
 (1, -1, 0),
 (3, 2, 0),
 (5, 2, 0),
-(5, 3, 0),
-(4, 3, 0),
-(3, 3, 0),
 (5, 4, 0),
 (3, 4, 0),
 (6, 5, 0),
@@ -1580,7 +1495,19 @@ INSERT INTO `nuke_bbuser_group` (`group_id`, `user_id`, `user_pending`) VALUES
 (7, 20, 0),
 (24, 21, 0),
 (3, 21, 0),
-(7, 11, 1);
+(7, 11, 1),
+(4, 2, 0),
+(25, 2, 0),
+(26, 3, 0),
+(3, 3, 0),
+(25, 3, 0),
+(5, 3, 0),
+(4, 3, 0),
+(27, 1, 0),
+(28, 2, 0),
+(29, 4, 0),
+(4, 4, 0);
+
 
 CREATE TABLE `nuke_bbvote_desc` (
   `vote_id` mediumint(8) UNSIGNED NOT NULL,
@@ -1657,15 +1584,15 @@ INSERT INTO `nuke_bbxdata_fields` (`field_id`, `field_name`, `field_desc`, `fiel
 (9, 'Signature', '', 'special', 9, 'signature', 0, '', '', 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0);
 
 CREATE TABLE `nuke_blocks` (
-  `bid` int(10) NOT NULL,
+  `bid` int(11) NOT NULL,
   `bkey` varchar(15) NOT NULL DEFAULT '',
   `title` varchar(60) NOT NULL DEFAULT '',
   `content` text NOT NULL,
   `url` varchar(200) NOT NULL DEFAULT '',
   `bposition` char(1) NOT NULL DEFAULT '',
-  `weight` int(10) NOT NULL DEFAULT 1,
-  `active` int(1) NOT NULL DEFAULT 1,
-  `refresh` int(10) NOT NULL DEFAULT 0,
+  `weight` int(11) NOT NULL DEFAULT 1,
+  `active` int(11) NOT NULL DEFAULT 1,
+  `refresh` int(11) NOT NULL DEFAULT 0,
   `time` varchar(14) NOT NULL DEFAULT '0',
   `blanguage` varchar(30) NOT NULL DEFAULT '',
   `blockfile` varchar(255) NOT NULL DEFAULT '',
@@ -1673,29 +1600,26 @@ CREATE TABLE `nuke_blocks` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_blocks` (`bid`, `bkey`, `title`, `content`, `url`, `bposition`, `weight`, `active`, `refresh`, `time`, `blanguage`, `blockfile`, `view`) VALUES
-(1, '', 'Main Menu', '', '', 'l', 5, 0, 1800, '0', '', 'block-Modules.php', '1'),
-(2, '', 'Search', '', '', 'r', 0, 1, 3600, '', '', 'block-Search.php', '0'),
-(3, '', 'Survey', '', '', 'r', 4, 0, 3600, '', '', 'block-Survey.php', '0'),
-(4, '', 'Information', '<br /><center><span class=\"content\">\r\n<a href=\"http://phpnuke.org\"><img src=\"images/powered/powered8.jpg\" border=\"0\" alt=\"Powered by PHP-Nuke\" title=\"Powered by PHP-Nuke\" width=\"88\" height=\"31\" /></a>\r\n<br /><br />\r\n<a href=\"http://validator.w3.org/check/referer\"><img src=\"images/html401.gif\" width=\"88\" height=\"31\" alt=\"Valid HTML 4.01!\" title=\"Valid HTML 4.01!\" border=\"0\" /></a>\r\n<br /><br />\r\n<a href=\"http://jigsaw.w3.org/css-validator\"><img src=\"images/css.gif\" width=\"88\" height=\"31\" alt=\"Valid CSS!\" title=\"Valid CSS!\" border=\"0\" /></a></span></center><br />', '', 'r', 5, 0, 0, '', '', '', '0'),
-(5, '', 'User Info', '', '', 'l', 0, 1, 0, '', '', 'block-Evo_User_Info.php', '0'),
-(6, '', 'PHP-Nuke Evolution Xtreme', '', '', 'c', 2, 0, 0, '', '', 'block-Nuke-Evolution.php', '0'),
-(8, '', 'Top 10 Links', '', '', 'r', 6, 1, 3600, '', '', 'block-Top10_Links.php', '0'),
-(9, '', 'Forums', '', '', 'c', 0, 1, 3600, '', '', 'block-Forums.php', '0'),
-(10, '', 'Submissions', '', '', 'l', 6, 0, 0, '', '', 'block-Submissions.php', '4'),
-(11, '', 'Link-us', '', '', 'r', 3, 1, 3600, '0', '', 'block-Link-us.php', '1'),
-(12, '', 'Shout Box', '', '', 'r', 1, 1, 3600, '0', '', 'block-Shout_Box.php', '1'),
-(13, '', 'Todays Big Story', '', '', 'd', 0, 0, 3600, '0', '', 'block-Big_Story_of_Today.php', '1'),
-(14, '', 'Donations', '', '', 'r', 2, 0, 3600, '0', '', 'block-Donations.php', '0'),
-(15, '', 'Arcade Center', '', '', 'd', 1, 0, 3600, '0', '', 'block-Arcade_Center.php', '1'),
-(16, '', 'ECalendar', '', '', 'l', 7, 0, 3600, '0', '', 'block-ECalendar.php', '1'),
-(17, '', 'Portal Security', '', '', 'd', 2, 1, 3600, '0', '', 'block-Sentinel_Center.php', '1'),
-(18, '', 'Visitor Log', '', '', 'c', 1, 1, 3600, '0', '', 'block-Titanium_Visitor_Log_Center.php', '1'),
-(19, '', 'Module Demos', '', '', 'l', 2, 0, 3600, '0', '', 'block-Titanium_Portal_Menu.php', '1'),
-(20, '', 'Select Theme', '', '', 'l', 1, 1, 3600, '0', '', 'block-Titanium_Themes.php', '1'),
-(21, '', 'Portal Information', '', '', 'l', 3, 0, 3600, '0', '', 'block-Portal-Information.php', '1'),
-(22, '', 'Honeypot Security', '', '', 'l', 4, 1, 3600, '0', '', 'block-Honey_Pot.php', '1'),
-(23, '', 'Thank You', '', '', 'c', 3, 0, 3600, '0', '', 'block-Thank_You.php', '1'),
-(24, '', 'Facebook Messenger Plugin', '', '', 'l', 8, 1, 3600, '0', '', 'block-Facebook_Chat_Plugin.php', '1');
+(1, '', 'Evo Main Menu', '', '', 'l', 1, 0, 1800, '0', '', 'block-Modules.php', '1'),
+(2, '', 'Search', '', '', 'l', 7, 1, 3600, '', '', 'block-Search.php', '0'),
+(3, '', 'Survey', '', '', 'r', 7, 0, 3600, '', '', 'block-Survey.php', '0'),
+(4, '', 'Information', '<br /><center><span class=\"content\">\r\n<a href=\"http://phpnuke.org\"><img src=\"images/powered/powered8.jpg\" border=\"0\" alt=\"Powered by PHP-Nuke\" title=\"Powered by PHP-Nuke\" width=\"88\" height=\"31\" /></a>\r\n<br /><br />\r\n<a href=\"http://validator.w3.org/check/referer\"><img src=\"images/html401.gif\" width=\"88\" height=\"31\" alt=\"Valid HTML 4.01!\" title=\"Valid HTML 4.01!\" border=\"0\" /></a>\r\n<br /><br />\r\n<a href=\"http://jigsaw.w3.org/css-validator\"><img src=\"images/css.gif\" width=\"88\" height=\"31\" alt=\"Valid CSS!\" title=\"Valid CSS!\" border=\"0\" /></a></span></center><br />', '', 'r', 8, 0, 0, '', '', '', '0'),
+(5, '', 'User Info', '', '', 'r', 0, 1, 0, '', '', 'block-Evo_User_Info.php', '0'),
+(6, '', 'Top 10 Links', '', '', 'r', 4, 1, 3600, '', '', 'block-Top10_Links.php', '0'),
+(7, '', 'Forums', '', '', 'c', 0, 1, 3600, '', '', 'block-Forums.php', '0'),
+(8, '', 'Submissions', '', '', 'l', 2, 0, 0, '', '', 'block-Submissions.php', '4'),
+(9, '', 'Link-us', '', '', 'l', 5, 1, 3600, '0', '', 'block-Link-us.php', '1'),
+(10, '', 'Shout Box', '', '', 'r', 2, 1, 3600, '0', '', 'block-Shout_Box.php', '1'),
+(11, '', 'Donations', '', '', 'r', 6, 0, 3600, '0', '', 'block-Donations.php', '0'),
+(12, '', 'ECalendar', '', '', 'l', 4, 0, 3600, '0', '', 'block-ECalendar.php', '1'),
+(13, '', 'Sentinel Portal Security', '', '', 'd', 3, 1, 3600, '0', '', 'block-Sentinel_Center.php', '1'),
+(14, '', 'Select Network Theme', '', '', 'l', 3, 1, 3600, '0', '', 'block-Titanium_Themes.php', '1'),
+(15, '', 'Honey Pot Protected', '', '', 'l', 6, 1, 3600, '0', '', 'block-Honey_Pot.php', '1'),
+(16, '', 'This is exactly how I feel!', '', '', 'c', 2, 0, 3600, '0', '', 'block-Thank_You.php', '1'),
+(17, '', 'Portal Menu', '', '', 'l', 0, 1, 3600, '0', '', 'block-Portal_Menu.php', '1'),
+(18, '', 'Reviews', '', '', 'r', 9, 0, 3600, '0', '', 'block-Reviews.php', '1'),
+(19, '', 'Server Information', '', '', 'r', 3, 1, 3600, '0', '', 'block-Portal-Information.php', '1'),
+(20, '', 'Visitor Log', '', '', 'c', 1, 1, 3600, '0', '', 'block-Titanium_Visitor_Log_Center.php', '1');
 
 CREATE TABLE `nuke_cnbya_config` (
   `config_name` varchar(255) NOT NULL DEFAULT '',
@@ -1703,12 +1627,12 @@ CREATE TABLE `nuke_cnbya_config` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_cnbya_config` (`config_name`, `config_value`) VALUES
-('sendaddmail', '1'),
-('senddeletemail', '1'),
+('sendaddmail', '0'),
+('senddeletemail', '0'),
 ('allowuserdelete', '1'),
 ('allowusertheme', '0'),
 ('allowuserreg', '0'),
-('allowmailchange', '0'),
+('allowmailchange', '1'),
 ('emailvalidate', '1'),
 ('requireadmin', '0'),
 ('servermail', '0'),
@@ -1785,7 +1709,7 @@ CREATE TABLE `nuke_config` (
   `dateModified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `adminmail` varchar(255) NOT NULL DEFAULT '',
   `anonpost` tinyint(1) NOT NULL DEFAULT 0,
-  `default_Theme` varchar(255) NOT NULL DEFAULT 'Xtreme_Core',
+  `default_Theme` varchar(255) NOT NULL DEFAULT 'Titanium_Core',
   `foot1` text DEFAULT NULL,
   `foot2` text DEFAULT NULL,
   `foot3` text DEFAULT NULL,
@@ -1828,7 +1752,7 @@ CREATE TABLE `nuke_config` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_config` (`sitename`, `nukeurl`, `site_logo`, `slogan`, `startdate`, `datePublished`, `dateModified`, `adminmail`, `anonpost`, `default_Theme`, `foot1`, `foot2`, `foot3`, `commentlimit`, `anonymous`, `minpass`, `pollcomm`, `articlecomm`, `broadcast_msg`, `my_headlines`, `top`, `storyhome`, `user_news`, `oldnum`, `ultramode`, `banners`, `backend_title`, `backend_language`, `language`, `locale`, `multilingual`, `useflags`, `notify`, `notify_email`, `notify_subject`, `notify_message`, `notify_from`, `moderate`, `admingraphic`, `httpref`, `httprefmax`, `CensorMode`, `CensorReplace`, `copyright`, `Version_Num`, `admin_pos`, `admin_log_lines`, `error_log_lines`, `cache_data`) VALUES
-('My Site', 'http://dev.thoseguysgaming.86it.us', 'logo.png', '', '01/01/21', '2021-01-01 06:16:00', '2021-01-01 06:16:00', 'webmaster@dev.thoseguysgaming.86it.us', 0, 'Xtreme_Core', 'FOOTER LINE 1', 'FOOTER LINE 2', 'FOOTER LINE 3', 4096, 'Anonymous', 5, 1, 1, 1, 1, 5, 5, 1, 30, 1, 1, 'Powered by PHP-Nuke Evolution Xtreme 3.0.1b', 'en-us', 'english', 'en_US', 1, 0, 0, 'webmaster@dev.thoseguysgaming.86it.us', 'Blog for dev.thoseguysgaming.86it.us', 'Hey! You\'ve got a new blog submission for dev.thoseguysgaming.86it.us!', 'WebMaster', 0, 1, 1, 1000, 3, '*****', '', '7.6.0', 1, 0, 0, '');
+('My Site', 'http://yourdomain.com', 'logo.png', '', '01/01/21', '2021-01-01 06:16:00', '2021-01-01 06:16:00', 'webmaster@yourdomain.com', 0, 'Titanium_Core', '', '', '', 4096, 'Anonymous', 5, 1, 1, 1, 1, 5, 5, 1, 30, 1, 1, 'Powered by PHP-Nuke Titanium 4.0.0 Dev 4', 'en-us', 'english', 'en_US', 1, 0, 0, 'webmaster@yourdomain.com', 'Blog for yourprefix.86it.us', 'Hey! You\'ve got a new blog submission for yourprefix.86it.us!', 'WebMaster', 0, 1, 1, 1000, 3, '*****', '', '7.6.0', 1, 0, 0, '');
 
 CREATE TABLE `nuke_confirm` (
   `confirm_id` char(32) NOT NULL DEFAULT '',
@@ -1958,7 +1882,7 @@ CREATE TABLE `nuke_evolution` (
 INSERT INTO `nuke_evolution` (`evo_field`, `evo_value`) VALUES
 ('sub', 'Xtreme'),
 ('ver_check', '0'),
-('ver_previous', '3.0.1b'),
+('ver_previous', '4.0.0'),
 ('lock_modules', '0'),
 ('queries_count', '1'),
 ('adminssl', '1'),
@@ -2066,17 +1990,11 @@ CREATE TABLE `nuke_faqanswer` (
   `answer` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_faqanswer` (`id`, `id_cat`, `question`, `answer`) VALUES
-(1, 1, 'What are we working on now?', '<p>Right now the development team is working on the core theme for the new release of PHP-Nuke Xtreme that will be coming soon. The name of the theme is <strong>Xtreme Core</strong> as it will be the main template that people will use to build future themes, This theme should have every feature that is available within the CMS release.</p>\n\n<p>You will be able to pick and choose what elements you want to enable on your themes each time you design one.</p>\n\n<p>We are currently working on the menu system at the top of the page, where you see the gold buttons that say Home, Forums, Links, Downloads etc. We are adding the admin code so that when a user is logged in as an admin it will add admin options to each of the menu eares.</p>\n\n<p>&nbsp;</p>');
-
 CREATE TABLE `nuke_faqcategories` (
   `id_cat` tinyint(3) NOT NULL,
   `categories` varchar(255) DEFAULT NULL,
   `flanguage` varchar(30) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_faqcategories` (`id_cat`, `categories`, `flanguage`) VALUES
-(1, 'General Q&A', 'english');
 
 CREATE TABLE `nuke_file_repository_categories` (
   `cid` int(11) NOT NULL,
@@ -2188,25 +2106,14 @@ CREATE TABLE `nuke_file_repository_themes` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_file_repository_themes` (`theme_name`, `cell`, `head`, `per_row`, `show_left`) VALUES
-('XtremeV3', 0, 0, 2, 0),
-('XtremeV4', 0, 0, 2, 1),
-('Xtreme_Core', 0, 0, 2, 1);
+('Inferno', 0, 0, 2, 1),
+('Titanium_Core', 0, 0, 2, 1);
 
 CREATE TABLE `nuke_headlines` (
   `hid` int(11) NOT NULL,
   `sitename` varchar(30) NOT NULL DEFAULT '',
   `headlinesurl` varchar(200) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_headlines` (`hid`, `sitename`, `headlinesurl`) VALUES
-(1, 'AbsoluteGames', 'http://files.gameaholic.com/agfa.rdf'),
-(2, 'DailyDaemonNews', 'http://daily.daemonnews.org/ddn.rdf.php3'),
-(3, 'FreeDOS', 'http://sourceforge.net/export/rss2_projnews.php?group_id=5109'),
-(4, 'LinuxWeelyNews', 'http://lwn.net/headlines/rss'),
-(5, 'Listology', 'http://listology.com/recent.rdf'),
-(6, 'PHP-Nuke', 'http://phpnuke.org/backend.php'),
-(7, 'PerlMonks', 'http://www.perlmonks.org/headlines.rdf'),
-(8, 'WebReference', 'http://webreference.com/webreference.rdf');
 
 CREATE TABLE `nuke_hnl_categories` (
   `cid` int(11) NOT NULL,
@@ -2388,20 +2295,6 @@ CREATE TABLE `nuke_links_categories` (
   `parentid` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_links_categories` (`cid`, `title`, `cdescription`, `parentid`) VALUES
-(1, 'PHP-Nuke Evolution Xtreme', 'Anything and everything Evolution Xtreme related.', 0),
-(2, 'PHP-Nuke', 'Anything and everything PHP-Nuke related.', 0),
-(3, 'Exploits', '', 2),
-(4, 'User Websites', '', 1),
-(5, 'Themes', '', 1),
-(6, 'Developer Websites', '', 1),
-(7, 'Themes', '', 2),
-(8, 'User Websites', '', 2),
-(9, 'Developer Websites', '', 2),
-(10, 'Open-Source', 'Open Source links and pages.', 0),
-(11, 'Programming', 'Everything related to online programming.', 0),
-(12, 'Bootstrap', 'Bootstrap, the worldâ€™s most popular framework for building responsive, mobile-first sites, with jsDelivr and a template starter page.', 11);
-
 CREATE TABLE `nuke_links_editorials` (
   `linkid` int(11) NOT NULL DEFAULT 0,
   `adminid` varchar(60) NOT NULL DEFAULT '',
@@ -2409,9 +2302,6 @@ CREATE TABLE `nuke_links_editorials` (
   `editorialtext` text NOT NULL,
   `editorialtitle` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_links_editorials` (`linkid`, `adminid`, `editorialtimestamp`, `editorialtext`, `editorialtitle`) VALUES
-(2, 'WebMaster', '2021-05-06 05:02:41', 'This is the Test Editorial Text', 'This is a Test Editorial');
 
 CREATE TABLE `nuke_links_links` (
   `lid` int(11) NOT NULL,
@@ -2429,20 +2319,6 @@ CREATE TABLE `nuke_links_links` (
   `totalvotes` int(11) NOT NULL DEFAULT 0,
   `totalcomments` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_links_links` (`lid`, `cid`, `sid`, `title`, `url`, `description`, `date`, `name`, `email`, `hits`, `submitter`, `linkratingsummary`, `totalvotes`, `totalcomments`) VALUES
-(1, 3, 0, 'www.exploit-db.com', 'https://www.exploit-db.com/exploits/29733/', 'PHP-Nuke related exploits.<br /><br />\nName : PHP-Nuke 8.2.4 multiple vulnerabilities<br />\nSoftware : PHP-Nuke 8.2.4 and possibly below.<br />\nVendor Homepage : http://www.phpnuke.org/<br />\nVulnerability Type : File Inclusion and Reflected Cross-Site Scripting<br />\nSeverity : High (4/5)<br />\nAdvisory Reference : SOJOBO-ADV-13-04 (http://www.enkomio.com/Advisories)<br />\nCredits: Sojobo dev team<br />\nDescription: A File Inclusion and Reflected Cross Site Scripting vulnerability was discovered during the testing of Sojobo, Static Analysis Tool.<br />', '2021-04-25 20:09:29', 'Sebastian Buffington', 'ernest.bufffington@gmail.com', 3, '', 0.0000, 0, 0),
-(2, 6, 0, 'The 86it Developers Network', 'https://www.86it.us/index.php', 'Programmers Making Connections, Coders Making a Difference.', '2021-04-27 16:59:04', 'Sebastian Buffington', 'ernest.bufffington@gmail.com', 3, '', 10.0000, 6, 5),
-(3, 6, 0, 'Lonestar Modules', 'https://lonestar-modules.com/', 'Coding quality Block & Modules for Nuke Evolution Xtreme & Raven Nuke CMS.', '2021-04-27 17:05:00', 'Sebastian Buffington', 'ernest.bufffington@gmail.com', 3, '', 10.0000, 1, 1),
-(4, 6, 0, 'HEADSHOT DOMAIN', 'https://www.headshotdomain.net/', 'coRpSE is the author of Nuke Honey Pot v2.2\n\nProgrammer and Gamer aka Dreaded coRpSE', '2021-04-27 17:08:46', 'Sebastian Buffington', 'ernest.bufffington@gmail.com', 2, '', 0.0000, 0, 0),
-(5, 1, 0, 'Evolution Xtreme (UK Version)', 'https://evolution-xtreme.co.uk/', 'This is the main developers website for the UK version of Nuke Evolution Xtreme.', '2021-04-28 23:37:09', 'Brandon Maintenance Management, LLC', 'ernest.bufffington@gmail.com', 4, '', 0.0000, 0, 0),
-(6, 1, 0, 'Evolution Xtreme (US Version)', 'https://dev-php-nuke-evolution-xtreme.86it.us', 'This is 1 of 2 developer sites in the US for PHP-Nuke Evolution Xtreme. This is not to be confused with the UK Developer website. The US version is very very different and has many many things updated and changed.\n\nBlocks and Modules are compatible however themes are not. Themes can easily be ported over to the US version but you will have to add in all the features the US version of Xtreme has added.', '2021-04-28 23:43:33', 'Brandon Maintenance Management, LLC', 'ernest.bufffington@gmail.com', 1, '', 10.0000, 1, 1),
-(7, 4, 0, 'Canadian Clan', 'https://www.canadianclan.ca/', 'CnC Gaming Clan', '2021-04-29 07:11:57', 'Brandon Maintenance Management, LLC', 'ernest.bufffington@gmail.com', 4, '', 0.0000, 0, 0),
-(8, 4, 0, 'OUTKASTS [OKT]', 'https://outkasts.eu/index.php', 'A Gameing Community Website', '2021-04-29 23:34:19', 'Ernest Buffington', 'ernest.bufffington@gmail.com', 2, '', 0.0000, 0, 0),
-(9, 4, 0, 'TNO The New World Order', 'http://www.tnogaming.com/', 'A gaming website. This website does not have an SSL certificate so remember when making an account to not use one of your secured passwords. Maybe later he will use the auto SSL feature in his web hosting panel. Until then please remember to use a password that is not your normal secured password that you would use on all your secured websites.', '2021-04-29 23:55:55', 'Ernest Buffington', 'ernest.bufffington@gmail.com', 1, '', 0.0000, 0, 0),
-(10, 4, 0, 'GLOBAL CORE GAMERS', 'https://gcg.megasportal.co.uk/index.php', 'A Small Gaming Community.', '2021-05-02 18:31:23', 'Brandon Maintenance Management, LLC', 'ernest.bufffington@gmail.com', 0, '', 0.0000, 0, 0),
-(11, 6, 0, 'BCU Veterans', 'https://www.bcuveterans.co.uk/index.php', 'An Online Gaming Website', '2021-05-02 18:39:48', 'Brandon Maintenance Management, LLC', 'ernest.bufffington@gmail.com', 1, '', 0.0000, 0, 0),
-(12, 10, 0, 'Freshmeat', 'http://freshmeat.sourceforge.net/', 'Freshmeat currently uses the SourceForge site.', '2021-05-05 21:30:23', 'Brandon Maintenance Management, LLC', 'ernest.bufffington@gmail.com', 1, '', 1.0000, 1, 1);
 
 CREATE TABLE `nuke_links_modrequest` (
   `requestid` int(11) NOT NULL,
@@ -2468,9 +2344,6 @@ CREATE TABLE `nuke_links_newlink` (
   `submitter` varchar(60) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `nuke_links_newlink` (`lid`, `cid`, `sid`, `title`, `url`, `description`, `name`, `email`, `submitter`) VALUES
-(2, 12, 0, 'Bootstrap Introduction Page', 'https://getbootstrap.com/docs/5.0/getting-started/introduction/', 'Get started with Bootstrap, the worldâ€™s most popular framework for building responsive, mobile-first sites, with jsDelivr and a template starter page.', 'TheGhost', 'ernest.bufffington@gmail.com', '');
-
 CREATE TABLE `nuke_links_votedata` (
   `ratingdbid` int(11) NOT NULL,
   `ratinglid` int(11) NOT NULL DEFAULT 0,
@@ -2480,17 +2353,6 @@ CREATE TABLE `nuke_links_votedata` (
   `ratingcomments` text NOT NULL,
   `ratingtimestamp` datetime NOT NULL DEFAULT '2018-12-12 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_links_votedata` (`ratingdbid`, `ratinglid`, `ratinguser`, `rating`, `ratinghostname`, `ratingcomments`, `ratingtimestamp`) VALUES
-(1, 2, 'WebMaster', 10, '47.206.216.196', 'Awesome peeps, great programmers.', '2021-04-27 16:59:51'),
-(2, 3, 'TheGhost', 10, '47.206.216.196', 'Good Peeps awesome site!', '2021-05-06 02:45:16'),
-(3, 2, 'TheGhost', 10, '47.206.216.196', 'I really think this website is awesome!', '2021-05-06 03:17:24'),
-(4, 2, 'ScottyBcoder', 10, '47.206.216.196', 'Friendly folks, a great bunch of folks!', '2021-05-06 03:18:13'),
-(5, 2, 'TheWolf', 10, '47.206.216.196', 'The best!', '2021-05-06 03:21:18'),
-(6, 2, 'Shakey', 10, '47.206.216.196', 'My Nephew is the best!', '2021-05-06 03:22:08'),
-(7, 2, 'Anonymous', 10, '47.206.216.196', '', '2021-05-06 03:25:10'),
-(8, 12, 'TheGhost', 1, '47.206.216.196', 'They got lazy and stopped maintaining their site. I give them an F!', '2021-05-06 08:28:30'),
-(9, 6, 'cube', 10, '173.168.244.204', 'This is the best CMS software I have seen yet.', '2021-05-07 08:46:35');
 
 CREATE TABLE `nuke_link_us` (
   `id` int(255) NOT NULL,
@@ -2567,10 +2429,19 @@ CREATE TABLE `nuke_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_menu` (`groupmenu`, `name`, `image`, `lien`, `hr`, `center`, `bgcolor`, `invisible`, `class`, `bold`, `new`, `listbox`, `dynamic`, `date_debut`, `date_fin`, `days`) VALUES
-(2, 'Network Modules', 'flourecent_module_page_05.png', '', 'on', '', '', 1, 'categories', 'on', '', '', 'on', 0, 0, ''),
-(3, 'Standard Modules', 'yellow_module_page_05.png', '', 'on', '', '', 1, 'categories', 'on', '', '', '', 0, 0, ''),
-(4, 'Developer Modules', 'babyblue_module_page_05.png', '', 'on', '', '', 1, 'categories', 'on', '', '', '', 0, 0, ''),
-(99, '', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '', 0, 0, NULL);
+(2, 'Network Modules', 'flourecent_module_page_05.png', '', 'on', '', '', 1, '', 'on', '', '', '', 0, 0, ''),
+(3, 'Portal Modules', 'yellow_module_page_05.png', '', '', '', '', 1, '', 'on', '', '', '', 0, 0, ''),
+(4, 'Member Modules', 'babyblue_module_page_05.png', '', '', '', '', 1, '', 'on', '', '', '', 0, 0, ''),
+(5, 'Code Tool Box', 'Image1_page_05.png', '', 'on', '', '', 1, '', 'on', '', '', 'on', 0, 0, ''),
+(6, 'Graphics Tool Box', 'green_toolbox_page_05.png', '', '', '', '', 1, '', 'on', '', '', 'on', 0, 0, ''),
+(7, 'CSS Tool Box', 'purple_toolbox_page_05.png', '', '', '', '', 1, '', 'on', '', '', 'on', 0, 0, ''),
+(8, 'Java Tool Box', 'yellow_toolbox_page_05.png', '', '', '', '', 1, '', 'on', '', '', 'on', 0, 0, ''),
+(9, 'PHP Tool Box', 'babyblue_toolbox_page_05.png', '', '', '', '', 1, '', 'on', '', '', 'on', 0, 0, ''),
+(10, 'JSON Tool Box', 'Image1_page_05.png', '', '', '', '', 1, '', 'on', '', '', 'on', 0, 0, ''),
+(11, 'Google Tool Box', 'green_toolbox_page_05.png', '', '', '', '', 1, '', 'on', '', '', 'on', 0, 0, ''),
+(12, 'Admin Tools', 'posts.png', '', 'on', '', '', 1, '', 'on', '', '', 'on', 0, 0, ''),
+(13, 'Network Listening', 'headphones.png', '', 'on', '', '', 1, '', 'on', '', '', '', 0, 0, ''),
+(99, 'menunoadmindisplay', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '', 0, 0, NULL);
 
 CREATE TABLE `nuke_menu_categories` (
   `id` int(11) NOT NULL,
@@ -2590,43 +2461,38 @@ CREATE TABLE `nuke_menu_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_menu_categories` (`id`, `date_fin`, `date_debut`, `sublevel`, `groupmenu`, `module`, `url`, `url_text`, `image`, `new`, `new_days`, `class`, `bold`, `days`) VALUES
-(1109, 0, 0, 0, 2, 'Network_Advertising', '', '', 'tree-greenT.png', '', 3, 'modules', 'on', ''),
-(1110, 0, 0, 0, 2, 'Network_Projects', '', '', 'tree-greenT.png', '', 3, 'modules', 'on', ''),
-(1111, 0, 0, 0, 2, 'External Link', 'https://github.com/ernestbuffington/dev-php-nuke-evolution-xtreme', 'US Xtreme Repo', 'tree-greenT.png', '', 3, 'modules', 'on', ''),
-(1112, 0, 0, 0, 2, 'Network', '', '', 'tree-green-L.png', '', 3, 'modules', 'on', ''),
-(1113, 0, 0, 0, 3, 'Advertising', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1114, 0, 0, 0, 3, 'Arcade_Tweaks', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1115, 0, 0, 0, 3, 'Content', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1116, 0, 0, 0, 3, 'Docs', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1117, 0, 0, 0, 3, 'Donations', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1118, 0, 0, 0, 3, 'ECalendar', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1119, 0, 0, 0, 3, 'FAQ', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1120, 0, 0, 0, 3, 'Feedback', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1121, 0, 0, 0, 3, 'File_Repository', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1122, 0, 0, 0, 3, 'Forums', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1123, 0, 0, 0, 3, 'Google-Site-Map', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1124, 0, 0, 0, 3, 'Groups', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1125, 0, 0, 0, 3, 'HTML_Newsletter', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1126, 0, 0, 0, 3, 'Image_Repository', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1127, 0, 0, 0, 3, 'Link_Us', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1128, 0, 0, 0, 3, 'Members_List', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1129, 0, 0, 0, 3, 'NukeSentinel', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1130, 0, 0, 0, 3, 'Network_Bookmarks', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1131, 0, 0, 0, 3, 'Private_Messages', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1132, 0, 0, 0, 3, 'Profile', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1133, 0, 0, 0, 3, 'Recommend_Us', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1134, 0, 0, 0, 3, 'Reviews', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1135, 0, 0, 0, 3, 'Search', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1136, 0, 0, 0, 3, 'Shout_Box', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1137, 0, 0, 0, 3, 'Spambot_Killer', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1138, 0, 0, 0, 3, 'Statistics', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1139, 0, 0, 0, 3, 'Surveys', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1140, 0, 0, 0, 3, 'Web_Links', '', '', 'tree-yellowT.png', '', 3, 'modules', 'on', ''),
-(1141, 0, 0, 0, 3, 'Your_Account', '', '', 'tree-yellow-L.png', '', 3, 'modules', 'on', ''),
-(1142, 0, 0, 0, 4, 'cPanel_Login', '', '', 'tree-lightblueT.png', '', 3, 'modules', 'on', ''),
-(1143, 0, 0, 0, 4, 'CSS_Color_Chart', '', '', 'tree-lightblueT.png', '', 3, 'modules', 'on', ''),
-(1144, 0, 0, 0, 4, 'CSS_Reference', '', '', 'tree-lightblueT.png', '', 3, 'modules', 'on', ''),
-(1145, 0, 0, 0, 4, 'Loan', '', '', 'tree-lightblue-L.png', '', 3, 'modules', 'on', '');
+(1, 0, 0, 0, 2, 'Network_Advertising', '', '', 'tree-greenT.png', '', -1, 'modules', 'on', ''),
+(2, 0, 0, 0, 2, 'Network_projects', '', '', 'tree-greenT.png', '', -1, 'modules', 'on', ''),
+(3, 0, 0, 0, 2, 'Network', '', '', 'tree-green-L.png', '', -1, 'modules', 'on', ''),
+(4, 0, 0, 0, 3, 'FAQ', '', '', 'tree-yellowT.png', '', -1, 'modules', 'on', ''),
+(5, 0, 0, 0, 3, 'Recommend_Us', '', '', 'tree-yellowT.png', '', -1, 'modules', 'on', ''),
+(6, 0, 0, 0, 3, 'Advertising', '', '', 'tree-yellowT.png', '', -1, 'modules', 'on', ''),
+(7, 0, 0, 0, 3, 'ECalendar', '', '', 'tree-yellowT.png', '', -1, 'modules', 'on', ''),
+(8, 0, 0, 0, 3, 'File_Repository', '', '', 'tree-yellowT.png', '', -1, 'modules', 'on', ''),
+(9, 0, 0, 0, 3, 'Web_Links', '', '', 'tree-yellowT.png', '', -1, 'modules', 'on', ''),
+(10, 0, 0, 0, 3, 'Docs', '', '', 'tree-yellowT.png', '', -1, 'modules', 'on', ''),
+(11, 0, 0, 0, 3, 'Link_Us', '', '', 'tree-yellowT.png', '', -1, 'modules', 'on', ''),
+(12, 0, 0, 0, 3, 'Google-Site-Map', '', '', 'tree-yellow-L.png', '', -1, 'modules', 'on', ''),
+(13, 0, 0, 0, 4, 'Members_List', '', '', 'tree-lightblueT.png', 'on', -1, 'modules', 'on', ''),
+(14, 0, 0, 0, 4, 'Groups', '', '', 'tree-lightblueT.png', 'on', -1, 'modules', 'on', ''),
+(15, 0, 0, 0, 4, 'Network_Cemetery', '', '', 'tree-lightblueT.png', 'on', -1, 'modules', 'on', ''),
+(16, 0, 0, 0, 4, 'Loan', '', '', 'tree-lightblue-L.png', '', -1, 'modules', 'on', ''),
+(17, 0, 0, 0, 5, 'External Link', 'https://codebeat.co/', 'CODEBEAT.CO', 'tree-L.png', '', -1, 'modules', 'on', ''),
+(18, 0, 0, 0, 6, 'External Link', 'https://www.resizepixel.com/', 'Image Tool', 'tree-greenT.png', '', -1, 'modules', 'on', ''),
+(19, 0, 0, 0, 6, 'External Link', 'https://www.cleanpng.com/free/geek.html', 'CLEAN PNG', 'tree-greenT.png', '', -1, 'modules', 'on', ''),
+(20, 0, 0, 0, 6, 'External Link', 'https://elements.envato.com/', 'Evanto Elements', 'tree-green-L.png', '', -1, 'modules', 'on', ''),
+(21, 0, 0, 0, 7, 'CSS_Color_Chart', '', '', 'tree-pinkT.png', 'on', -1, 'modules', 'on', ''),
+(22, 0, 0, 0, 7, 'CSS_Reference', '', '', 'tree-pinkT.png', 'on', -1, 'modules', 'on', ''),
+(23, 0, 0, 0, 7, 'External Link', 'https://codepen.io/ProfessorSamoff/pen/QQrPPy', 'Real-Time CSS', 'tree-pink-L.png', '', -1, 'modules', 'on', ''),
+(24, 0, 0, 0, 8, 'External Link', 'https://codecollab.io/', 'Real-Time Java', 'tree-yellow-L.png', '', -1, 'modules', 'on', ''),
+(25, 0, 0, 0, 9, 'External Link', 'https://realtimeapi.io/hub/php-realtime-resources/', 'realtimeapi.io', 'tree-lightblue-L.png', '', -1, 'modules', 'on', ''),
+(26, 0, 0, 0, 10, 'External Link', 'https://search.google.com/structured-data/testing-tool#', 'Structure Data Testing', 'tree-L.png', '', -1, 'modules', 'on', ''),
+(27, 0, 0, 0, 11, 'External Link', 'https://www.google.com/webmasters/markup-helper/', 'Markup Helper', 'tree-greenT.png', '', -1, 'modules', 'on', ''),
+(28, 0, 0, 0, 11, 'External Link', 'https://developers.google.com/youtube/iframe_api_reference', 'YouTube API', 'tree-greenT.png', '', -1, 'modules', 'on', ''),
+(29, 0, 0, 0, 11, 'External Link', 'https://github.com/googleapis/google-api-php-client', 'google-api-php-client', 'tree-greenT.png', '', -1, 'modules', 'on', ''),
+(30, 0, 0, 0, 11, 'External Link', 'https://google.dev/', 'Developer Profile', 'tree-green-L.png', '', -1, 'modules', 'on', ''),
+(31, 0, 0, 0, 12, 'cPanel_Login', '', '', 'tree-orange-L.png', '', -1, 'modules', 'on', ''),
+(32, 0, 0, 0, 13, 'External Link', 'https://bigcountryradio.net/', 'BigCountryRadio.Net', 'tree-L.gif', '', -1, 'modules', 'on', '');
 
 CREATE TABLE `nuke_message` (
   `mid` int(11) NOT NULL,
@@ -2641,7 +2507,8 @@ CREATE TABLE `nuke_message` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_message` (`mid`, `title`, `content`, `date`, `expire`, `active`, `view`, `groups`, `mlanguage`) VALUES
-(1, 'This website is in Development mode.', '<p>We hope to have a production release available soon. Thank you for being patient and if you see any problems or would like to report a bug please feel free to do so. We appreciate all the help we can get. The current version running on this website is PHP-Nuke Evolution Xtreme v3.0.1b.</p>\n\n<p>Thanks,<br />\nThe 86it Dev Team</p>\n\n<p>&nbsp;</p>', '1620541700', 0, 1, 1, '', 'english');
+(1, 'Welcome to PHP-Nuke Titanium Dev 4', 'The US version of PHP-Nuke Titanium CMS is an open-source highly modified Fork of Nuke-Evolution written in PHP as a programming language and development was first started in 2005. The software comes with a set of basic features like a WYSIWYG editor, an admin interface with drag and drop blocks, spam protection, and image processing. PHP-Nuke Titanium CMS comes with the ability to use various modules that will extend the current functionality of your portal/website. The latest version available for download is 4.0.0b and is still in beta.<br />\nPHP-Nuke Titanium now comes with v5 of the Titanium Facebook SDK kit. It&#39;s already set up. All you have to do is add your app ID and secret...<br />\nIf you need help, we would be glad to set it up for FREE.<br />\nNOTE: Your admin and user accounts have already been setup for you so please visit [url=admin.php]THIS LINK[/url] to get started.<br />\nYou can edit or remove this message by going into the Admin Panel located in the Admin area.<br />\n&nbsp;', '1620541700', 0, 1, 1, '', '');
+
 
 CREATE TABLE `nuke_meta` (
   `meta_name` varchar(50) NOT NULL DEFAULT '',
@@ -2651,10 +2518,10 @@ CREATE TABLE `nuke_meta` (
 INSERT INTO `nuke_meta` (`meta_name`, `meta_content`) VALUES
 ('resource-type', 'document'),
 ('distribution', 'global'),
-('author', 'PHP-Nuke Evolution Xtreme'),
-('copyright', 'Copyright (c) by PHP-Nuke Evolution Xtreme'),
-('keywords', 'Ernest, Buffington, 86it, 86it.us, PHP-Nuke-Evolution-Xtreme, evo, pne, evolution, nuke, php-nuke, software, downloads, community, forums, bulletin, boards, cms, nuke-evo, phpnuke, xtreme'),
-('description', 'PHP-Nuke Evolution Xtreme'),
+('author', 'Ernest Allen Buffington'),
+('copyright', 'Copyright (c) Brandon Maintenance Management'),
+('keywords', 'PHP-Nuke,Titanium,PHP-Nuke-Titanium,nuke,phpnuke,php-nuke,best,CMS,cms'),
+('description', 'PHP-Nuke Titanium Dev 4'),
 ('robots', 'index, follow'),
 ('revisit-after', '1 days'),
 ('rating', 'general'),
@@ -2676,45 +2543,49 @@ CREATE TABLE `nuke_modules` (
 
 INSERT INTO `nuke_modules` (`mid`, `title`, `custom_title`, `active`, `view`, `inmenu`, `pos`, `cat_id`, `blocks`, `admins`, `groups`) VALUES
 (1, 'Forums', 'Forums', 1, 1, 1, 3, 3, 0, '', 'Array'),
-(2, 'File_Repository', 'File Repository', 1, 1, 1, 0, 5, 3, '', 'Array'),
+(2, 'File_Repository', 'File Repository', 1, 6, 1, 0, 5, 3, '', '4'),
 (3, 'Your_Account', 'Your Account', 1, 0, 1, 3, 2, 3, '', 'Array'),
 (4, 'Shout_Box', 'Shout Box', 1, 1, 1, 5, 3, 3, '', 'Array'),
 (5, 'Advertising', 'Advertising', 1, 1, 1, 22, 7, 3, '', 'Array'),
 (6, 'ECalendar', 'ECalendar', 1, 1, 1, 21, 7, 3, '', 'Array'),
-(7, 'Content', 'Content', 1, 1, 1, 0, 3, 3, '', 'Array'),
-(8, 'Docs', 'Docs', 1, 1, 1, 23, 7, 3, '', 'Array'),
-(9, 'Donations', 'Donations', 1, 1, 1, 1, 3, 3, '', 'Array'),
-(10, 'Evo_UserBlock', 'Evo UserBlock', 1, 0, 1, 27, 7, 1, '', ''),
-(11, 'FAQ', 'FAQ', 1, 1, 1, 26, 7, 3, '', 'Array'),
-(12, 'Feedback', 'Feedback', 1, 1, 1, 2, 3, 3, '', 'Array'),
-(13, 'Groups', 'Groups', 1, 1, 1, 4, 3, 0, '', 'Array'),
-(14, 'HTML_Newsletter', 'HTML Newsletter', 1, 1, 1, 25, 7, 3, '', 'Array'),
-(15, 'Link_Us', 'Link Us', 1, 1, 1, 24, 7, 3, '', 'Array'),
-(16, 'Members_List', 'Members List', 1, 1, 1, 0, 2, 0, '', 'Array'),
-(18, 'NukeSentinel', 'NukeSentinel', 1, 1, 1, 20, 7, 3, '', 'Array'),
-(19, 'Private_Messages', 'Private Messages', 1, 3, 1, 2, 2, 3, '', 'Array'),
-(20, 'Profile', 'Profile', 1, 0, 1, 1, 2, 3, '', 'Array'),
-(21, 'Recommend_Us', 'Recommend Us', 1, 1, 1, 17, 7, 3, '', 'Array'),
-(22, 'Reviews', 'Reviews', 1, 1, 1, 16, 7, 3, '', 'Array'),
-(23, 'Search', 'Search', 1, 1, 1, 15, 7, 3, '', 'Array'),
-(25, 'Spambot_Killer', 'Spambot Killer', 1, 1, 1, 14, 7, 3, '', 'Array'),
-(26, 'Statistics', 'Statistics', 1, 1, 1, 18, 7, 3, '', 'Array'),
-(30, 'Surveys', 'Surveys', 1, 1, 1, 19, 7, 3, '', 'Array'),
-(33, 'Web_Links', 'Web Links', 1, 1, 1, 1, 5, 3, '', 'Array'),
-(34, 'Image_Repository', 'Image Repository', 1, 3, 1, 0, 7, 3, '', 'Array'),
-(36, 'Arcade_Tweaks', 'Arcade Tweaks', 1, 1, 1, 1, 7, 3, '', 'Array'),
-(37, 'Blog', 'Blog', 1, 0, 1, 2, 7, 3, '', 'Array'),
-(38, 'Blog_Archive', 'Blog Archive', 1, 1, 1, 3, 7, 3, '', 'Array'),
-(39, 'Blog_Submit', 'Blog Submit', 1, 1, 1, 4, 7, 3, '', 'Array'),
-(40, 'Blog_Top', 'Blog Top 10', 1, 1, 1, 5, 7, 3, '', 'Array'),
-(41, 'Blog_Topics', 'Blog Topics', 1, 1, 1, 6, 7, 3, '', 'Array'),
-(44, 'Loan', 'Loan Amortization', 1, 1, 1, 7, 7, 3, '', 'Array'),
-(45, 'Network', 'Network Disclaimer', 1, 1, 1, 8, 7, 3, '', 'Array'),
-(46, 'Network_Bookmarks', 'Network Bookmarks', 1, 3, 1, 9, 7, 3, '', 'Array'),
-(48, 'cPanel_Login', 'cPanel Login', 1, 1, 1, 10, 7, 3, '', 'Array'),
-(51, 'Google-Site-Map', 'Google Site Map', 1, 1, 1, 11, 7, 3, '', 'Array'),
-(52, 'Network_Advertising', 'Network Advertising', 1, 1, 1, 12, 7, 3, '', 'Array'),
-(56, 'Network_Projects', 'Network Projects', 1, 1, 1, 13, 7, 3, '', 'Array');
+(7, 'Docs', 'Docs', 1, 1, 1, 23, 7, 3, '', 'Array'),
+(8, 'Donations', 'Donations', 1, 1, 1, 1, 3, 3, '', 'Array'),
+(9, 'Evo_UserBlock', 'Evo UserBlock', 1, 0, 1, 27, 7, 1, '', ''),
+(10, 'FAQ', 'FAQ', 1, 6, 1, 26, 7, 3, '', '3'),
+(11, 'Feedback', 'Feedback', 1, 6, 1, 2, 3, 3, '', '3'),
+(12, 'Groups', 'Groups', 1, 6, 1, 4, 3, 3, '', '3'),
+(13, 'HTML_Newsletter', 'HTML Newsletter', 1, 6, 1, 25, 7, 3, '', '4'),
+(14, 'Link_Us', 'Link Us', 1, 1, 1, 24, 7, 3, '', 'Array'),
+(15, 'Members_List', 'Members List', 1, 1, 1, 0, 2, 3, '', 'Array'),
+(16, 'NukeSentinel', 'NukeSentinel', 1, 6, 1, 20, 7, 3, '', '4'),
+(17, 'Private_Messages', 'Private Messages', 1, 3, 1, 2, 2, 3, '', 'Array'),
+(18, 'Profile', 'Profile', 1, 0, 1, 1, 2, 3, '', 'Array'),
+(19, 'Recommend_Us', 'Recommend Us', 1, 1, 1, 17, 7, 3, '', 'Array'),
+(20, 'Reviews', 'Reviews', 1, 6, 1, 16, 7, 3, '', '4'),
+(21, 'Search', 'Search', 1, 1, 1, 15, 7, 3, '', 'Array'),
+(22, 'Spambot_Killer', 'Spambot Killer', 1, 1, 1, 14, 7, 3, '', 'Array'),
+(23, 'Statistics', 'Statistics', 1, 1, 1, 18, 7, 3, '', 'Array'),
+(24, 'Surveys', 'Surveys', 1, 1, 1, 19, 7, 3, '', 'Array'),
+(25, 'Web_Links', 'Web Links', 1, 1, 1, 1, 5, 3, '', 'Array'),
+(26, 'Image_Repository', 'Image Repository', 1, 3, 1, 0, 7, 3, '', 'Array'),
+(27, 'Blog', 'Blog', 1, 0, 1, 2, 7, 3, '', 'Array'),
+(28, 'Blog_Archive', 'Blog Archive', 1, 1, 1, 3, 7, 3, '', 'Array'),
+(29, 'Blog_Submit', 'Blog Submit', 1, 1, 1, 4, 7, 3, '', 'Array'),
+(30, 'Blog_Top', 'Blog Top 10', 1, 1, 1, 5, 7, 3, '', 'Array'),
+(31, 'Blog_Topics', 'Blog Topics', 1, 1, 1, 6, 7, 3, '', 'Array'),
+(32, 'Loan', 'Loan Amortization', 1, 6, 1, 7, 7, 3, '', '4'),
+(33, 'Network', 'Network Disclaimer', 1, 1, 1, 8, 7, 3, '', 'Array'),
+(34, 'Network_Bookmarks', 'Network Bookmarks', 1, 3, 1, 9, 7, 3, '', 'Array'),
+(35, 'cPanel_Login', 'cPanel Login', 1, 6, 1, 10, 7, 3, '', '5'),
+(36, 'Google-Site-Map', 'Google Site Map', 1, 1, 1, 11, 7, 3, '', 'Array'),
+(37, 'Network_Advertising', 'Network Advertising', 1, 1, 1, 12, 7, 3, '', 'Array'),
+(38, 'CSS_Color_Chart', 'CSS Color Chart', 1, 6, 1, 0, 7, 3, '', '4'),
+(39, 'CSS_Reference', 'CSS Reference', 1, 6, 1, 0, 7, 3, '', '4'),
+(40, 'Network_Cemetery', 'Network Cemetery', 1, 6, 1, 0, 7, 3, '', '4'),
+(41, 'Proof_Of_God', 'Proof Of God', 1, 6, 1, 0, 7, 3, '', '4'),
+(42, 'Titanium_SandBox', 'Titanium SandBox', 1, 4, 1, 0, 7, 3, '', 'Array'),
+(43, 'facebook_SandBox', 'facebook SandBox', 1, 4, 1, 0, 7, 3, '', 'Array'),
+(44, 'Network_projects', 'Network projects', 1, 1, 1, 0, 7, 3, '', 'Array');
 
 CREATE TABLE `nuke_modules_cat` (
   `cid` int(10) UNSIGNED NOT NULL,
@@ -2753,9 +2624,6 @@ CREATE TABLE `nuke_mostonline` (
   `members` int(10) NOT NULL DEFAULT 0,
   `nonmembers` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `nuke_mostonline` (`total`, `members`, `nonmembers`) VALUES
-(5, 4, 1);
 
 CREATE TABLE `nuke_nsncb_blocks` (
   `rid` tinyint(2) NOT NULL DEFAULT 0,
@@ -2954,7 +2822,7 @@ CREATE TABLE `nuke_nsnst_config` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_nsnst_config` (`config_name`, `config_value`) VALUES
-('admin_contact', 'webmaster@dev-php-nuke-evolution-xtreme.86it.us'),
+('admin_contact', 'webmaster@yourdomain.com'),
 ('block_perpage', '50'),
 ('block_sort_column', 'date'),
 ('block_sort_direction', 'desc'),
@@ -3491,7 +3359,8 @@ INSERT INTO `nuke_nsnst_harvesters` (`hid`, `harvester`) VALUES
 (216, 'xenu'),
 (217, 'zeus'),
 (218, 'ziggy'),
-(219, 'zippy');
+(219, 'cuntmonkey'),
+(220, 'zippy');
 
 CREATE TABLE `nuke_nsnst_protected_ranges` (
   `ip_lo` int(10) UNSIGNED NOT NULL DEFAULT 0,
@@ -3871,7 +3740,137 @@ INSERT INTO `nuke_nsnst_referers` (`rid`, `referer`) VALUES
 (362, 'yuppieslovestocks.com'),
 (363, 'yuzhouhuagong.com'),
 (364, 'zhaori-food.com'),
-(365, 'zwiebelbacke.com');
+(365, 'traffic2money.com'),
+(366, 'floating-share-buttons.com'),
+(367, 'get-free-social-traffic.com'),
+(368, 'site4.free-floating-buttons.com'),
+(369, '4webmasters.org'),
+(370, 'site10.free-floating-buttons.com'),
+(371, 'free-social-buttons.com'),
+(372, 'site3.free-floating-buttons.com'),
+(373, 'www.event-tracking.com'),
+(374, 'success-seo.com'),
+(375, 'seo-platform.com'),
+(376, 'site2.free-floating-buttons.com'),
+(377, 'chinese-amezon.com'),
+(378, 'hongfanji.com'),
+(379, 'site8.free-floating-buttons.com'),
+(380, 'site9.free-floating-buttons.com'),
+(381, 'video–production.com'),
+(382, 'www.Get-Free-Traffic-Now.com'),
+(383, 'buttons-for-website.com'),
+(384, 'qualitymarketzone.com'),
+(385, 'site5.free-floating-buttons.co'),
+(386, 'videos-for-your-business.com'),
+(387, 'how-to-earn-quick-money.com'),
+(388, 'forum.topic63020490.darodar.com'),
+(389, '7makemoneyonline.com'),
+(390, 'acads.net'),
+(391, 'anal-acrobats.hol.es'),
+(392, 'anticrawler.org'),
+(393, 'best-seo-offer.com'),
+(394, 'best-seo-solution.com'),
+(395, 'bestwebsitesawards.comblackhatworth.com'),
+(396, 'brakehawk.com'),
+(397, 'buttons-for-your-website.com'),
+(398, 'buy-cheap-online.info'),
+(399, 'darodar.com'),
+(400, 'econom.co'),
+(401, 'event-tracking.com'),
+(402, 'forum20.smailik.org'),
+(403, 'forum69.info'),
+(404, 'free-share-buttons.com'),
+(405, 'googlsucks.com'),
+(406, 'guardlink.org'),
+(407, 'hulfingtonpost.com'),
+(408, 'humanorightswatch.org'),
+(409, 'ilovevitaly.com'),
+(410, 'iminent.com'),
+(411, 'kabbalah-red-bracelets.com'),
+(412, 'kambasoft.com'),
+(413, 'makemoneyonline.com'),
+(414, 'masterseek.com'),
+(415, 'o-o-6-o-o.com'),
+(416, 'ok.ru'),
+(417, 'pornhub-forum.ga'),
+(418, 'pornhub-forum.uni.me'),
+(419, 'priceg.com'),
+(420, 'ranksonic.info'),
+(421, 'ranksonic.org'),
+(422, 'rapidgator-porn.ga'),
+(423, 'savetubevideo.com'),
+(424, 'semalt.com'),
+(425, 'sexyteens.hol.es'),
+(426, 'simple-share-buttons.com'),
+(427, 'social-buttons.com'),
+(428, 'theguardlan.com'),
+(429, 'webmaster-traffic.com'),
+(430, 'youporn-forum.ga'),
+(431, 'youporn-forum.uni.me'),
+(432, 'ilovevitaly.co'),
+(433, 'myftpupload.com'),
+(434, 'iskalko.ru'),
+(435, 'ilovevitaly.ru'),
+(436, 'o-o-8-o-o.ru'),
+(437, 'o-o-6-o-o.ru'),
+(438, 'cenoval.ru'),
+(439, 'cenokos.ru');
+
+INSERT INTO `nuke_nsnst_referers` (`rid`, `referer`) VALUES
+(440, 'seoexperimenty.ru'),
+(441, 'gobongo.info'),
+(442, 'vodkoved.ru'),
+(443, 'adcash.com'),
+(444, 'websocial.me'),
+(445, 'cityadspix.com'),
+(446, 'luxup.ru'),
+(447, 'ykecwqlixx.ru'),
+(448, 'superiends.org'),
+(449, 'slftsdybbg.ru'),
+(450, 'edakgfvwql.ru'),
+(451, 'socialseet.ru'),
+(452, 'screentoolkit.com'),
+(453, 'blackhatworth.com'),
+(454, 'prlog.ru'),
+(455, 'bestwebsitesawards.com'),
+(456, 'forum.smailik.org'),
+(457, 'aliexpress.com'),
+(458, 'Get-Free-Traffic-Now.com'),
+(459, 'semalt.semalt.com'),
+(460, 'iloveitaly.ro'),
+(461, 'prodvigator.ua'),
+(462, 'resellerclub.com'),
+(463, 'adviceforum.info'),
+(464, 'europages.com.ru'),
+(465, 'lomb.co'),
+(466, 'lumb.co'),
+(467, '54.186.60.77'),
+(468, 'srecorder.com'),
+(469, 'see-your-website-here.com'),
+(470, '76brighton.co.uk'),
+(471, 'paparazzistudios.com.au'),
+(472, 'powitania.pl'),
+(473, 'sharebutton.net'),
+(474, 'tasteidea.com'),
+(475, 'descargar-musica-gratis.net'),
+(476, 'torontoplumbinggroup.com'),
+(477, '100dollars-seo.com'),
+(478, 'semaltmedia.com'),
+(479, 'rankings-analytics.com'),
+(480, 'free-floating-buttons.com'),
+(481, 'rednise.com'),
+(482, 'erot.co'),
+(483, 'generalporn.org'),
+(484, 'trafficmonetize.org'),
+(485, 'trafficmonetizer.org'),
+(486, 'domination.ml'),
+(487, 'torture.ml'),
+(488, 'depositfiles-porn.ga'),
+(489, 'pornhubforum.yk'),
+(490, 'pops.foundation'),
+(491, 'justprofit.xyz'),
+(492, 'best-seo-software.xyz'),
+(493, 'zwiebelbacke.com');
 
 CREATE TABLE `nuke_nsnst_strings` (
   `string` varchar(60) NOT NULL DEFAULT ''
@@ -4568,7 +4567,7 @@ CREATE TABLE `nuke_shoutbox_shouts` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_shoutbox_shouts` (`id`, `name`, `comment`, `date`, `time`, `ip`, `timestamp`) VALUES
-(1, 'OurScripts.86it.us', 'Thank You for trying this out!', '8-6-05', '24:00', 'noip', '1102320000');
+(1, 'www.86it.us', 'Thank You for trying this out!', '8-6-05', '24:00', 'noip', '1102320000');
 
 CREATE TABLE `nuke_shoutbox_sticky` (
   `id` int(9) NOT NULL,
@@ -4589,7 +4588,7 @@ CREATE TABLE `nuke_shoutbox_themes` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_shoutbox_themes` (`id`, `themeName`, `blockColor1`, `blockColor2`, `border`, `menuColor1`, `menuColor2`) VALUES
-(1, 'Xtreme_Core', '', '', '', '', '');
+(1, 'Titanium_Core', '', '', '', '', '');
 
 CREATE TABLE `nuke_shoutbox_theme_images` (
   `id` int(9) NOT NULL,
@@ -4700,22 +4699,36 @@ CREATE TABLE `nuke_stories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_stories` (`sid`, `catid`, `aid`, `title`, `datePublished`, `dateModified`, `hometext`, `bodytext`, `comments`, `counter`, `topic`, `informant`, `notes`, `ihome`, `alanguage`, `acomm`, `haspoll`, `pollID`, `score`, `ratings`, `associated`, `ticon`, `writes`) VALUES
-(1, 3, 'WebMaster', 'About PHP-Nuke Evolution Xtreme (US Version)', '2021-01-01 10:56:20', '2021-05-10 13:11:58', '<p>The <strong>US</strong> version of<strong> PHP-Nuke Evolution Xtreme CMS</strong>&nbsp;is not compatible with the <strong>UK </strong>version as far as themes go, however it does support modules and blocks from the <strong>UK</strong> version. What exactly is Xtreme? It is an open-source CMS wrote in PHP as a programming language and development was first started in 2005. The software comes with a set of basic features like a WYSIWYG editor, an admin interface with drag and drop blocks, spam protection, and image processing. Nuke Evolution-Xtreme CMS comes with the ability to use various modules that will extend the current functionality of your portal/website. The latest version available for download is 3.0.1b and is still in beta.</p>\n\n<p><strong>PHP-Nuke Evolution</strong> <strong>Xtreme</strong> now comes with v5 of the Titanium Facebook SDK kit. It&#39;s already set up. All you have to do is add your app ID and secret... If you need help, we would be glad to set it up for FREE.</p>\n\n<p><strong>PHP-Nuke Evolution Xtreme</strong> now comes with v5 of the Titanium Google SDK. Everything you need to be a Google developer is already there, just have a look inside your includes directory.</p>\n\n<p>[b]NOTE:[/b] Your admin and user accounts have already been logged in for you so please visit [url=admin.php]this link[/url] to get started.</p>\n\n<p>You can edit or remove this blog message by going into the Blog Admin Panel located in the Admin area, or look below and you can edit by clicking the pencil or the x to delete this blog message.</p>', '', 0, 465, 1, 'WebMaster', '', 0, '', 0, 0, 0, 65, 13, '', 0, 1),
-(7, 4, 'TheGhost', 'New Blog Signature Mod', '2021-04-24 08:14:43', '2021-05-10 09:04:01', '<p>TESTING BLOG SIGNATURE MOD v1</p>\n\n<p>This mod was written by Ernest Buffington</p>\n\n<p>The Blog Signature Mod is having a lot of new features added, such as the ability to use your callsign or real name. You will also be able to enable and disable the blog signature at will globally or for each post.</p>', '', 0, 94, 7, 'TheGhost', '', 0, '', 0, 0, 0, 15, 3, '', 0, 1),
-(8, 3, 'webmaster', 'We Will Be Updating The Modules 1 by 1', '2021-04-25 23:44:48', '2021-05-10 09:05:34', '<p>We are going through each module and fixing all the cosmetic issues that we are sure everyone is aware of.</p>\n\n<p>If you see any issues at all please feel free to submit a report. You can do so by clicking [url=modules.php?name=Network_Projects&amp;op=Project&amp;project_id=77]HERE[/url]</p>\n\n<p>A lot of the modules are being re-written for future versions of PHP as well as cosmetic issues.</p>\n\n<p>We would like to apologize for the slacking that has been going on over the years. We intend to keep the US version updated and will cater to anyone who has a mod request or needs install help.</p>\n\n<p>We would again like to thank everyone for stopping in to visit.</p>', '', 0, 40, 1, 'webmaster', '', 0, 'english', 0, 0, 0, 10, 2, '', 0, 1),
-(9, 1, 'webmaster', 'New Google Site Map Generator Module', '2021-04-27 11:48:34', '2021-05-10 05:53:21', '<p><strong>Module Name: </strong>Google-Site-Map<br />\n<strong>Author:</strong> Ernest Buffington<br />\n<strong>Version:</strong> v1.0<br />\n<strong>Core:</strong> PHP-Nuke Evolution Xtreme v3.0.1a &lt;&gt;&nbsp;v3.0.1b</p>\n\n<p>The original sitemap was an abandoned project and idea, not by me but whoever was working on it originally. The new one is awesome and works great. I&#39;m not sure people really understand how important this little module is. Contrary to popular belief, this is an important part of being found on the internet. The class.sitemap.php file can be found in the&nbsp;<strong>includes/classes </strong>directory.</p>\n\n<p>I used some of the old code, not much just a few lines here and there, and the old sitemap&#39;s admin panel is the same.</p>\n\n<p>This uses <strong>sitemap 0.9</strong></p>\n\n<p>The new Google Site Map Generator works better than just about anything I have seen. You will need to delete the old <strong>sitemap.xml</strong> file that is in the root directory of your portal/website as it is no longer used. The new <strong>sitemap.xml</strong> file is generated in the <strong>xmls/sitemap</strong> folder. This is not the file you tell google to look at.</p>\n\n<p>You will need to point Google to your <strong>sitemap-index.xml</strong> file which resides in that very same directory.</p>\n\n<p>You will do this by telling Google where the file is at like so <strong>https://yourwebsite.com/xmls/sitemap/sitemap-index.xml</strong></p>\n\n<p>You can do so by going here <strong>https://search.google.com/search-console?resource_id=sc-domain:yourdomain.com</strong></p>\n\n<p>I used a fast and lightweight class for generating Google-Site-Map <strong>XML</strong> files and index of sitemap files. Written in <strong>PHP</strong> and uses <strong>XMLWriter</strong> extension (wrapper for <strong>libxml</strong> <strong>xmlWriter</strong> API) for creating <strong>XML</strong> files. <strong>XMLWriter</strong> extension is enabled by default in <strong>PHP</strong> 5 &gt; = 5.1.2. If you have more than 50000 URLs, it will split items into separated files. (In benchmarks, 1.000.000 URLs were generating in 8 seconds) The version we are using is a slightly modified version of the original.</p>\n\n<p>The Sitemap class is now added to a <strong>SitemapPHP</strong> <strong>namespace</strong>.</p>', '', 0, 78, 5, 'webmaster', '', 0, 'english', 0, 0, 0, 20, 4, '', 0, 1),
-(10, 5, 'WebMaster', 'New Visitor Log Center Block', '2021-04-27 20:32:27', '2021-05-09 08:58:36', '<p><strong>Block Name: </strong>Titanium Visitor Log Center<br />\n<strong>Author: </strong>Ernest Allen Buffington<br />\n<strong>Filename:</strong> block-Titanium_Visitor_Log_center.php<br />\n<strong>Block Type:</strong> Center Block<br />\n<strong>Version:</strong> v1.0<br />\n<strong>Core:</strong> PHP-Nuke Evolution 2.0.9e &lt;&gt;&nbsp;3.0.1b</p>\n\n<p>This block was created with advanced resolution checking in mind. You can configure this block so that it changes for cell phones and different resolution monitors, It can even be configured for 4k TV.</p>\n\n<p>This block checks your monitor resolution and displays the visitor log in rows and columns, A row is a series of data put out horizontally in a table or spreadsheet while a column is a vertical series of cells in a chart, table, or spreadsheet. Rows go from left to right. On the other hand, Columns are arranged from up to down. After this block gets your monitor resolution width it will decide how many columns and rows to display. If your resolution width is less than 1920 it will display 3 columns, if it is 1920 or above it will display 4 columns. You can configure this block for any resolution and the code is obvious. Just add tables with rows and columns and display them according to the resolution width that PHP-Nuke Evolution Xtreme gets from your browser.</p>\n\n<p>This was written with the Last Seen block in mind. Someone once asked me why I changed the function for last seen. I never changed it I added a Titanium mod that changes the way the last seen data was displayed. I guess now you have a more declarative answer about why I did that.</p>\n\n<p>This block my friends gives you a perfect example of why PHP-Nuke was designed with a tabular theme interface. It had future ideas for things that had not yet been done. There is what is called a Flat page design and that is when we would use only HTML5 or CSS to layout a web page.</p>\n\n<p>PHP-Nuke Evolution Xtreme is not a Flat design and never will be. PHP-Nuke Evolution Xtreme was designed around the idea that people in a community who were just starting out learning PHP or HTML could or would be able to create blocks, modules, or themes with relative ease.</p>\n\n<p>This can be done in CSS and HTML5 and PHP-Nuke Evolution totally allows and supports themes of this design nature, however for Fluid resizeable responsive themes that might be displayed on TVs or extremely wide monitors it is not recommended. Why? PHP-Nuke Evolution Xtreme was built on the backbone of Theme technology that was written more than 30 years ago. PHP-Nuke Evolution Xtreme (US Version) supports XHTML, HTML, HTML5, and XML, so with this being the case anyone can design a theme and nobody has limitations when it comes to designing a block, module, or theme layout for their website.</p>\n\n<p>PHP-Nuke Evolution Xtreme was created for folks that like bling and beautiful graphics. If you want a Flat design layout with 3 colors and no graphics then use something plain, you know like wearing a white T-Shirt everywhere every day.</p>', '', 0, 91, 6, 'WebMaster', '', 0, 'english', 0, 0, 0, 40, 8, '', 0, 1),
-(11, 2, 'WebMaster', 'New Link Us Module Update', '2021-03-01 02:16:01', '2021-05-10 13:21:29', '<p><strong>Module Name:</strong> Link Us<br />\n<strong>Author:</strong> DarkForgeGFX<br />\n<strong>Version:</strong> v1.0.0<br />\n<strong>Core: </strong>PHP-Nuke Evolution Xtreme v2.0.9d &lt;&gt; 3.0.1b<br />\n<strong>Description:</strong>&nbsp;To show and administrate several methods of backlinks to your website/portal.</p>\n\n<p>I updated the display on the Link_Us index page. It needed to be displayed properly, which may just be a matter of opinion however I&#39;m ocd and I could not take it any longer. I went ahead and took the time to lay out the table and add a fieldset to the default image section. I have not added any other size link back images so I have no idea what those&nbsp;will end up looking like. In that event, I am sure I will log in and re-write those areas as well. For now, this website has only the standard default link back image sizes in use so I will wait till I have to cross that bridge to fix it.</p>\n\n<p>I modified the index.php file located in the &quot;modules/Link_Us/public&quot; directory.&nbsp;</p>', '', 0, 83, 5, 'WebMaster', '', 0, '', 0, 0, 0, 15, 3, '', 0, 1),
-(12, 3, 'webmaster', 'Facebook Plugin and Login Problems', '2021-04-30 12:00:40', '2021-05-09 14:03:24', '<p>The comment and likes section of our CMS and website are down. More than <strong>718</strong> reports to Downdetector since 3:00 am.</p>\n\n<p>I was working on some code and thought all of a sudden I must have done something somehow to cause these plugins and the Facebook app login to stop working. I&#39;m glad I looked carefully and inspected my other domains.&nbsp;</p>\n\n<p>Turns out Facebook did something somehow to cause everything to stop working, and as usual they leave you in confusion wondering what is going on. I don&#39;t think I have ever even gotten a response from a Facebook employee ever. I have to assume they just don&#39;t care and it&#39;s obvious by the way they never respond, reply or get back to anyone who submits any kind of report at all.</p>\n\n<p>The number one reason people connect with Facebook is the social plugins for likes and comments. This is something that could be duplicated through a rather simple but sophisticated API. I have no idea why nobody has done it yet.</p>\n\n<p>As far as using Facebook to log in to a website, well most people use Google or Github to log in to the places they visit nowadays.&nbsp;</p>\n\n<p>Turns out if you want to set up a Facebook SDK or set up a Facebook login for your website you have to have an IQ of 160 or at least a 4-year college reading comprehension level to understand the things you read about. There is no reason that they can&#39;t provide better help and easier-to-understand instructions for newbies and 1st-time developers.</p>\n\n<p>They did not patent the like button or ability to store comments, and all this can be done on your own website via MySQL or MariaDB if you will. Facebook is going to dwindle to nothing if they don&#39;t start offering some incentive for us to have any level of interest at all.</p>\n\n<p>You could add the Google, Twitter, and Github login API and write your own drop-in plugin with Java for comments and likes.</p>\n\n<p>We use Facebook login, likes, and&nbsp;plugins because it is connected to the largest social network in the world, however, the key thing here is we made Facebook what it is today and we are responsible for the lackadaisical user support we are getting, this is our fault because we have allowed it.</p>\n\n<p>I&#39;m left sitting here wondering when the hell my website will go back to normal all the while pondering how many people I know that hate clicking the confirm button when liking something on a Facebook website app. It&#39;s ridiculous and intentional. They do that why? who fuck&nbsp;knows but it&#39;s probably on the top of my ten most annoying things list.</p>\n\n<p>Seems like too many generation X kids have been running the show over at Facebook and 10 bucs says they go belly up sooner or later as a result.</p>\n\n<p>Nobody wants to click a like button 2 times. What do you want to bet that if you spoke to the person that came up with that idea that you wouldn&#39;t walk away wondering who the fuck ties his shoes every morning? I would have to say this is or would probably be one of the dumbest shit heads&nbsp;that you would ever have to meet in your life.</p>\n\n<p>I would like to apologize for my language and I&#39;m sorry but I&#39;m not.</p>', '', 0, 58, 1, 'webmaster', '', 1, 'english', 0, 0, 0, 15, 3, '', 0, 1),
-(13, 5, 'WebMaster', 'New Facebook Chat Block', '2021-05-01 08:21:28', '2021-05-10 11:01:16', '<p><strong>Block Name: </strong>Facebook Chat Plugin<br />\n<strong>Author:&nbsp;</strong>Ernest Allen Buffington<br />\n<strong>Filename:</strong>&nbsp;block-Facebook_Chat_Plugin.php<br />\n<strong>Block Type:</strong>&nbsp;Invisible<br />\n<strong>Version:</strong>&nbsp;v1.0<br />\n<strong>Core:</strong> PHP-Nuke Evolution 3.0.1a &lt;&gt; 3.0.1b</p>\n\n<p>One of the interesting features of the US version of PHP-Nuke Evolution Xtreme is the ability to have invisible blocks. We used this feature when we made the Facebook Chat Plugin&nbsp;block as it does not need any tables or extended decorations.</p>\n\n<p>The Chat Plugin allows you to integrate your Messenger experience directly into your portal/website. This allows your customers or website members to interact with you anytime with the same personalized, rich-media experience that they get in their regular Facebook&nbsp;Messenger.</p>\n\n<p>The Chat Plugin automatically loads recent chat history between the person and your website or portal, meaning recent interactions with your website or page on messenger.com, in the Messenger app, or in the Chat Plugin on your website will be visible. This helps create a single experience for your site members or&nbsp;customers and enables you to continue the conversation even after they have left your web portal. No need to capture their information to follow up, just use the same conversation in Messenger.</p>\n\n<p>The Chat Plugin supports modern popular desktop and mobile browsers except Messenger in-app browsers and Internet Explorer.</p>', '', 0, 90, 6, 'WebMaster', '', 0, 'english', 0, 0, 0, 30, 6, '', 0, 1),
-(14, 4, 'WebMaster', 'New Mod  jQuery Private Message Alert', '2016-05-04 14:34:00', '2021-05-06 21:18:25', '<p><strong>Mod Name:</strong>&nbsp;jQuery Private Message Alert<br />\n<strong>Author:&nbsp;</strong>Lonestar (crazycoder@live.co.uk)<br />\n<strong>Contributor: </strong>CoRpSE<br />\n<strong>Update:</strong>&nbsp;May 4th, 2016 10:34 am<br />\n<strong>Filename(s):</strong>&nbsp;&#39;includes/js/scripts/jquery.private.messages.alert.min.js&#39;&nbsp; &#39;admin/modules/settings/functions.php&#39;&nbsp;<br />\n<strong>Mod Type:</strong>&nbsp;Addon<br />\n<strong>Version:</strong>&nbsp;v1.0<br />\n<strong>Core:</strong>&nbsp;PHP-Nuke Evolution Xtreme 2.0.9d &lt;&gt; 3.0.1b</p>\n\n<p><br />\nThis is a&nbsp;jQuery Private Message Alert addon.<br />\n<br />\nThis simply runs in the background of your site and alerts you of any new Private Messages with an audio alert and popup window.<br />\n<br />\n<strong>Features:</strong></p>\n\n<ul>\n	<li>You can toggle the script on and off.</li>\n	<li>Can specify the cookie name it uses.</li>\n	<li>You can set cookie to stop if appearing on every page refresh (Default is 5 minutes between alerts)</li>\n	<li>You can set a delay the user must be on the site before being alerted.</li>\n	<li>You can change the color of the background overlay.</li>\n	<li>You can change the color of the redirect button, currently there are 4 colors (Blue, Green, Purple &amp; Red : Default is Blue)</li>\n	<li>You can activate or deactivate the alert sound.<br />\n	&nbsp;</li>\n</ul>\n\n<p><strong>How To Configure:</strong></p>\n\n<ul>\n	<li>Navigate to the link below to configure the plugin.<br />\n	&nbsp;</li>\n</ul>\n\n<p><strong>GotTo:</strong></p>\n\n<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; https://yoursite.com/admin.php?op=Configure&amp;sub=9</p>', '', 0, 34, 7, 'WebMaster', '', 1, 'english', 0, 0, 0, 10, 2, '', 0, 1),
-(15, 1, 'WebMaster', 'New Network Projects Module', '2021-01-01 11:00:00', '2021-05-10 06:23:53', '<p><strong>Module Name:</strong>&nbsp;Network Projects<br />\n<strong>Author:</strong>&nbsp;Bob Marion (NukeScripts.Net)<br />\n<strong>Contributor:&nbsp;</strong>Ernest Allen Buffington<br />\n<strong>Version:</strong>&nbsp;v11.11.11<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Evolution Xtreme v2.0.9d &lt;&gt; 3.0.1b<br />\n<strong>Description:</strong>&nbsp;A module that allows network members to submit a bug&nbsp;report or request a new project or website modification.</p>\n\n<p>Manage multiple complex projects with ease.</p>\n\n<p>Simple to use,&nbsp;powerful&nbsp;when you need it.</p>\n\n<p>All the project management essentials you need.</p>\n\n<p>Create tasks and projects, reports bugs, submit mod requests.</p>\n\n<p>With the new Network Projects Module, everything is in one central location.</p>\n\n<p>Flexible, so you can customize for your workflow.</p>\n\n<p>Advanced features for complex projects.</p>\n\n<p>This is a network module that connects to the our main database server. You will need to acquire a network database password in order to enable this module on your web portal. When or if you have any sort of problem at all, whether it be with a block, module, theme or maybe something core related, this is the place to go for help or to report issues of any nature.</p>\n\n<p>This was originally a project module that was designed for the PHP-Nuke Evolution community, and it seemed to us nobody ever really appreciated it. Bob Marion spent many hours creating this module and the community originally showed little or almost no interest in it at all. Well, we thank you Bob Marion and we praise your efforts to try and better the PHP-Nuke Evolution community. This was a tool that if used the right way would have helped the PHP-Nuke Evolution community grow, and would have helped the development of PHP-Nuke Evolution immensely. Turns out maybe any and all of the development of PHP-Nuke Evolution and or Xtreme was never promoted correctly, and for that we apologize and will try to do better from here on out.</p>\n\n<p>Bob Marion we appreciate you and all your hard work and efforts, Thank you sir and God Bless...&nbsp;&nbsp;</p>\n\n<p>&nbsp;</p>', '', 0, 131, 5, 'WebMaster', '', 0, '', 0, 0, 0, 30, 6, '', 0, 1),
-(16, 4, 'WebMaster', 'New Mod jQuery Floating Admin Menu', '2016-10-24 13:44:00', '2021-05-02 22:58:16', '<p><strong>Mod Name:</strong>&nbsp;jQuery Floating Admin Menu<br />\n<strong>Author:&nbsp;</strong>Lonestar (crazycoder@live.co.uk) (lonestar-modules.com)<br />\n<strong>Contributor:</strong> CoRpSE (www.headshotdomain.net)<br />\n<strong>Update:</strong>&nbsp;Aug 24th, 2016 09:44 am<br />\n<strong>Filename(s):</strong>&nbsp;&#39;includes/js/scripts/jquery.reimg.image.resizer.js&#39;&nbsp; &#39;includes/css/jquery.floating.admin.css&#39;&nbsp;<br />\n<strong>Mod Type:</strong>&nbsp;Addon<br />\n<strong>Version:</strong>&nbsp;v2.0.0<br />\n<strong>Core:</strong>&nbsp;PHP-Nuke Evolution Xtreme 2.0.9d &lt;&gt; 3.0.1b<br />\n&nbsp;</p>\n\n<p>This is the floating admin menu that resides on the left hand side of the page and will only appear after the admin logs in.</p>\n\n<p>Lonestar spent a lot of time making this look great. We would like to thank him for his time and efforts that most certainly have helped&nbsp;make Evolution Xtreme the best CMS software ever. We look forward to the many new great things Lonestar will most certainly be contributing to the community in the future. Thanks Lonestar!</p>', '', 0, 28, 7, 'WebMaster', '', 1, 'english', 0, 0, 0, 5, 1, '', 0, 1),
-(17, 1, 'WebMaster', 'New File Repository Module', '2016-05-01 04:12:47', '2021-05-05 08:29:33', '<p><strong>Module Name:</strong>&nbsp;File Repository<br />\n<strong>Author:</strong>&nbsp;Lonestar (crazycoder@live.co.uk)<br />\n<strong>Contributor:</strong> CoRpSE (www.headshotdomain.net)<br />\n<strong>Version:</strong>&nbsp;v1.1.0<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Evolution Xtreme v2.0.9d &lt;&gt; 3.0.1b<br />\n<strong>Description:</strong>&nbsp;This takes the place of a very old downloads module. Meet the better new and improved downloads area.</p>\n\n<p>Lonestar would like to send a special thanks to&nbsp;coRpSE&nbsp;for his input and suggested additions/changes to this module and also for the production of the File Repository configuration video which can be found at the HeadShot Domain (www.headshotdomain.net).</p>\n\n<p><strong>Features:</strong></p>\n\n<ul>\n	<li>There are multiple ways to view the downloads, either in a Single Row or Side by Side.</li>\n	<li>Multiple files per download.</li>\n	<li>Multiple Screenshots per download.</li>\n	<li>Colored Category titles.</li>\n	<li>Colored Download titles.</li>\n	<li>Ability to link to a Live Preview of whatever file they are about to download.</li>\n	<li>SCEditor has been added to all text-area&#39;s for easy BBCode formatting.</li>\n	<li>Ability to lock downloads to a certain Group.</li>\n	<li>You can specify the minimum number of posts the user requires before being able to download.</li>\n	<li>Developer Mode: Enables developers to add a new text-area for adding fixes to downloads.</li>\n	<li>Ability to allow those logged in as an admin to bypass the Captcha.</li>\n	<li>A rating system, Allow you&#39;re users to Rate &amp; Comment on a download.</li>\n	<li>You can now specify if you wish to inform the user&#39;s the download has been updated.</li>\n	<li>Download Statistics.</li>\n	<li>Client-side uploading.</li>\n	<br />\n	&nbsp;\n</ul>\n\n<p>&nbsp;</p>', '', 0, 29, 5, 'WebMaster', '', 1, 'english', 0, 0, 0, 10, 2, '', 0, 1),
-(18, 1, 'WebMaster', 'New Image Repository Module', '2016-04-17 04:46:25', '2021-05-10 12:59:26', '<p><strong>Module Name:</strong>&nbsp;&nbsp;Image Repository<br />\n<strong>Author:</strong>&nbsp;Lonestar (crazycoder@live.co.uk)<br />\n<strong>Contributor:</strong>&nbsp;CoRpSE (www.headshotdomain.net)<br />\n<strong>Version:</strong>&nbsp;v1.1.0<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Evolution Xtreme v2.0.9d &lt;&gt; 3.0.1b<br />\n<strong>Description:</strong>&nbsp;Image Repository is as it sounds, An Image Hosting module, It is far superior to the old version Lonestar had created / coded in the past.</p>\n\n<p><strong>Version 1.1.0 Changes:</strong><br />\n<strong>1.</strong> Removed the toggle upload image button, Upload table shows all the time now.<br />\n<strong>2.</strong> Reduced the size of the thumbnails to help with page load times.<br />\n<strong>3.</strong> Added new way of uploading images on the fly in the forums, No more BBCode button, Image Repository has its own table row now.<br />\n<strong>4.</strong> Admin panel has been moved in the main index, Just like in the Gaming Rigs (If you own it, you will know what i mean).<br />\n<strong>5.&nbsp;</strong>Cleaned up a lot of the coding, and carefully marked out what each area does.<br />\n<strong>6.&nbsp;</strong>This version is not encrypted,&nbsp;<br />\n<strong>7.</strong> FAQ, Will be added in the next minor update, Lonestar is working on making this an XML feed, So he can update from his site.<br />\n<br />\n<strong>Future Updates:</strong> Lonestar has many more updates planned for this module. You will just have to wait and see<br />\n<br />\n<strong>Version 1.0.1 Changes:</strong><br />\n<strong>1.</strong> Add Image Repository BBCode button for upload of images from forums<br />\n<strong>2.</strong> No SQL changes were made.</p>', '', 0, 58, 5, 'WebMaster', '', 1, 'english', 0, 0, 0, 15, 3, '', 0, 1),
-(19, 2, 'WebMaster', 'New Web Links Module Update', '2021-05-06 14:16:31', '2021-05-10 12:59:08', '<p><strong>Module Name:</strong>&nbsp;Web Links<br />\n<strong>Author:</strong>&nbsp;James Knickelbein - Journey Milwaukee (http://www.journeymilwaukee.com)<br />\n<strong>Contributor:</strong> Ernest Allen Buffington<br />\n<strong>Version:</strong>&nbsp;v1.0.2<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Evolution Xtreme v2.0.9d &lt;&gt; 3.0.1b<br />\n<strong>Description:</strong>&nbsp;Web Links/Resources&nbsp;based on Journey Links Hack&nbsp;</p>\n\n<p>I went in and completely sorted through every line of code and got rid of &lt;center&gt; tags, added h1&#39;s, Rewrote a lot of the code, and fixed a few errors that went unseen for years. When writing an Editorial review it would only reflect the admin number and not the admins name, that is fixed now.</p>\n\n<p>Someone in a rush did not set up the reCaptcha correctly for the add link section.</p>\n\n<p>Added Bootstrap icons in various places to change the cosmetics a little.</p>\n\n<p>Junked all the un-needed braces that were clutter.</p>\n\n<p>Removed the old expired search engines that have not existed in years and while I was at it I added Google Groups, Disney and updated the JustLinux Forums search.</p>', '', 0, 53, 5, 'WebMaster', '', 0, 'english', 0, 0, 0, 45, 9, '', 0, 1),
-(20, 2, 'WebMaster', 'New NukeSentinel Module Update', '2021-05-10 08:19:26', '2021-05-10 12:58:49', '<p><strong>Module Name:</strong>&nbsp;NukeSentinel<br />\n<strong>Author:</strong>&nbsp;NukeScripts&trade; (http://nukescripts.86it.us)<br />\n<strong>Copyright: </strong>2000-2021<br />\n<strong>Contributors:</strong>&nbsp;ScottyBcoder, Truman Scott Buffington, Ernest Allen Buffington, TheGhost, Bob Marion, ChatServ<br />\n<strong>Version:</strong>&nbsp;v2.6.04<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Evolution Xtreme v2.0.9d &lt;&gt; 3.0.1b<br />\n<strong>Description:</strong>&nbsp;Portal security for PHP-Nuke, PHP-Nuke Titanium, PHP-Nuke Evolution and Evolution Xtreme</p>\n\n<p>&nbsp;</p>\n\n<p>Hello Everyone,</p>\n\n<p>I want to start off by saying that a lot of folks have had their hands in the coding&nbsp;and design layout of this very important portal security module. When you pass the mantle so to speak you expect the person that takes over to use an overly gracious amount of emphasis on the authors, developers, and contributors that made it all possible.&nbsp;</p>\n\n<p>Let me start out by explaining why I&#39;m using my real name as a contributor. I have been around and taken part in the development of just about every piece of code that is a part of PHP-Nuke. Short of off branding my own changes over the years, the truth is the dynamic FRANCIS framework of PHP-Nuke is what made all of it possible. I have been a part of all the developer communities over the last 30 years under different various nicknames or callsigns if you will, and with that being said,&nbsp;I guess you would have a hard time giving me credit unless I started using my real name. PHP-Nuke is open-source and for the most part, belongs to the developer communities that kept it alive, and the folks who are still keeping it alive after 30 years. The reason I am using my real name now is I have noticed a few people stirring the shit pot about people stealing code and saying it isn&#39;t&nbsp;theirs when in fact it truly is. The fact&nbsp;in the matter is that after it is modified it is no longer the original and anything modified must contain the new author&#39;s information. With that being said let&#39;s get class rolling...</p>\n\n<p>If you&#39;re going to have something to say about who is claiming something is theirs make sure you do your homework before you start running your mouth and offending people old enough to be your grandfather while at the same time making yourself look like a complete idiot. Let&#39;s start off with re-branded public and commercial software rights. The GNU general public license allows everyone to distribute and or sell their own version of PHP-Nuke or any software released under the GNU and with any name that they so choose to use. You can legally sell software with a GPL license version 2 or 3 for whatever price you want to charge and interestingly enough we could sell the original software un-modified if we so choose to do so. This can all be pretty confusing to folks that do not have at least a&nbsp;4th year of college reading and comprehension. Let me explain something,&nbsp;free software is referred to as free in terms of freedom and not in terms of the software price. What most people do is charge a distribution fee for different various renditions of software that other people have written the core engines for. Technically speaking anything you modify and change is yours and ipso facto makes you the current author, in fact, the original authors would usually prefer not to have their name attached to any version but the original and that is why as part of the law and why you are required to give a full copy of the original code un-modified with any version that you so choose to sell or distribute. There are exceptions with worldwide distributions such as PHP-Nuke because the original source code is already out there and very well known and there is no real need to emphasize on who is responsible for the ideas or concepts that went into the development of that particular software. However in court, if you did not supply a full copy that is un-modified alongside the original with the original author information, because the law is the law, you would lose any said battles that pertain to any such revenues earned.</p>\n\n<p>Interestingly enough GNU copyrights are only legal if you provide your legal given name or the name of a legally registered business entity. With that being said you can&#39;t say copyright StarMonkey or Fragglenap. It must be your legally given birth name or a registered business entity. You cannot make up an entity name and use it without owning and registering it. A registered domain does not constitute any legal rights to the name you use. You must still register it as a legal trademark or license it as a business entity and this applies to everyone no matter where they are in the world. You may own the domain name and not have the name rights, so if you use a name and do not license it or register it as a trademark anyone can steal it in about 10 minutes and you will be shit out of luck. My suggestion is that if you use a name you better make sure you own it! What can happen is, you make someone angry and said person is quite wealthy, said person decides they don&#39;t like you so they register your domain as a trademark and then they license in your state or community under the said name&nbsp;and then they drag you into court and sue your pants off and leave you broke, naked and destitute with no home and not even a cardboard box to live in. So do yourself a favor and try not to piss people off on the internet and make sure you own any name you use. In other words you better secure your interests before you piss anyone off anywhere. You never know just how vindictive or rich they might be.</p>\n\n<p>I hope this article was helpful and I felt like packaging it with this particular module would be very fitting.</p>\n\n<p>Film at 11</p>\n\n<p>&nbsp;</p>', '', 0, 33, 5, 'WebMaster', '', 0, '', 0, 0, 0, 15, 3, '', 0, 1),
-(21, 1, 'WebMaster', 'New Network Module', '2021-05-10 09:49:53', '2021-05-10 12:57:59', '<p><strong>Module Name:</strong>&nbsp;Network<br />\n<strong>Author:</strong>&nbsp;Ernest Buffington<br />\n<strong>Contributor:</strong>&nbsp;Shawn Archer, Ernest Allen Buffington<br />\n<strong>Version:</strong>&nbsp;v1.0.0<br />\n<strong>License:&nbsp;</strong>GNU General Public License version 2<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke 6.0.0 &lt;&gt; 6.5.0 | PHP-Nuke Evolution Xtreme 2.0.9f&nbsp;&lt;&gt;&nbsp;3.0.1b<br />\n<strong>Description:</strong>&nbsp;Based on Website Document Mod v1.0 by&nbsp;Shawn Archer&nbsp;Copyright (c) 2002</p>\n\n<p>&nbsp;</p>\n\n<p>This module contains The 86it Developers Network&#39;s legal disclaimers and documents.</p>\n\n<ul>\n	<li>About Our Network</li>\n	<li>Network Disclaimer Statement</li>\n	<li>Network Privacy Statement</li>\n	<li>Network Terms of Use</li>\n</ul>\n\n<p>&nbsp;</p>\n\n<p>This module has information that must be loaded at the bottom of each portal or website given away by <strong>The 86it Developers Network</strong>.</p>\n\n<p>Some people disable the footer links and load the network module as a menu option on their portal. This is an acceptable way to present the network legal documents as well.</p>\n\n<p>This information must be present at all times and is a part of the network paid subscription agreement. When <strong>The 86it Developer Network</strong> gives you a web portal it may be free for you but Brandon Maintenance Management. LLC pays for your portal and website. This is done to promote programmers and programming all around the world.</p>\n\n<p>These free portals are for beginners and people learning to program on the internet.&nbsp;they are also for folks that want to setup gaming websites or run an online business, These portals have no limitations and come with a cPanel and PHP-FPM with all versions of PHP available.</p>\n\n<p>&nbsp;</p>', '', 0, 19, 5, 'WebMaster', '', 0, '', 0, 0, 0, 10, 2, '', 0, 1);
+(1, 8, 'webmaster', 'Welcome to PHP-Nuke Titanium Dev 4', '2017-10-11 09:56:20', '2022-08-23 18:58:30', '<p>Thank you for choosing PHP-Nuke Titanium, we hope you enjoy using our Network CMS and we appreciate all the feedback and donations. This website is using the Nuke-Evolution Xtreme 2.0.9F Core engine and we are very proud to say so. This is the network version of PHP-Nuke Titanium. PHP-Nuke Titanium is designed to run solely on The 86it Developers Network. Some folks are not a general part of the network and just want a regular website or portal and in those instances, we set up Nuke-Evolution Xtreme (US Version). Understanding which one you need is a big part of starting an online presence. The decision is one that we can help you with...</p>', '', 0, 1778, 1, 'TheGhost', '', 1, '', 0, 0, 0, 45, 9, '', 0, 1),
+(2, 8, 'webmaster', 'New Default Network Theme by EBuffington', '2021-03-16 07:50:13', '2022-08-23 18:58:48', '<p><strong>PHP-Nuke Titanium&nbsp;has a new Default Theme</strong><br />\n<br />\nThe name of our new default network theme is&nbsp;Inferno&nbsp;and was written and designed by multiple people.<br />\n<br />\n<strong>Main Developers</strong></p>\n\n<ul>\n	<li>Ernest Buffington (main designer and coder)</li>\n	<li>Sebastian Buffington (concept designer)</li>\n	<li>Winston Wolfe (coder)</li>\n</ul>\n\n<p><br />\n<strong>Indirect Developers</strong></p>\n\n<ul>\n	<li><strong>coRpSE</strong></li>\n	<li><strong>TheMortal</strong></li>\n	<li><strong>Lonestar</strong></li>\n	<li><strong>killigan</strong></li>\n	<li><strong>SgtLegend</strong></li>\n	<li><strong>Technocrat</strong></li>\n	<li><strong>Eyecu</strong></li>\n	<li><strong>Wolfstar</strong></li>\n</ul>\n\n<p><br />\nThis theme will probably always be under construction as the times roll forward. This theme by default is streaming FIRE and the download for the default theme is in excess of 1.78GB. It takes a pretty large video file to stream in resolution this clear.<br />\n<br />\nThis is our network mascot theme and is not suppose to be used by individual users as their default theme. However, when we set up a new network portal for someone this will be the theme that is installed by default and we recommend that you get familiar with the layout as you will need to understand it to make new themes or design your own default theme. After you have studied the theme a little bit you should be off and running and we recommend that you use the community version of Visual Studio or Dreamweaver for editing your network portal. You can use any version of Dreamweaver but we recommend editing your theme remotely with Adobe Dreamweaver CS6 as it was the last version before Adobe got greedy. We do not believe in online subscription-based software as it only shows corporate greed.<br />\n<br />\nThis new theme was designed and worked on from 2019 all the way up until now. We ported it in a way so that it will work with normal versions of Nuke-Evolution. There are a lot of reasons to have us set up a network portal for you versus you buying online internet services for your personal website.<br />\n<br />\n<strong>Reasons to have a Network Portal</strong><br />\n&nbsp;</p>\n\n<ul>\n	<li>Why pay a monthly FEE for an online presence when we do it for free.</li>\n	<li>We help with module setup and design.</li>\n	<li>We still believe in Bells and Whistles.</li>\n	<li>Free website support for your network portal.</li>\n	<li>You can also convert to a commercial account anytime you wish and at wholesale rates.</li>\n	<li>You can use any domain name you like as we are a licensed registrar.</li>\n	<li>We also have free domain names *.86it.us i.e. your-portal-name.86it.us</li>\n	<li>We cater to newbies and pros.</li>\n	<li>This is the place to be if you want to teach or learn.</li>\n</ul>', '', 0, 1743, 8, 'TheGhost', '', 1, 'english', 0, 0, 0, 20, 4, '', 0, 1),
+(3, 8, 'webmaster', 'What has changed in PHP-Nuke Titanium?', '2021-03-16 09:05:57', '2022-08-23 18:59:02', '<p><strong>What is no longer in PHP-Nuke Titanium&nbsp;</strong></p>\n\n<ul>\n	<li>News</li>\n	<li>Stories_Archive</li>\n	<li>Submit_News</li>\n	<li>Top</li>\n	<li>Topics</li>\n	<li>Projects</li>\n</ul>\n\n<p><br />\n<strong>What is New in PHP-Nuke Titanium</strong></p>\n\n<ul>\n	<li><strong><span style=\"color:#1abc9c\">Added</span></strong>&nbsp;<strong>New Facebook Config file</strong>&nbsp;fconfig.php. This is for facebook connector settings...</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span></strong>&nbsp;<strong>New Network Config file</strong>&nbsp;nconfig.php. This is for network connector settings...</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span></strong> <strong>Rounded Corners Mod v1</strong> to images in User Info and blocks.</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span></strong> <strong>dateModified</strong> and <strong>datePublished </strong>everywhere, no more use of<strong>&nbsp;datetime </strong>or<strong> time</strong>.</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Blog Signature Mod v1&nbsp;</strong>by TheGhost</li>\n	<li><strong><span style=\"color:#f39c12\">Updated</span></strong> Admin <strong>Portal Menu</strong>&nbsp;updated for <strong><span style=\"color:#3498db\">PHP 7.xx&nbsp;</span></strong>by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#f39c12\">Updated</span></strong> <strong>Web_Links</strong> Module re-write by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#f39c12\">Updated</span></strong> Admin <strong>Authors Panel</strong>&nbsp;updated by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#f39c12\">Updated</span></strong> Admin <strong>Blocks Panel</strong>&nbsp;updated by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#f39c12\">Updated</span></strong> Admin <strong>Backup Panel</strong> updated for <strong><span style=\"color:#3498db\">PHP 7.xx</span></strong>&nbsp; by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#f39c12\">Updated</span></strong> Admin <strong>Modules Panel</strong> re-write by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Titanium Google&nbsp;SDK</strong>&nbsp;v5 by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Titanium Facebook SDK</strong>&nbsp;v5 by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Facebook Likes</strong> for Blogs by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Facebook Commenting</strong> for Blogs by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> </strong>Portals now come with a preconfigured facebook app (associated with your web portal)</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Blog</strong> by <strong>TheGhost </strong>(News Re-Write)</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Blog_Archive</strong>&nbsp;by <strong>TheGhost</strong> (Stories Archive Re-Write)</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Blog_Submit</strong>&nbsp;by <strong>TheGhost</strong> (Submit Re-Write)</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Blog_Top</strong>&nbsp;by <strong>TheGhost </strong>(Top Re-Write)</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Blog_Topics</strong>&nbsp;by <strong>TheGhost </strong>(Topics Re-Write)</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Network_Advertising</strong> Module by <strong>NukeScripts.Net</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Loan</strong> Module by <strong>ScottybCoder</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Network Bookmarks</strong> (private bookmark vault for users)</li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> Proof_Of_God</strong> Module by <strong>ScottyBcoder</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> </strong>Resolution Checking for Advanced Themes by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> </strong>Flykit for designing themes on the Fly (used to edit CSS in realtime) by <strong>TheGhost</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> </strong>Network Projects (fixed for network use, used to report errors with themes modules or general code bugs) by Bob Marion of&nbsp;<strong>NukeScripts.Net</strong></li>\n	<li><strong><span style=\"color:#1abc9c\">Added</span> </strong>Each theme will automatically switch to the needed mime-type on the Fly! (awesome for old themes) by <strong>TheGhost</strong></li>\n	<li><span style=\"color:#c0392b\"><strong>Fixed</strong></span> BBCode on the main page used an incorrect display path. i.e. root/filename.png it now uses root/modules/Forum/images/smiles/filename.png.</li>\n	<li><span style=\"color:#c0392b\"><strong>Fixed</strong></span> Site_Map was using read_article i.e.&nbsp;modules.php?name=Blog&amp;amp;file=read_article&amp;amp;sid=4 which was not displaying the header and footer.</li>\n	<li><span style=\"color:#c0392b\"><strong>Fixed</strong></span> Site_Map was using Topics instead of Blog_Topics</li>\n	<li><strong><span style=\"color:#c0392b\">Fixed</span></strong> cookieconsent.min.js was opening the learn link in the <strong>_parent</strong> window thus directing the user away from the current page.</li>\n	<li><span style=\"color:#c0392b\"><strong>Fixed </strong></span>The printer-friendly icon was not right when you clicked on read more or comments.</li>\n	<li><strong><span style=\"color:#c0392b\">Fixed</span></strong> The send to friend icon was not right when you clicked on read more or comments.</li>\n	<li><span style=\"color:#c0392b\"><strong>Fixed</strong></span>&nbsp;In the admin area the modules admin block was listing the index page as a module left a <strong>..</strong> in the module list that says can&#39;t be edited.</li>\n	<li><span style=\"color:#c0392b\"><strong>Fixed</strong></span> In the admin area&nbsp;the modules admin block was listing the index.html file as if it were a module.</li>\n</ul>\n\n<p><br />\n<strong>What is Broken in PHP-Nuke Titanium</strong></p>\n\n<ul>\n	<li>Found 3/16/2021 5:01 am Link to off-site Avatar - Tried to directly link to a file from an Image Repository on another site.&nbsp;</li>\n	<li>ShoutBox broken in PHP 7.3&nbsp;</li>\n	<li>ShoutBox broken in PHP 7.2&nbsp;</li>\n	<li>ShoutBox broken in PHP 7.1&nbsp;</li>\n	<li>Admin database functions broken in PHP 7.3 (admin.php?op=database)&nbsp;</li>\n	<li>Admin database functions broken in PHP 7.2 (admin.php?op=database)&nbsp;</li>\n	<li>Admin database functions broken in PHP 7.1 (admin.php?op=database )</li>\n	<li>Admin database functions broken in PHP 7.0 (admin.php?op=database)&nbsp;</li>\n	<li>Admin database functions broken in PHP 5.6 (admin.php?op=database)&nbsp;</li>\n	<li><strong>Bug</strong> Smiles dropped in by the BBCode editor on the main page have an incorrect display path. i.e. root/filename.png instead of root/modules/Forum/images/smiles/filename.png</li>\n	<li>Site_Map was using read_article i.e.&nbsp;modules.php?name=Blog&amp;amp;file=read_article&amp;amp;sid=4 which was not displaying the header and footer.</li>\n	<li>Sit_Map is using Topics instead of Blog_Topics</li>\n	<li>cookieconsent.min.js is opening the learn link in the _parent window thus directing the user away from the current page.</li>\n	<li>The printer-friendly icon is not right when you click on read more or comments.</li>\n	<li>The send to friend icon is not right when you click on read more or comments.</li>\n	<li>In admin area modules admin block is listing the index page as a module leaves a <strong>..</strong> in the module list that says can&#39;t be edited.</li>\n	<li>In the admin are modules admin block is listing the index.html file as if it were a module.</li>\n</ul>\n\n<p><br />\n<strong>What versions of PHP are stable with PHP-Nuke Titanium and Nuke-Evolution?</strong></p>\n\n<ul>\n	<li><span style=\"color:#3498db\"><strong>PHP 7.4.16</strong></span></li>\n</ul>\n\n<p><br />\n<strong>What version of PHP are we using on this portal/website?</strong></p>\n\n<ul>\n	<li><span style=\"color:#3498db\"><strong>PHP 7.4.16</strong></span></li>\n</ul>', '', 0, 2490, 1, 'TheGhost', '', 0, 'english', 0, 0, 0, 75, 15, '', 0, 1),
+(4, 1, 'webmaster', 'This website portal was designed on this computer!', '2021-03-16 23:48:33', '2022-08-23 18:59:19', '<div>\n<p style=\"text-align:center\"><img alt=\"\" src=\"https://www.86it.us/modules/Image_Repository/files/10002/P6zGD9fove.png\" style=\"align:center; height:480px; width:768px\" /></p>\n</div>', '<div contenteditable=\"false\" tabindex=\"-1\">\n<div contenteditable=\"false\" tabindex=\"-1\">\n<div contenteditable=\"false\" tabindex=\"-1\">\n<div contenteditable=\"false\" tabindex=\"-1\">\n<div contenteditable=\"false\" tabindex=\"-1\">\n<pre data-widget=\"codeSnippet\">\n<code class=\"language-html hljs\">------------------\nSystem Information\n------------------\n      Time of this report: 3/20/2021, 09:54:47\n             Machine name: DESKTOP-CR6BG56\n               Machine Id: {51653035-2DE6-4751-9298-E3EE1F783D2A}\n         Operating System: Windows 10 Pro 64-bit (10.0, Build 19042) (19041.vb_release.191206-1406)\n                 Language: English (Regional Setting: English)\n      System Manufacturer: Dell Inc.\n             System Model: Precision T7610\n                     BIOS: BIOS Date: 09/11/19 09:31:04 Ver: A18.00  (type: BIOS)\n                Processor: Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz (32 CPUs), ~2.6GHz\n                   Memory: 131072MB RAM\n      Available OS Memory: 130984MB RAM\n                Page File: 20644MB used, 129795MB available\n              Windows Dir: C:WINDOWS\n          DirectX Version: DirectX 12\n      DX Setup Parameters: Not found\n         User DPI Setting: 96 DPI (100 percent)\n       System DPI Setting: 96 DPI (100 percent)\n          DWM DPI Scaling: Disabled\n                 Miracast: Available, with HDCP\nMicrosoft Graphics Hybrid: Not Supported\n DirectX Database Version: 1.0.8\n           DxDiag Version: 10.00.19041.0546 64bit Unicode\n\n\n---------------\nDisplay Devices\n---------------\n           Card name: Radeon RX 580 Series\n        Manufacturer: Advanced Micro Devices, Inc.\n           Chip type: AMD Radeon Graphics Processor (0x67DF)\n            DAC type: Internal DAC(400MHz)\n         Device Type: Full Device (POST)\n          Device Key: EnumPCIVEN_1002&amp;DEV_67DF&amp;SUBSYS_C5801682&amp;REV_E7\n      Display Memory: 73663 MB\n    Dedicated Memory: 8171 MB\n       Shared Memory: 65492 MB\n        Current Mode: 1920 x 1080 (32 bit) (59Hz)\n    Display Topology: Extend\n Display Color Space: DXGI_COLOR_SPACE_RGB_FULL_G22_NONE_P709\n     Color Primaries: Red(0.644531,0.334961), Green(0.304688,0.629883), Blue(0.148438,0.049805), White Point(0.313477,0.329102)\n\n-------------\nSound Devices\n-------------\n            Description: 1 - LG IPS FULLHD (AMD High Definition Audio Device)\n Default Sound Playback: No\n Default Voice Playback: Yes\n            Hardware ID: HDAUDIOFUNC_01&amp;VEN_1002&amp;DEV_AA01&amp;SUBSYS_00AA0100&amp;REV_1007\n        Manufacturer ID: N/A\n             Product ID: N/A\n                   Type: N/A\n            Driver Name: AtihdWT6.sys\n         Driver Version: 10.0.1.12 (English)\n      Driver Attributes: Final Retail\n            WHQL Logo&#39;d: Yes\n          Date and Size: 7/9/2019 8:00:00 PM, 108152 bytes\n            Other Files: \n        Driver Provider: Advanced Micro Devices\n         HW Accel Level: Emulation Only\n              Cap Flags: 0xF1F\n    Min/Max Sample Rate: 100, 200000\nStatic/Strm HW Mix Bufs: 1, 0\n Static/Strm HW 3D Bufs: 0, 0\n              HW Memory: 0\n       Voice Management: No\n EAX(tm) 2.0 Listen/Src: No, No\n   I3DL2(tm) Listen/Src: No, No\nSensaura(tm) ZoomFX(tm): No\n\n            Description: 3 - LG IPS FULLHD (AMD High Definition Audio Device)\n Default Sound Playback: No\n Default Voice Playback: No\n            Hardware ID: HDAUDIOFUNC_01&amp;VEN_1002&amp;DEV_AA01&amp;SUBSYS_00AA0100&amp;REV_1007\n        Manufacturer ID: N/A\n             Product ID: N/A\n                   Type: N/A\n            Driver Name: AtihdWT6.sys\n         Driver Version: 10.0.1.12 (English)\n      Driver Attributes: Final Retail\n            WHQL Logo&#39;d: Yes\n          Date and Size: 7/9/2019 8:00:00 PM, 108152 bytes\n            Other Files: \n        Driver Provider: Advanced Micro Devices\n         HW Accel Level: Emulation Only\n              Cap Flags: 0xF1F\n    Min/Max Sample Rate: 100, 200000\nStatic/Strm HW Mix Bufs: 1, 0\n Static/Strm HW 3D Bufs: 0, 0\n              HW Memory: 0\n       Voice Management: No\n EAX(tm) 2.0 Listen/Src: No, No\n   I3DL2(tm) Listen/Src: No, No\nSensaura(tm) ZoomFX(tm): No\n\n            Description: Speakers (E-MU E-DSP Audio Processor (WDM))\n Default Sound Playback: Yes\n Default Voice Playback: No\n            Hardware ID: PCIVEN_1102&amp;DEV_0008&amp;SUBSYS_40021102&amp;REV_00\n        Manufacturer ID: N/A\n             Product ID: N/A\n                   Type: N/A\n            Driver Name: ctaud2k.sys\n         Driver Version: 6.0.1.1246 (English)\n      Driver Attributes: Final Retail\n            WHQL Logo&#39;d: No\n          Date and Size: 2/22/2010 8:00:00 PM, 712832 bytes\n            Other Files: \n        Driver Provider: Creative\n         HW Accel Level: Emulation Only\n              Cap Flags: 0xF1F\n    Min/Max Sample Rate: 100, 200000\nStatic/Strm HW Mix Bufs: 1, 0\n Static/Strm HW 3D Bufs: 0, 0\n              HW Memory: 0\n       Voice Management: No\n EAX(tm) 2.0 Listen/Src: No, No\n   I3DL2(tm) Listen/Src: No, No\nSensaura(tm) ZoomFX(tm): No\n\n            Description: Speakers (High Definition Audio Device)\n Default Sound Playback: No\n Default Voice Playback: No\n            Hardware ID: HDAUDIOFUNC_01&amp;VEN_10EC&amp;DEV_0280&amp;SUBSYS_102805D4&amp;REV_1000\n        Manufacturer ID: N/A\n             Product ID: N/A\n                   Type: N/A\n            Driver Name: HdAudio.sys\n         Driver Version: 10.0.19041.264 (English)\n      Driver Attributes: Final Retail\n            WHQL Logo&#39;d: Yes\n          Date and Size: 5/8/2020 8:00:00 PM, 430080 bytes\n            Other Files: \n        Driver Provider: Microsoft\n         HW Accel Level: Emulation Only\n              Cap Flags: 0xF1F\n    Min/Max Sample Rate: 100, 200000\nStatic/Strm HW Mix Bufs: 1, 0\n Static/Strm HW 3D Bufs: 0, 0\n              HW Memory: 0\n       Voice Management: No\n EAX(tm) 2.0 Listen/Src: No, No\n   I3DL2(tm) Listen/Src: No, No\nSensaura(tm) ZoomFX(tm): No\n\n---------------------\nSound Capture Devices\n---------------------\n            Description: Microphone (HD Pro Webcam C920)\n  Default Sound Capture: No\n  Default Voice Capture: No\n            Driver Name: USBAUDIO.sys\n         Driver Version: 10.0.19041.789 (English)\n      Driver Attributes: Final Retail\n          Date and Size: 1/28/2021 8:00:00 PM, 210432 bytes\n              Cap Flags: 0x1\n           Format Flags: 0xFFFFF\n\n            Description: Wave (E-MU E-DSP Audio Processor (WDM))\n  Default Sound Capture: Yes\n  Default Voice Capture: Yes\n            Driver Name: ctaud2k.sys\n         Driver Version: 6.0.1.1246 (English)\n      Driver Attributes: Final Retail\n          Date and Size: 2/22/2010 8:00:00 PM, 712832 bytes\n              Cap Flags: 0x1\n           Format Flags: 0xFFFFF\n\n---------------------\nVideo Capture Devices\nNumber of Devices: 1\n---------------------\n           FriendlyName: HD Pro Webcam C920\n               Category: Camera\n           SymbolicLink: ?usb#vid_046d&amp;pid_082d&amp;mi_00#7&amp;1984bc0&amp;0&amp;0000#{e5323777-f976-4f5b-9b55-b94699c46e44}global\n               Location: n/a\n               Rotation: n/a\n           Manufacturer: Logitech\n             HardwareID: USBVID_046D&amp;PID_082D&amp;REV_0011&amp;MI_00,USBVID_046D&amp;PID_082D&amp;MI_00\n             DriverDesc: HD Pro Webcam C920\n         DriverProvider: Logitech\n          DriverVersion: 1.3.89.0\n      DriverDateEnglish: 10/24/2018 00:00:00\n    DriverDateLocalized: 10/24/2018 12:00:00 AM\n                Service: usbvideo\n                  Class: Image\n          DevNodeStatus: 180200A[DN_DRIVER_LOADED|DN_STARTED|DN_DISABLEABLE|DN_NT_ENUMERATOR|DN_NT_DRIVER]\n            ContainerId: {3FCD13B0-8E09-57DF-8C83-2B085C12358B}\n            ProblemCode: No Problem\n  BusReportedDeviceDesc: HD Pro Webcam C920\n                 Parent: USBVID_046D&amp;PID_082D6FEDD6EF\n      DriverProblemDesc: n/a\n           UpperFilters: n/a\n           LowerFilters: n/a\n                  Stack: Driverksthunk,Driverusbvideo,Driverusbccgp\n      ContainerCategory: Imaging\n          SensorGroupID: n/a\n                   MFT0: n/a\n                   DMFT: n/a\n    CustomCaptureSource: n/a\n  DependentStillCapture: n/a\n     EnablePlatformDMFT: n/a\n              DMFTChain: n/a\n EnableDshowRedirection: n/a\n     FrameServerEnabled: n/a\n        AnalogProviders: n/a\n             ProfileIDs: n/a\n\n\n-----------\nUSB Devices\n-----------\n+ USB Root Hub\n| Vendor/Product ID: 0x8086, 0x1D26\n| Matching Device ID: USBROOT_HUB20\n| Service: usbhub\n| Driver: usbhub.sys, 12/7/2019 05:07:56, 528184 bytes\n| Driver: usbd.sys, 12/7/2019 05:07:56, 33080 bytes\n| \n+-+ Generic USB Hub\n| | Vendor/Product ID: 0x8087, 0x0024\n| | Location: Port_#0001.Hub_#0002\n| | Matching Device ID: USBClass_09\n| | Service: usbhub\n| | Driver: usbhub.sys, 12/7/2019 05:07:56, 528184 bytes\n| | Driver: usbd.sys, 12/7/2019 05:07:56, 33080 bytes\n| | \n| +-+ USB Composite Device\n| | | Vendor/Product ID: 0x046D, 0xC52B\n| | | Location: Port_#0001.Hub_#0007\n| | | Matching Device ID: USBCOMPOSITE\n| | | Service: usbccgp\n| | | Driver: usbccgp.sys, 10/9/2020 16:46:41, 185664 bytes\n| | | \n| | +-+ USB Input Device\n| | | | Vendor/Product ID: 0x046D, 0xC52B\n| | | | Location: 0000.001d.0000.001.001.000.000.000.000\n| | | | Matching Device ID: USBClass_03&amp;SubClass_01\n| | | | Service: HidUsb\n| | | | Driver: hidusb.sys, 12/7/2019 05:07:56, 44032 bytes\n| | | | Driver: hidclass.sys, 12/7/2019 05:07:56, 225792 bytes\n| | | | Driver: hidparse.sys, 12/7/2019 05:07:56, 46080 bytes\n| | | | \n| | | +-+ HID Keyboard Device\n| | | | | Vendor/Product ID: 0x046D, 0xC52B\n| | | | | Matching Device ID: HID_DEVICE_SYSTEM_KEYBOARD\n| | | | | Service: kbdhid\n| | | | | Driver: kbdhid.sys, 12/7/2019 05:07:56, 46592 bytes\n| | | | | Driver: kbdclass.sys, 12/7/2019 05:07:56, 71480 bytes\n| | | | \n| | +-+ USB Input Device\n| | | | Vendor/Product ID: 0x046D, 0xC52B\n| | | | Location: 0000.001d.0000.001.001.000.000.000.000\n| | | | Matching Device ID: USBClass_03&amp;SubClass_01\n| | | | Service: HidUsb\n| | | | Driver: hidusb.sys, 12/7/2019 05:07:56, 44032 bytes\n| | | | Driver: hidclass.sys, 12/7/2019 05:07:56, 225792 bytes\n| | | | Driver: hidparse.sys, 12/7/2019 05:07:56, 46080 bytes\n| | | | \n| | | +-+ HID-compliant mouse\n| | | | | Vendor/Product ID: 0x046D, 0xC52B\n| | | | | Matching Device ID: HID_DEVICE_SYSTEM_MOUSE\n| | | | | Service: mouhid\n| | | | | Driver: mouhid.sys, 12/7/2019 05:07:56, 35328 bytes\n| | | | | Driver: mouclass.sys, 12/7/2019 05:07:56, 67600 bytes\n| | | | \n| | +-+ Logicool Unifying USB receiver\n| | | | Vendor/Product ID: 0x046D, 0xC52B\n| | | | Location: 0000.001d.0000.001.001.000.000.000.000\n| | | | Matching Device ID: usbvid_046d&amp;pid_c52b&amp;mi_02\n| | | | Service: LEqdUsb\n| | | | Driver: LEqdUsb.sys, 6/17/2015 22:25:00, 87696 bytes\n| | | | Driver: LkmdfCoInst.dll, 6/17/2015 22:25:00, 1854096 bytes\n| | | | \n| | | +-+ Logicool HID-compliant Unifying device\n| | | | | Vendor/Product ID: 0x046D, 0xC52B\n| | | | | Location: DJ Bus 0\n| | | | | Matching Device ID: {a3535e08-eb26-49a9-8ae0-786ed1242812}logi_hid_device\n| | | | | Service: LHidEqd\n| | | | | Driver: LHidEqd.sys, 6/17/2015 22:25:00, 23184 bytes\n| | | | | Driver: LkmdfCoInst.dll, 6/17/2015 22:25:00, 1854096 bytes\n| | | | | \n| | | | +-+ Logicool HID-compliant Unifying Mouse\n| | | | | | Vendor/Product ID: 0x046D, 0xC52B\n| | | | | | Matching Device ID: hidvid_046d&amp;class_00000004\n| | | | | | Upper Filters: LMouFilt\n| | | | | | Lower Filters: LHidFilt\n| | | | | | Service: mouhid\n| | | | | | Driver: LHidFilt.Sys, 6/17/2015 22:25:00, 86672 bytes\n| | | | | | Driver: LMouFilt.Sys, 6/17/2015 22:25:00, 69264 bytes\n| | | | | | Driver: mouhid.sys, 12/7/2019 05:07:56, 35328 bytes\n| | | | | | Driver: mouclass.sys, 12/7/2019 05:07:56, 67600 bytes\n| | | | | | Driver: LkmdfCoInst.dll, 6/17/2015 22:25:00, 1854096 bytes\n| | | | | | Driver: LMouFiltCoInst.dll, 6/17/2015 22:25:00, 63120 bytes\n| | | \n| +-+ USB Composite Device\n| | | Vendor/Product ID: 0x04D9, 0xA0CD\n| | | Location: Port_#0006.Hub_#0007\n| | | Matching Device ID: USBCOMPOSITE\n| | | Service: usbccgp\n| | | Driver: usbccgp.sys, 10/9/2020 16:46:41, 185664 bytes\n| | | \n| | +-+ USB Input Device\n| | | | Vendor/Product ID: 0x04D9, 0xA0CD\n| | | | Location: 0000.001d.0000.001.006.000.000.000.000\n| | | | Matching Device ID: USBClass_03&amp;SubClass_01\n| | | | Service: HidUsb\n| | | | Driver: hidusb.sys, 12/7/2019 05:07:56, 44032 bytes\n| | | | Driver: hidclass.sys, 12/7/2019 05:07:56, 225792 bytes\n| | | | Driver: hidparse.sys, 12/7/2019 05:07:56, 46080 bytes\n| | | | \n| | | +-+ HID Keyboard Device\n| | | | | Vendor/Product ID: 0x04D9, 0xA0CD\n| | | | | Matching Device ID: HID_DEVICE_SYSTEM_KEYBOARD\n| | | | | Service: kbdhid\n| | | | | Driver: kbdhid.sys, 12/7/2019 05:07:56, 46592 bytes\n| | | | | Driver: kbdclass.sys, 12/7/2019 05:07:56, 71480 bytes\n| | | | \n| | +-+ USB Input Device\n| | | | Vendor/Product ID: 0x04D9, 0xA0CD\n| | | | Location: 0000.001d.0000.001.006.000.000.000.000\n| | | | Matching Device ID: USBClass_03\n| | | | Service: HidUsb\n| | | | Driver: hidusb.sys, 12/7/2019 05:07:56, 44032 bytes\n| | | | Driver: hidclass.sys, 12/7/2019 05:07:56, 225792 bytes\n| | | | Driver: hidparse.sys, 12/7/2019 05:07:56, 46080 bytes\n| | | | \n| | | +-+ HID Keyboard Device\n| | | | | Vendor/Product ID: 0x04D9, 0xA0CD\n| | | | | Matching Device ID: HID_DEVICE_SYSTEM_KEYBOARD\n| | | | | Service: kbdhid\n| | | | | Driver: kbdhid.sys, 12/7/2019 05:07:56, 46592 bytes\n| | | | | Driver: kbdclass.sys, 12/7/2019 05:07:56, 71480 bytes\n\n----------------\nGameport Devices\n----------------\n\n------------\nPS/2 Devices\n------------\n\n------------------------\nDisk &amp; DVD/CD-ROM Drives\n------------------------\n      Drive: C:\n Free Space: 1753.3 GB\nTotal Space: 1906.1 GB\nFile System: NTFS\n      Model: DELL PERC H310 SCSI Disk Device\n\n      Drive: E:\n Free Space: 124.7 GB\nTotal Space: 242.5 GB\nFile System: NTFS\n      Model: DELL PERC H310 SCSI Disk Device\n\n      Drive: F:\n Free Space: 0.0 GB\nTotal Space: 0.0 GB\nFile System: NTFS\n      Model: WD My Book 25EE USB Device\n\n      Drive: I:\n Free Space: 9059.7 GB\nTotal Space: 11444.2 GB\nFile System: NTFS\n      Model: WD easystore 264D USB Device\n\n      Drive: K:\n Free Space: 3770.9 GB\nTotal Space: 3815.3 GB\nFile System: NTFS\n      Model: WD My Book 25EE USB Device\n\n      Drive: L:\n Free Space: 9374.5 GB\nTotal Space: 9537.5 GB\nFile System: NTFS\n      Model: WD My Book 25EE USB Device\n\n      Drive: X:\n Free Space: 0.5 GB\nTotal Space: 0.5 GB\nFile System: NTFS\n      Model: DELL PERC H310 SCSI Disk Device\n\n      Drive: Y:\n Free Space: 0.5 GB\nTotal Space: 0.5 GB\nFile System: NTFS\n      Model: DELL PERC H310 SCSI Disk Device\n\n      Drive: Z:\n Free Space: 0.5 GB\nTotal Space: 0.5 GB\nFile System: NTFS\n      Model: DELL PERC H310 SCSI Disk Device\n\n      Drive: D:\n      Model: PLDS DVD-ROM DS-8DBSH\n     Driver: C:WINDOWSSYSTEM32DRIVERSCDROM.SYS, 10.00.19041.0001 (English), 12/7/2019 05:07:53, 174080 bytes\n\n      Drive: G:\n      Model: TSSTcorp DVD+-RW SH-216DB\n     Driver: C:WINDOWSSYSTEM32DRIVERSCDROM.SYS, 10.00.19041.0001 (English), 12/7/2019 05:07:53, 174080 bytes</code></pre>\n<img src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" /><span style=\"background-color:rgba(220,220,220,0.5)\"><img role=\"presentation\" src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" style=\"height:15px; width:15px\" title=\"Click and drag to move\" /></span></div>\n<img src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" /><span style=\"background-color:rgba(220,220,220,0.5)\"><img role=\"presentation\" src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" style=\"height:15px; width:15px\" title=\"Click and drag to move\" /></span></div>\n<img src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" /><img role=\"presentation\" src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" style=\"height:15px; width:15px\" title=\"Click and drag to move\" /></div>\n<img src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" /><img role=\"presentation\" src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" style=\"height:15px; width:15px\" title=\"Click and drag to move\" /></div>\n<img src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" /><img role=\"presentation\" src=\"data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\" style=\"height:15px; width:15px\" title=\"Click and drag to move\" /></div>', 0, 1225, 4, 'TheGhost', '', 1, 'english', 0, 0, 0, 15, 3, '', 0, 1),
+(10, 5, 'webmaster', 'We have dumped MariaDB and here is why!', '2021-05-05 21:32:32', '2022-08-23 18:59:29', '<hr />\n<p>We dumped <span style=\"color:#1abc9c\"><strong>MariaDB</strong></span> 10.2.3</p>\n\n<p>We are now running&nbsp;<span style=\"color:#1abc9c\"><strong>MySQL </strong></span>8.0.23</p>\n\n<p>As time goes on,<strong><span style=\"color:#1abc9c\"> MySQL</span></strong> develops more extensive features or changes to its internal architecture. They have more developers on staff than <span style=\"color:#1abc9c\"><strong>MariaDB</strong></span>, so they are making changes at a faster pace.</p>\n\n<p>&nbsp;</p>\n\n<h2>Who&#39;s Currently Behind The Databases?</h2>\n\n<p>In 2010, <span style=\"color:#1abc9c\"><strong>MySQL</strong></span> was acquired by the <strong>Oracle Corporation</strong>. At that time, one of the original developers, Michael &ldquo;Monty&rdquo; Widenius, felt that the <span style=\"color:#e74c3c\"><strong>Oracle Corporation</strong></span> had a conflict of interest between <strong><span style=\"color:#1abc9c\">MySQL</span></strong> and their <span style=\"color:#e74c3c\"><strong>Oracle database</strong></span>.<br />\n<br />\nIn response to this, he decided to create a fork of the project named <span style=\"color:#1abc9c\"><strong>MariaDB</strong></span>. Since then, there&#39;s been a lot of healthy competition between <span style=\"color:#1abc9c\"><strong>MySQL</strong></span> and <strong><span style=\"color:#1abc9c\">MariaDB</span></strong> that has led to some really great innovation. Since <span style=\"color:#e74c3c\"><strong>Oracle</strong></span> is backing <span style=\"color:#1abc9c\"><strong>MySQL</strong></span> and has a solid foundation, it continues to be the leader. However, <span style=\"color:#1abc9c\"><strong>MariaDB</strong></span> offers some compelling reasons for why nerds may want to switch databases.<br />\n<br />\n<strong>MySQL:</strong>&nbsp;<span style=\"color:#1abc9c\"><strong>MySQL</strong></span> was originally started by <span style=\"color:#1abc9c\"><strong>MySQL AB</strong></span> in 1994 by a Swedish company that was created by a nerd named David Axmark, Allan Larsson, and another nerd named Michael &ldquo;Monty&rdquo; Widenius. The first version of <span style=\"color:#1abc9c\"><strong>MySQL</strong></span> was released in 1995. In 2008, <span style=\"color:#e74c3c\"><strong>Sun Microsystems</strong></span> purchased <span style=\"color:#1abc9c\"><strong>MySQL AB</strong></span>. In 2010, <span style=\"color:#e74c3c\"><strong>Sun Microsystems</strong></span> was acquired by <span style=\"color:#e74c3c\"><strong>Oracle</strong></span>.<br />\n<br />\n<span style=\"color:#1abc9c\"><strong>MySQL</strong></span> is currently maintained by the <span style=\"color:#e74c3c\"><strong>Oracle Corporation</strong></span>.<br />\n<br />\n<strong>MariaDB:</strong>&nbsp;On the day <span style=\"color:#e74c3c\"><strong>Oracle</strong></span> announced they had purchased <span style=\"color:#1abc9c\"><strong>MySQL</strong></span>, Michael &ldquo;Monty&rdquo; Widenius with his shining nerd cape took several <span style=\"color:#1abc9c\"><strong>MySQL</strong></span> developers and started <span style=\"color:#1abc9c\"><strong>MariaDB</strong></span>, a fork of <span style=\"color:#1abc9c\"><strong>MySQL</strong></span> from that point.</p>\n\n<hr />\n<p>Thanks,<br />\nThe 86it Team</p>', '', 0, 263, 4, 'TheGhost', '', 1, 'english', 0, 0, 0, 15, 3, '', 0, 1),
+(7, 4, 'webmaster', 'What is a CDN?', '2021-03-22 16:15:01', '2022-08-23 18:59:40', '<p>A content delivery network (<strong>CDN</strong>) refers to a geographically distributed group of servers that work together to provide fast delivery of Internet content.</p>\n\n<p>A <strong>CDN</strong> allows for the quick transfer of assets needed for loading Internet content including <strong>HTML</strong> pages, <strong>javascript</strong> files, <strong>stylesheets</strong>, <strong>images</strong>, and <strong>videos</strong>. The popularity of <strong>CDN</strong> services continues to grow, and today the majority of web traffic is served through <strong>CDN</strong>s, including traffic from major sites like <strong>The 86it Developers Network</strong>,&nbsp;<strong>Facebook</strong>, <strong>Netflix</strong>, and <strong>Amazon</strong>.</p>\n\n<p>A properly configured <strong>CDN</strong> may also help protect websites against some common malicious attacks, such as&nbsp;<a dir=\"ltr\" href=\"https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/\" id=\"ddos\" name=\"ddos\" onclick=\"window.open(this.href, \'ddos\', \'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1024,height=768\'); return false;\" title=\"ddos\">Distributed Denial of Service (DDOS) attacks</a>.</p>', '', 0, 1886, 3, 'TheGhost', '', 1, 'english', 0, 0, 0, 10, 2, '', 0, 1),
+(8, 1, 'webmaster', 'Do you want to be a part of the 86it Developers Team?', '2021-03-27 23:23:05', '2022-08-23 18:59:51', '<h1>PHP-Nuke Titanium <span style=\"font-size:12px\">(Open Source Project)</span></h1>\n\n<p>As a temporary promotion, we are giving away <strong>FREE</strong> commercial web hosting accounts to our 1st 10 beta testers. We will set up&nbsp;your web portal/website on our commercial servers and help you design a theme that best fits your needs. You will have a network link on your portal to report bugs and errors. You will use the <strong>Network Projects</strong> link on your website/portal to report errors or make design requests. This is used for users to be set up as concept designers right out of the gate. <strong>PHP-Nuke Titanium</strong> and <strong>The 86it Developers Network</strong>, unlike other teams and projects, will implement any and all design requests&nbsp;and they will become a permanent part of the <strong>PHP-Nuke Titanium</strong> design or be offered as a <strong>module</strong> or maybe even a <strong>block</strong>. Our 1st 10 beta testers will get a lifetime account paid in full for being a part of our team and project. Your first response to this will probably be &quot;nothing is free this sounds to good to be true&quot;, and if it is you&#39;re wrong. We are very serious and this is how we have decided to build and put together an awesome new team.</p>\n\n<p><strong>PHP-Nuke Titanium</strong> is a&nbsp;&#39;web-based automated blog&nbsp;publishing and content management system based on <strong><span style=\"color:#3498db\">PHP 7.xx</span></strong> and <strong><span style=\"color:#27ae60\">MySQL</span></strong>.&nbsp;<strong>PHP-Nuke Titanium</strong>&nbsp;is controlled using a web-browser-based user interface&#39; and is an app in the Business &amp; Commerce category. There are more than <strong>25</strong> alternatives to the original PHP-Nuke for a variety of platforms, including Self-Hosted solutions, however, none of them were or have been written with as much care as <strong>PHP-Nuke Titanium</strong>. There are lots of alternatives out there but many have security holes and back door features that allow the original developers&nbsp;or programmers to gain access to your personal files.&nbsp;Some say the best&nbsp;alternative to PHP-Nuke is&nbsp;<a href=\"https://alternativeto.net/software/wordpress/about/\">WordPress</a>, which is both free and Open Source. There are a few other apps that are a lot like&nbsp;PHP-Nuke as well.&nbsp;<a href=\"https://alternativeto.net/software/drupal/about/\">Drupal</a>&nbsp;(Open Source),&nbsp;<a href=\"https://alternativeto.net/software/joomla/about/\">Joomla</a>&nbsp;(Open Source),&nbsp;<a href=\"https://alternativeto.net/software/modx/about/\">MODX</a>&nbsp;(Open Source), and&nbsp;<a href=\"https://alternativeto.net/software/dev-to/about/\">DEV Community</a>&nbsp;(Open Source). None of these come with FREE support as PHP-Nuke Titanium does. We have dedicated an entire network to the design and use of <strong>PHP-Nuke Titanium</strong>.</p>\n\n<p>This is great for beginners and also seasoned programmers. If you wanted to learn <strong>PHP</strong> or <strong>HTML</strong> this is a perfect fit for you and is a great place to start. This project uses <strong>PHP</strong>, <strong>MySQL</strong>, <strong>XHTML</strong>, <strong>HTML</strong>, <strong>JAVA</strong>, <strong>CSS</strong>,&nbsp;<strong>BOOTSTRAP</strong>, <strong>Jquery, </strong>and a lot&nbsp;more...</p>\n\n<p>Unlike the original PHP-Nuke, this project uses multiple doctypes. You can design themes for <strong>HTML5</strong>, <strong>XHTML</strong> or even <strong>JAVA. </strong>When you design a website/portal theme you get to decide how you want to build it and the type of framework support that you would like to have with each individual theme. We will help you learn and walk you through the steps... When&nbsp;just getting started with online programming, making a new&nbsp;<strong>PHP-Nuke Titanium</strong> theme&nbsp;is probably the best place to start. Each theme has the same general framework layout and you get to decide and pick what you feel comfortable learning with. Remember we will be here to help the whole way through and this network and website are here for the duration. We have already been doing this for more than 20 years and have already put more than 15 years into the learning and development of <strong>PHP-Nuke Titanium</strong>. I&#39;m the founder of <strong>PHP-Nuke Titanium</strong> and <strong>The 86it Developers Network</strong>, I&#39;m 54 years old and love programming almost as much as I love to show and teach others. Anytime I get a chance to share my wealth of online programming knowledge it&#39;s a good day for me.</p>\n\n<p>If all this sounds good and you&#39;re ready to become a beta tester or start learning to program online let me know and I will get you set up right away. The 1st 10 beta tester will also be a part of the Ad campaign profit-sharing program. I will go into those details with you after you have become a beta tester and are part of the <strong>PHP-Nuke Titanium</strong> team. What I can tell you is not many people make more than 10 thousand dollars a month and that is what we project our team members should make&nbsp;after the 1st 3 years online. Team members will each be given responsibilities that will help us build a revenue system that will and should pay out even more than 10 thousand dollars a month per team member. Did you ever wonder how Tom Anderson of mySpace became a millionaire or Zucker of Facebook got so rich? I don&#39;t wonder because I spent 20 years doing research and learning all the ways that the highest-paid internet moguls&nbsp;created their success and more than that I learned how they destroyed their own success and I assure you that is not going to happen with my team or my network.</p>\n\n<p>&nbsp;I&#39;m looking for folks that understand the money to be made and more than that, folks that are loyal and dedicated and will never give up or turn their back on their team members. This network is about family and loyalty and if you&#39;re part of this network and part of the <strong>PHP-Nuke Titanium</strong> team you are considered family.</p>\n\n<p>To be continued...</p>', '', 1, 902, 4, 'TheGhost', '', 1, 'english', 0, 0, 0, 30, 6, '', 0, 1),
+(9, 5, 'webmaster', 'We are adding PHP v8 to PHP-FPM today.', '2021-03-29 12:00:26', '2022-08-23 19:00:02', '<p><strong>Current Developer Support:</strong><br />\n<br />\n<strong>FROM:</strong><br />\n<span style=\"color:#3498db\"><strong>PHP 5.4</strong></span> for porting only.<br />\n<span style=\"color:#3498db\"><strong>PHP 5.5</strong></span> for porting only.<br />\n<span style=\"color:#3498db\"><strong>PHP 5.6</strong></span>&nbsp;for porting only.<br />\n<span style=\"color:#3498db\"><strong>PHP 7.0</strong></span>&nbsp;for porting only.<br />\n<span style=\"color:#3498db\"><strong>PHP 7.1</strong></span>&nbsp;for porting only.<br />\n<span style=\"color:#3498db\"><strong>PHP 7.2</strong></span>&nbsp;for porting only.<br />\n<span style=\"color:#3498db\"><strong>PHP 7.3</strong></span>&nbsp;for porting only<br />\n&nbsp;</p>\n\n<p><strong>TO:</strong><br />\n<span style=\"color:#3498db\"><strong>PHP 7.4</strong></span> for current development.<br />\nOR<br />\n<span style=\"color:#3498db\"><strong>PHP 8.0</strong></span> for advanced current development.</p>\n\n<p><span style=\"color:#3498db\"><strong>PHP 8</strong></span> has been&nbsp;here for a little while now.&nbsp;It was released on <span style=\"color:#27ae60\">November 26, 2020</span>. This&nbsp;will introduce some breaking changes, as well as lots of new features and performance improvements.</p>\n\n<p>Because of the breaking changes, there&#39;s a higher chance you&#39;ll need to make some changes in your code to get it running on <strong><span style=\"color:#3498db\">PHP 8</span></strong>. If you&#39;ve kept up to date with the latest releases though, the upgrade shouldn&#39;t be too hard, since most breaking changes were deprecated&nbsp;in the <span style=\"color:#3498db\"><strong>PHP 7.xx</strong></span> versions.</p>\n\n<p>Besides breaking changes, <span style=\"color:#3498db\"><strong>PHP 8</strong></span> also brings a nice set of new features such as&nbsp;<a href=\"https://stitcher.io/blog/new-in-php-8#jit-rfc\" id=\"a1\" name=\"a1\" onclick=\"window.open(this.href, \'a1\', \'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no\'); return false;\">the JIT compiler</a>,&nbsp;<a href=\"https://stitcher.io/blog/new-in-php-8#union-types-rfc\" id=\"a2\" name=\"a2\" onclick=\"window.open(this.href, \'a2\', \'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no\'); return false;\">union types</a>,&nbsp;<a href=\"https://stitcher.io/blog/new-in-php-8#attributes-rfc\" id=\"a3\" name=\"a3\" onclick=\"window.open(this.href, \'a3\', \'resizable=no,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no\'); return false;\">attributes</a>, and more.</p>', '', 0, 967, 4, 'TheGhost', '', 1, '', 0, 0, 0, 30, 6, '', 0, 1),
+(11, 1, 'webmaster', 'We decided to dump MySQL 8.0.23', '2021-04-10 06:11:31', '2022-08-23 19:00:14', '<p>We dumped&nbsp;MySQL 8.0.23</p>\n\n<p>We have gone back to&nbsp;MariaDB 10.2.3 and I guess we owe them an apology as it is obvious that we made a horrible decision going to MySQL 8.0.23&nbsp;</p>\n\n<p>As time goes on, MySQL develops more extensive features or changes to its internal architecture. They have more developers on staff than MariaDB, so they are making changes at a faster pace. However, it turns out that MySQL 8.0.23 sucks and is slower than phuck! I guess Oracle deserves it though. I can see some bullshit was pulled during the sale and somebody phucked up when they lost the lead developer for MySQL.</p>\n\n<p>Who&#39;s Currently Behind The Databases?</p>\n\n<p>In 2010, MySQL was acquired by the Oracle Corporation. At that time, one of the original developers, Michael &ldquo;Monty&rdquo; Widenius, felt that the Oracle Corporation had a conflict of interest between MySQL and their Oracle database.<br />\n<br />\nIn response to this, he decided to create a fork of the project named MariaDB. Since then, there&#39;s been a lot of healthy competition between MySQL and MariaDB that has led to some really great innovation. Since Oracle is backing MySQL and has a solid foundation, it continues to be the leader. However, MariaDB offers some compelling reasons why nerds may want to switch databases.<br />\n<br />\nMySQL:&nbsp;MySQL was originally started by MySQL AB in 1994 by a Swedish company that was created by a nerd named David Axmark, Allan Larsson, and another nerd named Michael &ldquo;Monty&rdquo; Widenius. The first version of MySQL was released in 1995. In 2008, Sun Microsystems purchased MySQL AB. In 2010, Sun Microsystems was acquired by Oracle.<br />\n<br />\nMySQL is currently maintained by the Oracle Corporation.<br />\n<br />\nMariaDB:&nbsp;On the day Oracle announced they had purchased MySQL, Michael &ldquo;Monty&rdquo; Widenius shit a&nbsp;shiny nerd cape and took several MySQL developers and started MariaDB, a fork of MySQL from that point.</p>\n\n<p>&nbsp;</p>\n\n<p>Hats off to&nbsp;<strong>Michael &ldquo;Monty&rdquo; Widenius </strong>he is truly the shit and I thank him for what he did and he did us proud.<strong> MariaDB </strong>is lightning fast<strong>!</strong></p>', '', 0, 687, 4, 'TheGhost', '', 1, 'english', 0, 0, 0, 60, 12, '', 1, 1),
+(12, 8, 'webmaster', 'About PHP-Nuke Titanium (US Version)', '2021-01-01 15:56:20', '2022-08-23 19:00:26', '<p>The <strong>US</strong> version of<strong> PHP-Nuke Titanium CMS</strong>&nbsp;is an open-source highly modified&nbsp;<strong>Fork</strong> of <strong>Nuke-Evolution</strong> wrote in PHP as a programming language and development was first started in 2005. The software comes with a set of basic features like a WYSIWYG editor, an admin interface with drag and drop blocks, spam protection, and image processing. PHP-Nuke Titanium CMS comes with the ability to use various modules that will extend the current functionality of your portal/website. The latest version available for download is 4.0.0b and is still in beta.</p>\n\n<p><strong>PHP-Nuke Titanium</strong>&nbsp;now comes with v5 of the Titanium Facebook SDK kit. It&#39;s already set up. All you have to do is add your app ID and secret... If you need help, we would be glad to set it up for FREE.</p>\n\n<p><strong>PHP-Nuke Titanium</strong> now comes with v5 of the Titanium Google SDK. Everything you need to be a Google developer is already there, just have a look inside your includes directory.</p>\n\n<p>[b]NOTE:[/b] Your admin and user accounts have already been logged in for you so please visit [url=admin.php]this link[/url] to get started.</p>\n\n<p>You can edit or remove this blog message by going into the Blog Admin Panel located in the Admin area, or look below and you can edit by clicking the pencil or the x to delete this blog message.</p>', '', 0, 570, 1, 'WebMaster', '', 0, '', 0, 0, 0, 70, 14, '', 0, 1),
+(13, 9, 'webmaster', 'New Blog Signature Mod', '2021-04-24 12:14:43', '2022-08-23 19:00:35', '<p>TESTING BLOG SIGNATURE MOD v1</p>\n\n<p>This mod was written by Ernest Buffington</p>\n\n<p>The Blog Signature Mod is having a lot of new features added, such as the ability to use your callsign or real name. You will also be able to enable and disable the blog signature at will globally or for each post.</p>', '', 0, 180, 7, 'TheGhost', '', 0, '', 0, 0, 0, 20, 4, '', 0, 1),
+(14, 8, 'webmaster', 'We Will Be Updating The Modules 1 by 1', '2021-04-26 03:44:48', '2022-08-23 19:00:46', '<p>We are going through each module and fixing all the cosmetic issues that we are sure everyone is aware of.</p>\n\n<p>If you see any issues at all please feel free to submit a report. You can do so by clicking [url=modules.php?name=Network_Projects&amp;op=Project&amp;project_id=76]HERE[/url]</p>\n\n<p>A lot of the modules are being re-written for future versions of PHP as well as cosmetic issues.</p>\n\n<p>We would like to apologize for the slacking that has been going on over the years. We intend to keep the US version updated and will cater to anyone who has a mod request or needs install help.</p>\n\n<p>We would again like to thank everyone for stopping in to visit.</p>', '', 0, 144, 1, 'webmaster', '', 0, 'english', 0, 0, 0, 10, 2, '', 0, 1);
+INSERT INTO `nuke_stories` (`sid`, `catid`, `aid`, `title`, `datePublished`, `dateModified`, `hometext`, `bodytext`, `comments`, `counter`, `topic`, `informant`, `notes`, `ihome`, `alanguage`, `acomm`, `haspoll`, `pollID`, `score`, `ratings`, `associated`, `ticon`, `writes`) VALUES
+(15, 6, 'webmaster', 'New Google Site Map Generator Module', '2021-04-27 15:48:34', '2022-08-23 19:00:56', '<p><strong>Module Name: </strong><a href=\"modules.php?name=Google-Site-Map\" target=\"_self\">Google-Site-Map</a><br />\n<strong>Author:</strong> Ernest Buffington<br />\n<strong>Version:</strong> v1.0<br />\n<strong>Core:</strong> PHP-Nuke Titanium v3.0.1a &lt;&gt;&nbsp;v4.0.0b</p>\n\n<p>The original sitemap was an abandoned project and idea, not by me but whoever was working on it originally. The new one is awesome and works great. I&#39;m not sure people really understand how important this little module is. Contrary to popular belief, this is an important part of being found on the internet. The class.sitemap.php file can be found in the&nbsp;<strong>includes/classes </strong>directory.</p>\n\n<p>I used some of the old code, not much just a few lines here and there, and the old sitemap&#39;s admin panel is the same.</p>\n\n<p>This uses <strong>sitemap 0.9</strong></p>\n\n<p>The new Google Site Map Generator works better than just about anything I have seen. You will need to delete the old <strong>sitemap.xml</strong> file that is in the root directory of your portal/website as it is no longer used. The new <strong>sitemap.xml</strong> file is generated in the <strong>xmls/sitemap</strong> folder. This is not the file you tell google to look at.</p>\n\n<p>You will need to point Google to your <strong>sitemap-index.xml</strong> file which resides in that very same directory.</p>\n\n<p>You will do this by telling Google where the file is at like so <strong>https://yourwebsite.com/xmls/sitemap/sitemap-index.xml</strong></p>\n\n<p>You can do so by going here <strong>https://search.google.com/search-console?resource_id=sc-domain:yourdomain.com</strong></p>\n\n<p>I used a fast and lightweight class for generating Google-Site-Map <strong>XML</strong> files and index of sitemap files. Written in <strong>PHP</strong> and uses <strong>XMLWriter</strong> extension (wrapper for <strong>libxml</strong> <strong>xmlWriter</strong> API) for creating <strong>XML</strong> files. <strong>XMLWriter</strong> extension is enabled by default in <strong>PHP</strong> 5 &gt; = 5.1.2. If you have more than 50000 URLs, it will split items into separated files. (In benchmarks, 1.000.000 URLs were generating in 8 seconds) The version we are using is a slightly modified version of the original.</p>\n\n<p>The Sitemap class is now added to a <strong>SitemapPHP</strong> <strong>namespace</strong>.</p>', '', 0, 195, 5, 'webmaster', '', 0, 'english', 0, 0, 0, 20, 4, '', 0, 1),
+(16, 10, 'webmaster', 'New Visitor Log Center Block', '2021-04-28 00:32:27', '2022-08-23 19:01:08', '<p><strong>Block Name: </strong>Titanium Visitor Log Center<br />\n<strong>Author: </strong>Ernest Allen Buffington<br />\n<strong>Filename:</strong> block-Titanium_Visitor_Log_center.php<br />\n<strong>Block Type:</strong> Center Block<br />\n<strong>Version:</strong> v1.0<br />\n<strong>Core:</strong> PHP-Nuke Evolution 2.0.9e &lt;&gt;&nbsp;4.0.0b</p>\n\n<p>This block was created with advanced resolution checking in mind. You can configure this block so that it changes for cell phones and different resolution monitors, It can even be configured for 4k TV.</p>\n\n<p>This block checks your monitor resolution and displays the visitor log in rows and columns, A row is a series of data put out horizontally in a table or spreadsheet while a column is a vertical series of cells in a chart, table, or spreadsheet. Rows go from left to right. On the other hand, Columns are arranged from up to down. After this block gets your monitor resolution width it will decide how many columns and rows to display. If your resolution width is less than 1920 it will display 3 columns, if it is 1920 or above it will display 4 columns. You can configure this block for any resolution and the code is obvious. Just add tables with rows and columns and display them according to the resolution width that PHP-Nuke Titanium gets from your browser.</p>\n\n<p>This was written with the Last Seen block in mind. Someone once asked me why I changed the function for last seen. I never changed it I added a Titanium mod that changes the way the last seen data was displayed. I guess now you have a more declarative answer about why I did that.</p>\n\n<p>This block my friends gives you a perfect example of why PHP-Nuke was designed with a tabular theme interface. It had future ideas for things that had not yet been done. There is what is called a Flat page design and that is when we would use only HTML5 or CSS to layout a web page.</p>\n\n<p>PHP-Nuke Titanium is not a Flat design and never will be. PHP-Nuke Titanium was designed around the idea that people in a community who were just starting out learning PHP or HTML could or would be able to create blocks, modules, or themes with relative ease.</p>\n\n<p>This can be done in CSS and HTML5 and PHP-Nuke Evolution totally allows and supports themes of this design nature, however for Fluid resizeable responsive themes that might be displayed on TVs or extremely wide monitors it is not recommended. Why? PHP-Nuke Titanium was built on the backbone of Theme technology that was written more than 30 years ago. PHP-Nuke Titanium (US Version) supports XHTML, HTML, HTML5, and XML, so with this being the case anyone can design a theme and nobody has limitations when it comes to designing a block, module, or theme layout for their website.</p>\n\n<p>PHP-Nuke Titanium was created for folks that like bling and beautiful graphics. If you want a Flat design layout with 3 colors and no graphics then use something plain, you know like wearing a white T-Shirt everywhere every day.</p>', '', 0, 220, 6, 'WebMaster', '', 0, 'english', 0, 0, 0, 55, 11, '', 0, 1),
+(17, 7, 'webmaster', 'New Link Us Module Update', '2021-03-01 07:16:01', '2022-08-23 19:01:20', '<p><strong>Module Name:</strong> <a href=\"modules.php?name=Link_Us\" target=\"_self\">Link Us</a><br />\n<strong>Author:</strong> DarkForgeGFX<br />\n<strong>Version:</strong> v1.0.0<br />\n<strong>Core: </strong>PHP-Nuke Titanium v2.0.9d &lt;&gt; 4.0.0b<br />\n<strong>Description:</strong>&nbsp;To show and administrate several methods of backlinks to your website/portal.</p>\n\n<p>I updated the display on the Link_Us index page. It needed to be displayed properly, which may just be a matter of opinion however I&#39;m ocd and I could not take it any longer. I went ahead and took the time to lay out the table and add a fieldset to the default image section. I have not added any other size link back images so I have no idea what those&nbsp;will end up looking like. In that event, I am sure I will log in and re-write those areas as well. For now, this website has only the standard default link back image sizes in use so I will wait till I have to cross that bridge to fix it.</p>\n\n<p>I modified the index.php file located in the &quot;modules/Link_Us/public&quot; directory.&nbsp;</p>', '', 0, 352, 5, 'WebMaster', '', 0, '', 0, 0, 0, 20, 4, '', 0, 1),
+(18, 8, 'webmaster', 'Facebook Plugin and Login Problems', '2021-04-30 16:00:40', '2022-08-23 19:01:31', '<p>The comment and likes section of our CMS and website are down. More than <strong>718</strong> reports to Downdetector since 3:00 am.</p>\n\n<p>I was working on some code and thought all of a sudden I must have done something somehow to cause these plugins and the Facebook app login to stop working. I&#39;m glad I looked carefully and inspected my other domains.&nbsp;</p>\n\n<p>Turns out Facebook did something somehow to cause everything to stop working, and as usual they leave you in confusion wondering what is going on. I don&#39;t think I have ever even gotten a response from a Facebook employee ever. I have to assume they just don&#39;t care and it&#39;s obvious by the way they never respond, reply or get back to anyone who submits any kind of report at all.</p>\n\n<p>The number one reason people connect with Facebook is the social plugins for likes and comments. This is something that could be duplicated through a rather simple but sophisticated API. I have no idea why nobody has done it yet.</p>\n\n<p>As far as using Facebook to log in to a website, well most people use Google or Github to log in to the places they visit nowadays.&nbsp;</p>\n\n<p>Turns out if you want to set up a Facebook SDK or set up a Facebook login for your website you have to have an IQ of 160 or at least a 4-year college reading comprehension level to understand the things you read about. There is no reason that they can&#39;t provide better help and easier-to-understand instructions for newbies and 1st-time developers.</p>\n\n<p>They did not patent the like button or ability to store comments, and all this can be done on your own website via MySQL or MariaDB if you will. Facebook is going to dwindle to nothing if they don&#39;t start offering some incentive for us to have any level of interest at all.</p>\n\n<p>You could add the Google, Twitter, and Github login API and write your own drop-in plugin with Java for comments and likes.</p>\n\n<p>We use Facebook login, likes, and&nbsp;plugins because it is connected to the largest social network in the world, however, the key thing here is we made Facebook what it is today and we are responsible for the lackadaisical user support we are getting, this is our fault because we have allowed it.</p>\n\n<p>I&#39;m left sitting here wondering when the hell my website will go back to normal all the while pondering how many people I know that hate clicking the confirm button when liking something on a Facebook website app. It&#39;s ridiculous and intentional. They do that why? who fuck&nbsp;knows but it&#39;s probably on the top of my ten most annoying things list.</p>\n\n<p>Seems like too many generation X kids have been running the show over at Facebook and 10 bucs says they go belly up sooner or later as a result.</p>\n\n<p>Nobody wants to click a like button 2 times. What do you want to bet that if you spoke to the person that came up with that idea that you wouldn&#39;t walk away wondering who the fuck ties his shoes every morning? I would have to say this is or would probably be one of the dumbest shit heads&nbsp;that you would ever have to meet in your life.</p>\n\n<p>I would like to apologize for my language and I&#39;m sorry but I&#39;m not.</p>', '', 0, 169, 1, 'webmaster', '', 1, 'english', 0, 0, 0, 20, 4, '', 0, 1),
+(19, 10, 'webmaster', 'New Facebook Chat Block', '2021-05-01 12:21:28', '2022-08-23 19:01:41', '<p><strong>Block Name: </strong>Facebook Chat Plugin<br />\n<strong>Author:&nbsp;</strong>Ernest Allen Buffington<br />\n<strong>Filename:</strong>&nbsp;block-Facebook_Chat_Plugin.php<br />\n<strong>Block Type:</strong>&nbsp;Invisible<br />\n<strong>Version:</strong>&nbsp;v1.0<br />\n<strong>Core:</strong> PHP-Nuke Evolution 3.0.1a &lt;&gt; 4.0.0b</p>\n\n<p>One of the interesting features of the US version of PHP-Nuke Titanium is the ability to have invisible blocks. We used this feature when we made the Facebook Chat Plugin&nbsp;block as it does not need any tables or extended decorations.</p>\n\n<p>The Chat Plugin allows you to integrate your Messenger experience directly into your portal/website. This allows your customers or website members to interact with you anytime with the same personalized, rich-media experience that they get in their regular Facebook&nbsp;Messenger.</p>\n\n<p>The Chat Plugin automatically loads recent chat history between the person and your website or portal, meaning recent interactions with your website or page on messenger.com, in the Messenger app, or in the Chat Plugin on your website will be visible. This helps create a single experience for your site members or&nbsp;customers and enables you to continue the conversation even after they have left your web portal. No need to capture their information to follow up, just use the same conversation in Messenger.</p>\n\n<p>The Chat Plugin supports modern popular desktop and mobile browsers except Messenger in-app browsers and Internet Explorer.</p>', '', 0, 566, 6, 'WebMaster', '', 0, 'english', 0, 0, 0, 40, 8, '', 0, 1),
+(20, 9, 'webmaster', 'New Mod  jQuery Private Message Alert', '2016-05-04 18:34:00', '2022-08-23 19:01:51', '<p><strong>Mod Name:</strong>&nbsp;jQuery Private Message Alert<br />\n<strong>Author:&nbsp;</strong>Lonestar (crazycoder@live.co.uk)<br />\n<strong>Contributor: </strong>CoRpSE<br />\n<strong>Update:</strong>&nbsp;May 4th, 2016 10:34 am<br />\n<strong>Filename(s):</strong>&nbsp;&#39;includes/js/scripts/jquery.private.messages.alert.min.js&#39;&nbsp; &#39;admin/modules/settings/functions.php&#39;&nbsp;<br />\n<strong>Mod Type:</strong>&nbsp;Addon<br />\n<strong>Version:</strong>&nbsp;v1.0<br />\n<strong>Core:</strong>&nbsp;PHP-Nuke Titanium 2.0.9d &lt;&gt; 3.0.1b</p>\n\n<p><br />\nThis is a&nbsp;jQuery Private Message Alert addon.<br />\n<br />\nThis simply runs in the background of your site and alerts you of any new Private Messages with an audio alert and popup window.<br />\n<br />\n<strong>Features:</strong></p>\n\n<ul>\n	<li>You can toggle the script on and off.</li>\n	<li>Can specify the cookie name it uses.</li>\n	<li>You can set cookie to stop if appearing on every page refresh (Default is 5 minutes between alerts)</li>\n	<li>You can set a delay the user must be on the site before being alerted.</li>\n	<li>You can change the color of the background overlay.</li>\n	<li>You can change the color of the redirect button, currently there are 4 colors (Blue, Green, Purple &amp; Red : Default is Blue)</li>\n	<li>You can activate or deactivate the alert sound.<br />\n	&nbsp;</li>\n</ul>\n\n<p><strong>How To Configure:</strong></p>\n\n<ul>\n	<li>Navigate to the link below to configure the plugin.<br />\n	&nbsp;</li>\n</ul>\n\n<p><strong>GotTo:</strong></p>\n\n<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; https://yoursite.com/admin.php?op=Configure&amp;sub=9</p>', '', 0, 147, 7, 'WebMaster', '', 1, 'english', 0, 0, 0, 15, 3, '', 0, 1),
+(21, 6, 'webmaster', 'New Network Projects Module', '2021-01-01 16:00:00', '2022-08-23 19:02:02', '<p><strong>Module Name:</strong>&nbsp;<a href=\"modules.php?name=Network_Projects\" target=\"_self\">Network Projects</a><br />\n<strong>Author:</strong>&nbsp;Bob Marion (NukeScripts.Net)<br />\n<strong>Contributor:&nbsp;</strong>Ernest Allen Buffington<br />\n<strong>Version:</strong>&nbsp;v11.11.11<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Titanium v2.0.9d &lt;&gt; 4.0.0b<br />\n<strong>Description:</strong>&nbsp;A module that allows network members to submit a bug&nbsp;report or request a new project or website modification.</p>\n\n<p>Manage multiple complex projects with ease.</p>\n\n<p>Simple to use,&nbsp;powerful&nbsp;when you need it.</p>\n\n<p>All the project management essentials you need.</p>\n\n<p>Create tasks and projects, reports bugs, submit mod requests.</p>\n\n<p>With the new Network Projects Module, everything is in one central location.</p>\n\n<p>Flexible, so you can customize for your workflow.</p>\n\n<p>Advanced features for complex projects.</p>\n\n<p>This is a network module that connects to the our main database server. You will need to acquire a network database password in order to enable this module on your web portal. When or if you have any sort of problem at all, whether it be with a block, module, theme or maybe something core related, this is the place to go for help or to report issues of any nature.</p>\n\n<p>This was originally a project module that was designed for the PHP-Nuke Evolution community, and it seemed to us nobody ever really appreciated it. Bob Marion spent many hours creating this module and the community originally showed little or almost no interest in it at all. Well, we thank you Bob Marion and we praise your efforts to try and better the PHP-Nuke Evolution community. This was a tool that if used the right way would have helped the PHP-Nuke Evolution community grow, and would have helped the development of PHP-Nuke Evolution immensely. Turns out maybe any and all of the development of PHP-Nuke Evolution and or Xtreme was never promoted correctly, and for that we apologize and will try to do better from here on out.</p>\n\n<p>Bob Marion we appreciate you and all your hard work and efforts, Thank you sir and God Bless...&nbsp;&nbsp;</p>\n\n<p>&nbsp;</p>', '', 0, 470, 5, 'WebMaster', '', 0, 'english', 0, 0, 0, 35, 7, '', 0, 1),
+(22, 9, 'webmaster', 'New Mod jQuery Floating Admin Menu', '2016-10-24 17:44:00', '2022-08-23 19:02:12', '<p><strong>Mod Name:</strong>&nbsp;jQuery Floating Admin Menu<br />\n<strong>Author:&nbsp;</strong>Lonestar (crazycoder@live.co.uk) (lonestar-modules.com)<br />\n<strong>Contributor:</strong> CoRpSE (www.headshotdomain.net)<br />\n<strong>Update:</strong>&nbsp;Aug 24th, 2016 09:44 am<br />\n<strong>Filename(s):</strong>&nbsp;&#39;includes/js/scripts/jquery.reimg.image.resizer.js&#39;&nbsp; &#39;includes/css/jquery.floating.admin.css&#39;&nbsp;<br />\n<strong>Mod Type:</strong>&nbsp;Addon<br />\n<strong>Version:</strong>&nbsp;v2.0.0<br />\n<strong>Core:</strong>&nbsp;PHP-Nuke Titanium 2.0.9d &lt;&gt; 3.0.1b<br />\n&nbsp;</p>\n\n<p>This is the floating admin menu that resides on the left hand side of the page and will only appear after the admin logs in.</p>\n\n<p>Lonestar spent a lot of time making this look great. We would like to thank him for his time and efforts that most certainly have helped&nbsp;make Titanium the best CMS software ever. We look forward to the many new great things Lonestar will most certainly be contributing to the community in the future. Thanks Lonestar!</p>', '', 0, 133, 7, 'WebMaster', '', 1, 'english', 0, 0, 0, 5, 1, '', 0, 1),
+(23, 6, 'webmaster', 'New File Repository Module', '2016-05-01 08:12:47', '2022-08-23 19:02:24', '<p><strong>Module Name:</strong>&nbsp;File Repository<br />\n<strong>Author:</strong>&nbsp;Lonestar (crazycoder@live.co.uk)<br />\n<strong>Contributor:</strong> CoRpSE (www.headshotdomain.net)<br />\n<strong>Version:</strong>&nbsp;v1.1.0<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Titanium v2.0.9d &lt;&gt; 3.0.1b<br />\n<strong>Description:</strong>&nbsp;This takes the place of a very old downloads module. Meet the better new and improved downloads area.</p>\n\n<p>Lonestar would like to send a special thanks to&nbsp;coRpSE&nbsp;for his input and suggested additions/changes to this module and also for the production of the File Repository configuration video which can be found at the HeadShot Domain (www.headshotdomain.net).</p>\n\n<p><strong>Features:</strong></p>\n\n<ul>\n	<li>There are multiple ways to view the downloads, either in a Single Row or Side by Side.</li>\n	<li>Multiple files per download.</li>\n	<li>Multiple Screenshots per download.</li>\n	<li>Colored Category titles.</li>\n	<li>Colored Download titles.</li>\n	<li>Ability to link to a Live Preview of whatever file they are about to download.</li>\n	<li>SCEditor has been added to all text-area&#39;s for easy BBCode formatting.</li>\n	<li>Ability to lock downloads to a certain Group.</li>\n	<li>You can specify the minimum number of posts the user requires before being able to download.</li>\n	<li>Developer Mode: Enables developers to add a new text-area for adding fixes to downloads.</li>\n	<li>Ability to allow those logged in as an admin to bypass the Captcha.</li>\n	<li>A rating system, Allow you&#39;re users to Rate &amp; Comment on a download.</li>\n	<li>You can now specify if you wish to inform the user&#39;s the download has been updated.</li>\n	<li>Download Statistics.</li>\n	<li>Client-side uploading.</li>\n</ul>\n\n<p>&nbsp;</p>\n\n<ul>\n</ul>', '', 0, 185, 5, 'WebMaster', '', 1, 'english', 0, 0, 0, 10, 2, '', 0, 1),
+(24, 6, 'webmaster', 'New Image Repository Module', '2016-04-17 08:46:25', '2022-08-23 19:02:36', '<p><strong>Module Name:</strong>&nbsp;&nbsp;Image Repository<br />\n<strong>Author:</strong>&nbsp;Lonestar (crazycoder@live.co.uk)<br />\n<strong>Contributor:</strong>&nbsp;CoRpSE (www.headshotdomain.net)<br />\n<strong>Version:</strong>&nbsp;v1.1.0<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Titanium v2.0.9d &lt;&gt; 3.0.1b<br />\n<strong>Description:</strong>&nbsp;Image Repository is as it sounds, An Image Hosting module, It is far superior to the old version Lonestar had created / coded in the past.</p>\n\n<p><strong>Version 1.1.0 Changes:</strong><br />\n<strong>1.</strong> Removed the toggle upload image button, Upload table shows all the time now.<br />\n<strong>2.</strong> Reduced the size of the thumbnails to help with page load times.<br />\n<strong>3.</strong> Added new way of uploading images on the fly in the forums, No more BBCode button, Image Repository has its own table row now.<br />\n<strong>4.</strong> Admin panel has been moved in the main index, Just like in the Gaming Rigs (If you own it, you will know what i mean).<br />\n<strong>5.&nbsp;</strong>Cleaned up a lot of the coding, and carefully marked out what each area does.<br />\n<strong>6.&nbsp;</strong>This version is not encrypted,&nbsp;<br />\n<strong>7.</strong> FAQ, Will be added in the next minor update, Lonestar is working on making this an XML feed, So he can update from his site.<br />\n<br />\n<strong>Future Updates:</strong> Lonestar has many more updates planned for this module. You will just have to wait and see<br />\n<br />\n<strong>Version 1.0.1 Changes:</strong><br />\n<strong>1.</strong> Add Image Repository BBCode button for upload of images from forums<br />\n<strong>2.</strong> No SQL changes were made.</p>', '', 0, 200, 5, 'WebMaster', '', 1, 'english', 0, 0, 0, 15, 3, '', 0, 1),
+(25, 7, 'webmaster', 'New Web Links Module Update', '2021-05-06 18:16:31', '2022-08-23 19:02:46', '<p><strong>Module Name:</strong>&nbsp;<a href=\"modules.php?name=Web_Links\" target=\"_self\">Web Links</a><br />\n<strong>Author:</strong>&nbsp;James Knickelbein - Journey Milwaukee (http://www.journeymilwaukee.com)<br />\n<strong>Contributor:</strong> Ernest Allen Buffington<br />\n<strong>Version:</strong>&nbsp;v1.0.2<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Titanium v2.0.9d &lt;&gt; 4.0.0b<br />\n<strong>Description:</strong>&nbsp;Web Links/Resources&nbsp;based on Journey Links Hack&nbsp;</p>\n\n<p>I went in and completely sorted through every line of code and got rid of &lt;center&gt; tags, added h1&#39;s, Rewrote a lot of the code, and fixed a few errors that went unseen for years. When writing an Editorial review it would only reflect the admin number and not the admins name, that is fixed now.</p>\n\n<p>Someone in a rush did not set up the reCaptcha correctly for the add link section.</p>\n\n<p>Added Bootstrap icons in various places to change the cosmetics a little.</p>\n\n<p>Junked all the un-needed braces that were clutter.</p>\n\n<p>Removed the old expired search engines that have not existed in years and while I was at it I added Google Groups, Disney and updated the JustLinux Forums search.</p>', '', 0, 320, 5, 'WebMaster', '', 0, 'english', 0, 0, 0, 45, 9, '', 0, 1),
+(26, 7, 'webmaster', 'New NukeSentinel Module Update', '2021-05-10 12:19:26', '2022-08-23 19:02:56', '<p><strong>Module Name:</strong>&nbsp;NukeSentinel<br />\n<strong>Author:</strong>&nbsp;NukeScripts&trade; (http://nukescripts.86it.us)<br />\n<strong>Copyright: </strong>2000-2021<br />\n<strong>Contributors:</strong>&nbsp;ScottyBcoder, Truman Scott Buffington, Ernest Allen Buffington, TheGhost, Bob Marion, ChatServ<br />\n<strong>Version:</strong>&nbsp;v2.6.04<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke Titanium v2.0.9d &lt;&gt; 4.0.0b<br />\n<strong>Description:</strong>&nbsp;Portal security for PHP-Nuke, PHP-Nuke Titanium, PHP-Nuke Evolution and Titanium</p>\n\n<p>&nbsp;</p>\n\n<p>Hello Everyone,</p>\n\n<p>I want to start off by saying that a lot of folks have had their hands in the coding&nbsp;and design layout of this very important portal security module. When you pass the mantle so to speak you expect the person that takes over to use an overly gracious amount of emphasis on the authors, developers, and contributors that made it all possible.&nbsp;</p>\n\n<p>Let me start out by explaining why I&#39;m using my real name as a contributor. I have been around and taken part in the development of just about every piece of code that is a part of PHP-Nuke. Short of off branding my own changes over the years, the truth is the dynamic FRANCIS framework of PHP-Nuke is what made all of it possible. I have been a part of all the developer communities over the last 30 years under different various nicknames or callsigns if you will, and with that being said,&nbsp;I guess you would have a hard time giving me credit unless I started using my real name. PHP-Nuke is open-source and for the most part, belongs to the developer communities that kept it alive, and the folks who are still keeping it alive after 30 years. The reason I am using my real name now is I have noticed a few people stirring the shit pot about people stealing code and saying it isn&#39;t&nbsp;theirs when in fact it truly is. The fact&nbsp;in the matter is that after it is modified it is no longer the original and anything modified must contain the new author&#39;s information. With that being said let&#39;s get class rolling...</p>\n\n<p>If you&#39;re going to have something to say about who is claiming something is theirs make sure you do your homework before you start running your mouth and offending people old enough to be your grandfather while at the same time making yourself look like a complete idiot. Let&#39;s start off with re-branded public and commercial software rights. The GNU general public license allows everyone to distribute and or sell their own version of PHP-Nuke or any software released under the GNU and with any name that they so choose to use. You can legally sell software with a GPL license version 2 or 3 for whatever price you want to charge and interestingly enough we could sell the original software un-modified if we so choose to do so. This can all be pretty confusing to folks that do not have at least a&nbsp;4th year of college reading and comprehension. Let me explain something,&nbsp;free software is referred to as free in terms of freedom and not in terms of the software price. What most people do is charge a distribution fee for different various renditions of software that other people have written the core engines for. Technically speaking anything you modify and change is yours and ipso facto makes you the current author, in fact, the original authors would usually prefer not to have their name attached to any version but the original and that is why as part of the law and why you are required to give a full copy of the original code un-modified with any version that you so choose to sell or distribute. There are exceptions with worldwide distributions such as PHP-Nuke because the original source code is already out there and very well known and there is no real need to emphasize on who is responsible for the ideas or concepts that went into the development of that particular software. However in court, if you did not supply a full copy that is un-modified alongside the original with the original author information, because the law is the law, you would lose any said battles that pertain to any such revenues earned.</p>\n\n<p>Interestingly enough GNU copyrights are only legal if you provide your legal given name or the name of a legally registered business entity. With that being said you can&#39;t say copyright StarMonkey or Fragglenap. It must be your legally given birth name or a registered business entity. You cannot make up an entity name and use it without owning and registering it. A registered domain does not constitute any legal rights to the name you use. You must still register it as a legal trademark or license it as a business entity and this applies to everyone no matter where they are in the world. You may own the domain name and not have the name rights, so if you use a name and do not license it or register it as a trademark anyone can steal it in about 10 minutes and you will be shit out of luck. My suggestion is that if you use a name you better make sure you own it! What can happen is, you make someone angry and said person is quite wealthy, said person decides they don&#39;t like you so they register your domain as a trademark and then they license in your state or community under the said name&nbsp;and then they drag you into court and sue your pants off and leave you broke, naked and destitute with no home and not even a cardboard box to live in. So do yourself a favor and try not to piss people off on the internet and make sure you own any name you use. In other words you better secure your interests before you piss anyone off anywhere. You never know just how vindictive or rich they might be.</p>\n\n<p>I hope this article was helpful and I felt like packaging it with this particular module would be very fitting.</p>\n\n<p>Film at 11</p>\n\n<p>&nbsp;</p>', '', 0, 431, 5, 'WebMaster', '', 0, '', 0, 0, 0, 15, 3, '', 0, 1),
+(27, 6, 'webmaster', 'New Network Disclaimer Module', '2021-05-10 13:49:53', '2022-08-23 19:16:56', '<p><strong>Module Name:</strong>&nbsp;<a href=\"modules.php?name=Network&amp;file=disclaimer\" target=\"_self\">Network Disclaimer</a><br />\n<strong>Author:</strong>&nbsp;Ernest Buffington<br />\n<strong>Contributor:</strong>&nbsp;Shawn Archer, Ernest Allen Buffington<br />\n<strong>Version:</strong>&nbsp;v1.0.0<br />\n<strong>License:&nbsp;</strong>GNU General Public License version 2<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke 6.0.0 &lt;&gt; 6.5.0 | PHP-Nuke Titanium 2.0.9f&nbsp;&lt;&gt;&nbsp;4.0.0b<br />\n<strong>Description:</strong>&nbsp;Based on Website Document Mod v1.0 by&nbsp;Shawn Archer&nbsp;Copyright (c) 2002</p>\n\n<p>&nbsp;</p>\n\n<p>This module contains The 86it Developers Network&#39;s legal disclaimers and documents.</p>\n\n<ul>\n	<li>About Our Network</li>\n	<li>Network Disclaimer Statement</li>\n	<li>Network Privacy Statement</li>\n	<li>Network Terms of Use</li>\n</ul>\n\n<p>&nbsp;</p>\n\n<p>This module has information that must be loaded at the bottom of each portal or website given away by <strong>The 86it Developers Network</strong>.</p>\n\n<p>Some people disable the footer links and load the network module as a menu option on their portal. This is an acceptable way to present the network legal documents as well.</p>\n\n<p>This information must be present at all times and is a part of the network paid subscription agreement. When <strong>The 86it Developer Network</strong> gives you a web portal it may be free for you but Brandon Maintenance Management. LLC pays for your portal and website. This is done to promote programmers and programming all around the world.</p>\n\n<p>These free portals are for beginners and people learning to program on the internet.&nbsp;they are also for folks that want to setup gaming websites or run an online business, These portals have no limitations and come with a cPanel and PHP-FPM with all versions of PHP available.</p>\n\n<p>&nbsp;</p>', '', 0, 303, 5, 'WebMaster', '', 0, '', 0, 0, 0, 35, 7, '', 0, 1),
+(28, 1, 'webmaster', 'We just upgraded cPanel', '2021-05-15 05:58:28', '2022-08-23 19:03:20', '<p>We just upgraded <strong>cPanel</strong> from v94.0.8 to v96.0.7&nbsp;<span style=\"color:#e74c3c\">Fri&nbsp;May&nbsp;14&nbsp;21:53:24&nbsp;2021</span></p>\n\n<p>This message is for the <strong>PHP-Nuke Titanium</strong> admins that have <strong>cPanel</strong> access. We did not want you logging in a freaking out because of all the changes that took place today. If you are an admin you probably have compiler access already but if you do not and would like to have compiler access enabled on your personal 86it portal just use the chat plugin by clicking on the blue circle in the bottom left-hand corner. You can request compiler acess anytime you like. We do not leave compilers accessible 24/7 so you will have 24 hours from the time of request before your compiler goes back offline.</p>\n\n<p>We also upgraded from <strong>CENTOS</strong> v6 to <strong>CENTOS</strong> v7.9&nbsp;<span style=\"color:#e74c3c\">Fri&nbsp;May&nbsp;14&nbsp;21:53:24&nbsp;2021</span></p>\n\n<p>&nbsp;</p>', '', 0, 266, 4, 'WebMaster', '', 0, 'english', 0, 0, 0, 5, 1, '', 0, 1),
+(29, 9, 'webmaster', 'New Who Viewed Forum Mod', '2021-05-17 08:05:18', '2022-08-23 19:03:31', '<p><strong>Mod&nbsp;Name:</strong>&nbsp;Who Viewed Forum Mod<br />\n<strong>Author:</strong>&nbsp;Ernest Buffington<br />\n<strong>Contributors:</strong>&nbsp;We looked, nobody cared enough to keep this info available.<br />\n<strong>Version:</strong>&nbsp;v1.0.0<br />\n<strong>License:&nbsp;</strong>GNU General Public License version 2<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke-Titanium 3.0.0&nbsp;&lt;&gt; 4.0.0b<br />\n<strong>Description:</strong>&nbsp;This shows who has viewed each topic and how many times in the forums area.</p>\n\n<ul>\n	<li>Added Date with bootstrap icon</li>\n	<li>Added Time with bootstrap icon</li>\n	<li>Added back to topic button</li>\n	<li>Added full description link</li>\n	<li>Added profile pic</li>\n	<li>Added animated logged in image</li>\n	<li>Added animated logged out image</li>\n	<li>Fixed currently online it was not working</li>\n	<li>Fixed currently offline it was not working</li>\n	<li>Only admin sees anonymous on the who viewed list</li>\n	<li>If a user does not have where they are from listed,&nbsp;it defaults to The InterWebs</li>\n</ul>\n\n<p><br />\nThis was a mod added to the phpBB Titanium v2.0.23n Forums area.</p>', '', 0, 373, 7, 'WebMaster', '', 0, 'english', 0, 0, 0, 15, 3, '', 0, 1),
+(30, 6, 'webmaster', 'New Network Cemetery Module', '2021-05-18 06:22:23', '2022-08-23 19:03:40', '<p><strong>Module Name:</strong>&nbsp;<a href=\"modules.php?name=Network_Cemetery\" target=\"_self\">Network Cemetery</a><br />\n<strong>Author:</strong>&nbsp;Ernest Buffington<br />\n<strong>Contributors:</strong>&nbsp;George Carlin, Timothy V Trela R.I.P.<br />\n<strong>Version:</strong>&nbsp;v1.0.0<br />\n<strong>License:&nbsp;</strong>GNU General Public License version 2<br />\n<strong>Core:&nbsp;</strong>PHP-Nuke 6.0.0 &lt;&gt; 6.5.0 | PHP-Nuke Titanium 2.0.9f&nbsp;&lt;&gt;&nbsp;4.0.0b<br />\n<strong>Description:</strong>&nbsp;My Personal Virtual Cemetery</p>\n\n<ul>\n	<li>Unlimted Cemetery Categories i.e. Friends, Family, Loved Ones, Enemies or Rockstars</li>\n	<li>Unlimited Virtual Headstones</li>\n	<li>Add Deceased Name</li>\n	<li>Add Headstone Category</li>\n	<li>Add Headstone URL</li>\n	<li>Add Headstone Description</li>\n	<li>Nobody can read your VIrtual Cemetery but you when you&#39;re logged in. (invisible to the public)</li>\n</ul>\n\n<p><br />\nIf you&#39;re 50 or older this will be a handy little tool. If you&#39;re like me almost everyone you ever loved or cared about is dead. This makes it easier to keep track of all the friends and loved ones you have that die. I have lost so many I can&#39;t recall them all in one sitting.</p>\n\n<p>If you&#39;re a serial killer you can keep track of all the people you kill as well.</p>\n\n<p>Enjoy</p>', '', 0, 303, 5, 'WebMaster', '', 0, 'english', 0, 0, 0, 10, 2, '', 0, 1),
+(31, 6, 'webmaster', 'New Members List Module', '2021-05-18 16:29:55', '2022-08-23 19:03:49', '<p><strong>Module Name:</strong>Â <a href=\"modules.php?name=Members_List\" target=\"_self\">Members List</a><br />\n<strong>Author:</strong>Â Ernest Allen Buffington<br />\n<strong>Contributor:Â </strong>Lonestar (http://lonestar-modules.com)<br />\n<strong>Version:</strong>Â v4.0.0<br />\n<strong>License:Â </strong>GNU General Public License version 2<br />\n<strong>Core:Â </strong>PHP-Nuke Titanium v.3.0.1b <> 4.0.0b<br />\n<strong>Description:</strong>Â Website Member List - Search Website Member List.</p>\n\n<p>This module appeared to be incomplete and broken. The status of the users in the user list did not reflect if the user was currently online or offline. The user\'s website icon was missing, the user\'s Facebook icon was missing and the gender icon was missing as well. The members\' list was written with a task and a goal to begin with and that was to automate finding and sending a user message or visiting a user\'s website. We did not add the user\'s email back to the search criteria of the member list as it is not needed. Send them a private message instead and the web portalÂ will sendÂ them an email telling them they have a new message waiting for them.</p>\n\n<p><strong>Added Features:</strong></p>\n\n<ul>\n	<li>The only users visible in the members list are members that are not in Ghost Mode</li>\n	<li>Search Engines and website members have no way of knowing just how many website members really exist (Ghost Mode allows visitors to be 100% invisible)</li>\n	<li>Added global Ghost Mode ability for all users</li>\n	<li>Added the ability for admins to see who is in Ghost Mode</li>\n	<li>Added Ghost Mode - You are now invisible when you hide your online status. It will appear as if you do not exist!</li>\n	<li>Added A Profile Pic</li>\n	<li>Added Private Message Icon</li>\n	<li>Added a Website Icon that only shows up if the member has a website listed on their profile</li>\n	<li>Added a Facebook icon that only shows up if the user has their Facebook account listed on their profile.</li>\n	<li>Added New Gender Icons</li>\n	<li>Fixed users online status in the members list as it was not working</li>\n	<li>Added animated ONLINE image</li>\n	<li>Fixed users offline status in the members list as it was not working</li>\n	<li>Added animated OFFLINE image</li>\n	<li>If the person has marked theirself hidden on their profile, only admins can see them in the member list</li>\n	<li>If a person leaves the Location field blank it defaults to The Interwebs</li>\n</ul>\n\n<p>Â </p>\n\n<p>Â </p>', '', 0, 352, 5, 'WebMaster', '', 0, 'english', 0, 0, 0, 25, 5, '', 0, 1);
 
 CREATE TABLE `nuke_stories_cat` (
   `catid` int(11) NOT NULL,
@@ -4724,11 +4737,16 @@ CREATE TABLE `nuke_stories_cat` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_stories_cat` (`catid`, `title`, `counter`) VALUES
-(1, 'Module Information', 21),
-(2, 'Module Update', 5),
-(3, 'Xtreme News', 12),
-(4, 'Xtreme Mods', 5),
-(5, 'Block Information', 6);
+(1, '86it Updates & News', 427),
+(4, 'CDN Info', 383),
+(5, 'Server Updates', 202),
+(6, 'Module Information', 479),
+(7, 'Module Updates', 436),
+(8, 'Titanium News', 411),
+(9, 'Mods', 456),
+(10, 'Block Information', 471),
+(11, '86it Song of The Day', 1);
+
 
 CREATE TABLE `nuke_subscriptions` (
   `id` int(10) NOT NULL,
@@ -4746,8 +4764,7 @@ CREATE TABLE `nuke_themes` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_themes` (`theme_name`, `groups`, `permissions`, `custom_name`, `active`, `theme_info`) VALUES
-('Xtreme_Core', '', 1, 'Xtreme Core v1.0', 1, '1760:::#8d7b4d:::#645838:::#373121:::#151515:::#ccc:::#ccc:::Go to Theme Options to Edit Footer Message Line 1:::Go to Theme Options to Edit Footer Message Line 2:::#D29A2B:::dark'),
-('XtremeV4', '', 3, 'XtremeV4', 1, '93%:::#454545:::#383838:::#383838:::#383838:::#ccc:::#ccc:::Go to Theme Options to Edit Footer Message Line 1:::Go to Theme Options to Edit Footer Message Line 2:::#D29A2B:::dark');
+('Titanium_Core', '', 1, 'Titanium_Core', 1, '93%:::#8d7b4d:::#645838:::#373121:::#151515:::#ccc:::#ccc:::Go to Theme Options to Edit Footer Message Line 1:::Go to Theme Options to Edit Footer Message Line 2:::#D29A2B:::dark');
 
 
 CREATE TABLE `nuke_topics` (
@@ -4759,13 +4776,15 @@ CREATE TABLE `nuke_topics` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_topics` (`topicid`, `topicname`, `topicimage`, `topictext`, `counter`) VALUES
-(1, 'evolution', 'black_template.png', 'PHP-Nuke Evolution Xtreme News', 5),
-(5, 'modules', 'black_template.png', 'PHP-Nuke Evolution Xtreme Modules', 5),
-(6, 'blocks', 'black_template.png', 'PHP-Nuke Evolution Xtreme Blocks', 7),
-(7, 'mods', 'black_template.png', 'PHP-Nuke Evolution Xtreme Mods', 2),
-(8, 'themes', 'black_template.png', 'PHP-Nuke Evolution Xtreme Themes', 0),
-(9, 'todo', 'black_template.png', 'PHP-Nuke Evolution Xtreme ToDo List', 0),
-(10, 'adminpanels', 'black_template.png', 'PHP-Nuke Evolution Xtreme Admin Panels', 0);
+(3, 'contentdeliverynet', 'black_template.png', 'CDN - Content Delivery Networks', 225),
+(4, 'the86itTeam', 'black_template.png', 'The 86it Dev Team', 252),
+(1, 'titanium', 'black_template.png', 'PHP-Nuke Titanium News', 533),
+(5, 'modules', 'black_template.png', 'PHP-Nuke Titanium Modules', 285),
+(6, 'blocks', 'black_template.png', 'PHP-Nuke Titanium Blocks', 307),
+(7, 'mods', 'black_template.png', 'PHP-Nuke Titanium Mods', 197),
+(8, 'themes', 'black_template.png', 'PHP-Nuke Titanium Themes', 191),
+(9, 'todo', 'black_template.png', 'PHP-Nuke Titanium ToDo List', 10),
+(10, 'adminpanels', 'black_template.png', 'PHP-Nuke Titanium Admin Panels', 10);
 
 CREATE TABLE `nuke_users` (
   `user_id` int(11) NOT NULL,
@@ -4869,8 +4888,10 @@ CREATE TABLE `nuke_users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `nuke_users` (`user_id`, `name`, `username`, `user_email`, `femail`, `user_website`, `user_avatar`, `user_regdate`, `user_occ`, `user_from`, `user_from_flag`, `user_interests`, `user_sig`, `user_viewemail`, `user_theme`, `user_facebook`, `user_password`, `storynum`, `umode`, `uorder`, `thold`, `noscore`, `bio`, `ublockon`, `ublock`, `theme`, `commentmax`, `counter`, `newsletter`, `user_posts`, `user_attachsig`, `user_rank`, `user_level`, `broadcast`, `popmeson`, `user_active`, `user_session_time`, `user_session_page`, `user_lastvisit`, `user_timezone`, `user_style`, `user_lang`, `user_dateformat`, `user_new_privmsg`, `user_unread_privmsg`, `user_last_privmsg`, `user_emailtime`, `user_allowhtml`, `user_allowbbcode`, `user_allowsmile`, `user_allowavatar`, `user_allow_pm`, `user_allow_mass_pm`, `user_allow_viewonline`, `user_notify`, `user_notify_pm`, `user_popup_pm`, `user_avatar_type`, `user_sig_bbcode_uid`, `user_actkey`, `user_newpasswd`, `points`, `last_ip`, `user_wordwrap`, `agreedtos`, `user_allowsignature`, `user_report_optout`, `user_show_quickreply`, `user_quickreply_mode`, `user_color_gc`, `user_color_gi`, `user_showavatars`, `user_showsignatures`, `user_time_mode`, `user_dst_time_lag`, `user_pc_timeOffsets`, `user_view_log`, `user_glance_show`, `user_hide_images`, `user_open_quickreply`, `sceditor_in_source`, `xdata_bbcode`, `user_ftr`, `user_ftr_time`, `user_rank2`, `user_rank3`, `user_rank4`, `user_rank5`, `user_gender`, `user_birthday`, `user_birthday2`, `birthday_display`, `birthday_greeting`, `user_next_birthday`, `user_reputation`, `user_rep_last_time`, `user_admin_notes`, `user_allow_arcadepm`) VALUES
-(1, '', 'Anonymous', '', '', '', 'blank.gif', 'Nov 03, 2018', '', '', NULL, '', '', 0, 0, NULL, '', 10, '', 0, 0, 0, '', 0, '', '', 4096, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 10.00, NULL, 'english', 'D M d, Y g:i a', 0, 0, 0, NULL, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 3, NULL, NULL, NULL, 0, '0', 70, 0, 0, 0, 0, 0, '', '', 1, 1, 6, 60, '0', 0, '1', 0, 1, 0, '', 0, 0, -1, -2, -2, -2, 0, 0, NULL, 0, 0, 0, 43.2825, 1243272322, '', 1);
-
+(1, '', 'Anonymous', '', '', '', 'blank.gif', 'Nov 03, 2018', '', '', NULL, '', '', 0, 0, NULL, '', 10, '', 0, 0, 0, '', 0, '', '', 4096, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, '10.00', NULL, 'english', 'D M d, Y g:i a', 0, 0, 0, NULL, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 3, NULL, NULL, NULL, 0, '0', 70, 0, 0, 0, 0, 0, '', '', 1, 1, 6, 60, '0', 0, '1', 0, 1, 0, '', 0, 0, -1, -2, -2, -2, 0, 0, NULL, 0, 0, 0, 43.2825, 1243272322, '', 1),
+(2, 'Winston Terrance Wolfe', 'webmaster', 'webmaster@php-nuke-titanium.86it.us', '', 'https://www.php-nuke-titanium.86it.us', '772511426630521e6c336f.', 'Aug 23, 2022', 'WebMaster', 'Special Forces Officer at USMC', 'usa.png', 'Programming', '', 0, NULL, 'winstonterrance.wolfe.3', 'a0ed1dc594445e7a51ac198fb2585098', 10, '', 0, 0, 0, 'Â Â phone: (813) 846-2865 | mobile: (813) 520-3360<br>\nÂ Â WebMaster @ The 86it Developers Network,<br>\nÂ Â 8010 Woodland Center Blvd #86,<br>\nÂ Â Tampa 33614, USA<br>', 0, NULL, 'Titanium_Core', 4096, 0, 0, 1, 1, 4, 2, 1, 0, 1, 1661299457, 0, 1661299039, '-5.00', NULL, 'english', 'D M d, Y g:i a', 0, 0, 1661292352, NULL, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, '', '', NULL, 0, '47.206.216.196', 70, 0, 1, 0, 0, 0, '00aa00', '--3----4----1--', 1, 1, 4, 60, '0', 0, '1', 0, 0, 1, NULL, 0, 0, 6, 7, 5, -2, 1, 0, NULL, 0, 0, 0, -0.2, 1661280823, '', 0),
+(3, 'Ernest A Buffington', 'TheGhost', 'ernest.buffington@gmail.com', '', 'https://theghost.86it.us', '210584338363054da37eb30.', 'Aug 23, 2022', 'Data Scientist / Programmer', 'Brandon, Florida', 'usa.png', 'Code', '', 0, NULL, 'ernest.buffington.1', 'a0ed1dc594445e7a51ac198fb2585098', 10, 'nested', 0, 0, 0, '', 0, NULL, '', 4096, 0, 1, -1, 1, 4, 2, 1, 0, 1, 1661299561, 0, 1661297523, '-5.00', NULL, 'english', 'D M d, Y g:i a', 0, 0, 0, NULL, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, '', '', NULL, 0, '47.206.216.196', 70, 0, 1, 0, 0, 1, '00aa00', '----3----4----1--------------------------------------------4----1--------------------------------------------1------3--', 1, 1, 1, 60, '0', 0, '1', 0, 1, 1, NULL, 0, 0, -2, -2, -2, -2, 1, 0, NULL, 0, 0, 0, -0.2, 1661280823, '', 0),
+(4, 'Bob Marion', 'NukeSheriff', 'bob.marion@86it.us', '', 'https://hub.86it.us/index.php?op=ad_network_click&bid=7', '10066464956305665d8aaf0.', 'Aug 23, 2022', 'Programmer', '', 'usa.png', 'PHP-Nuke Titanium', '', 0, NULL, '', 'a0ed1dc594445e7a51ac198fb2585098', 10, 'nested', 0, 0, 0, '', 0, NULL, '', 4096, 0, 1, 0, 1, 6, 2, 1, 0, 1, 1661299843, -10, 1661299360, '-5.00', NULL, 'english', 'D M d, Y g:i a', 0, 0, 1661299691, NULL, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, '', '', NULL, 0, '47.206.216.196', 70, 0, 1, 0, 0, 0, '00b3ff', '--4--', 1, 1, 1, 60, '0', 0, '1', 0, 0, 1, NULL, 0, 0, 5, -2, -2, -2, 1, 0, NULL, 0, 0, 0, 0, NULL, '', 0);
 
 CREATE TABLE `nuke_users_countries` (
   `id_country` int(11) NOT NULL,
@@ -6060,3 +6081,18 @@ ALTER TABLE `nuke_users_countries`
 
 ALTER TABLE `nuke_users_temp`
   MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `network_cemetery`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+ALTER TABLE `network_cemetery_cat`
+  ADD PRIMARY KEY (`category_id`),
+  ADD KEY `user_id` (`user_id`);
+
+ALTER TABLE `network_cemetery`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `network_cemetery_cat`
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
