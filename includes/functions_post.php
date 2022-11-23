@@ -287,6 +287,12 @@ function submit_post($mode, &$post_data, &$message, &$meta, &$forum_id, &$topic_
         //
         $is_auth = auth(AUTH_ALL, $forum_id, $userdata);
         $is_mod = $is_auth['auth_mod'];
+		
+        # TheGhost aka Erbest Buffington 10/14/2022 10:41am
+		# if somehow the person is able to get more than 120 characters to submit in a post subject
+		# we just chop the mother fucker off!
+		if(strlen($post_subject) >  117)
+		$post_subject = substr($post_subject,0,117) . "...";
 
         if (($mode == 'newtopic' || $mode == 'reply' || $mode == 'editpost') && !$is_mod)
 /*****[END]********************************************
@@ -319,15 +325,42 @@ function submit_post($mode, &$post_data, &$message, &$meta, &$forum_id, &$topic_
 
         if ($mode == 'newtopic' || ($mode == 'editpost' && $post_data['first_post']))
         {
+
+                # TheGhost aka Erbest Buffington 10/14/2022 10:41am
+		        # if somehow the person is able to get more than 120 characters to submit in a post subject
+		        # we just chop the mother fucker off!
+		        if(strlen($post_subject) >  117)
+		        $post_subject = substr($post_subject,0,117) . "...";
+
                 $topic_vote = (!empty($poll_title) && count($poll_options) >= 2) ? 1 : 0;
 /*****[BEGIN]******************************************
  [ Mod:     Post Icons                         v1.0.1 ]
  ******************************************************/
-                $sql  = ($mode != "editpost") ? "INSERT INTO " . TOPICS_TABLE . " (topic_title, topic_poster, topic_time, forum_id, topic_status, topic_type, topic_icon, topic_vote) VALUES ('$post_subject', " . $userdata['user_id'] . ", '$current_time', '$forum_id', " . TOPIC_UNLOCKED . ", '$topic_type', $post_icon, '$topic_vote')" : "UPDATE " . TOPICS_TABLE . " SET topic_title = '$post_subject', topic_icon=$post_icon, topic_type = $topic_type " . (($post_data['edit_vote'] || !empty($poll_title)) ? ", topic_vote = " . $topic_vote : "") . " WHERE topic_id = '$topic_id'";
+                $sql  = ($mode != "editpost") ? "INSERT INTO " . TOPICS_TABLE . " (topic_title, 
+				                                                                  topic_poster, 
+																				    topic_time, 
+																					  forum_id, 
+																				  topic_status, 
+																				    topic_type, 
+																					topic_icon, 
+																					topic_vote) 
+																					
+		       VALUES ('$post_subject', 
+		  " . $userdata['user_id'] . ", 
+		               '$current_time', 
+					       '$forum_id', 
+				" . TOPIC_UNLOCKED . ", 
+				         '$topic_type', 
+						    $post_icon, 
+						  '$topic_vote')" : "UPDATE " . TOPICS_TABLE . " 
+						  
+		SET topic_title = '$post_subject', 
+		            topic_icon=$post_icon, 
+				 topic_type = $topic_type " . (($post_data['edit_vote'] || !empty($poll_title)) ? ", topic_vote = " . $topic_vote : "") . " WHERE topic_id = '$topic_id'";
 /*****[END]********************************************
  [ Mod:     Post Icons                         v1.0.1 ]
  ******************************************************/
-                if (!$db->sql_query($sql))
+				if (!$db->sql_query($sql))
                 {
                         message_die(GENERAL_ERROR, 'Error in posting', '', __LINE__, __FILE__, $sql);
                 }
@@ -351,12 +384,42 @@ if ($mode == 'newtopic')
 /*****[END]********************************************
  [ Mod:     Log Moderator Actions              v1.1.6 ]
  ******************************************************/
-
         $edited_sql = ($mode == 'editpost' && !$post_data['last_post'] && $post_data['poster_post']) ? ", post_edit_time = $current_time, post_edit_count = post_edit_count + 1 " : "";
 /*****[BEGIN]******************************************
  [ Mod:     Post Icons                         v1.0.1 ]
  ******************************************************/
-        $sql = ($mode != "editpost") ? "INSERT INTO " . POSTS_TABLE . " (topic_id, forum_id, poster_id, post_username, post_time, poster_ip, enable_bbcode, enable_html, enable_smilies, enable_sig, post_icon) VALUES ('$topic_id', '$forum_id', " . $userdata['user_id'] . ", '$post_username', '$current_time', '$user_ip', '$bbcode_on', '$html_on', '$smilies_on', '$attach_sig', $post_icon)" : "UPDATE " . POSTS_TABLE . " SET post_username = '$post_username', enable_bbcode = '$bbcode_on', enable_html = '$html_on', enable_smilies = '$smilies_on', enable_sig = '$attach_sig', post_icon = $post_icon" . $edited_sql . " WHERE post_id = '$post_id'";
+        $sql = ($mode != "editpost") ? "INSERT INTO " . POSTS_TABLE . " (topic_id, 
+		                                                                 forum_id, 
+																		poster_id, 
+																	post_username, 
+																	    post_time, 
+																		poster_ip, 
+																	enable_bbcode, 
+																	  enable_html, 
+																   enable_smilies, 
+																       enable_sig, 
+																	    post_icon) 
+																		
+	    VALUES ('$topic_id', 
+	            '$forum_id', 
+   ".$userdata['user_id'].", 
+           '$post_username', 
+		    '$current_time', 
+			     '$user_ip', 
+			   '$bbcode_on', 
+			     '$html_on', 
+			  '$smilies_on', 
+			  '$attach_sig', 
+			    $post_icon)" : "UPDATE ".POSTS_TABLE." 
+				
+	              SET post_username = '$post_username', 
+	                      enable_bbcode = '$bbcode_on', 
+						    enable_html = '$html_on', 
+						 enable_smilies = '$smilies_on', 
+						     enable_sig = '$attach_sig', 
+							  post_icon = $post_icon".$edited_sql." 
+   
+   WHERE post_id = '$post_id'";
 /*****[END]********************************************
  [ Mod:     Post Icons                         v1.0.1 ]
  ******************************************************/
@@ -370,8 +433,17 @@ if ($mode == 'newtopic')
                 $post_id = $db->sql_nextid();
         }
 
-        $sql = ($mode != 'editpost') ? "INSERT INTO " . POSTS_TEXT_TABLE . " (post_id, post_subject, bbcode_uid, post_text) VALUES ('$post_id', '$post_subject', '$bbcode_uid', '$post_message')" : "UPDATE " . POSTS_TEXT_TABLE . " SET post_text = '$post_message',  bbcode_uid = '$bbcode_uid', post_subject = '$post_subject' WHERE post_id = '$post_id'";
-        if (!$db->sql_query($sql))
+		$sql = ($mode != 'editpost') ? "INSERT INTO " . POSTS_TEXT_TABLE . " (post_id, 
+		                                                                 post_subject, 
+																		   bbcode_uid, 
+																		    post_text) 
+																			
+		VALUES ('$post_id', 
+		   '$post_subject', 
+		     '$bbcode_uid', 
+		   '$post_message')" : "UPDATE ".POSTS_TEXT_TABLE." SET post_text = '$post_message',bbcode_uid = '$bbcode_uid',post_subject = '$post_subject' WHERE post_id = '$post_id'";
+        
+		if (!$db->sql_query($sql))
         {
                 message_die(GENERAL_ERROR, 'Error in posting', '', __LINE__, __FILE__, $sql);
         }

@@ -107,9 +107,9 @@ if(($is_user == 1) && ($detectPM == 1))
    else
      $sql = "SELECT * FROM ".$prefix."_modules WHERE active='1' AND inmenu='1' AND `title` NOT LIKE '~l~%' ORDER BY custom_title ASC";   
    
-   $modulesaffiche = $db->sql_query($sql);
+   $modules_attach = $db->sql_query($sql);
 
-   while($tempo = $db->sql_fetchrow($modulesaffiche)) 
+   while($tempo = $db->sql_fetchrow($modules_attach)) 
    {
         $tempoA[] = $tempo;
     }
@@ -244,10 +244,10 @@ $managment_group = 0;
 # this is the start of the Portal menu
 $sql = "SELECT * FROM ".$prefix."_modules WHERE active='1' AND inmenu='1' ORDER BY custom_title ASC";
 	
-$modulesaffiche = $db->sql_query($sql);
+$modules_attach = $db->sql_query($sql);
   $menu_counter = 0;
 	
-	while ($tempo = $db->sql_fetchrow($modulesaffiche)) 
+	while ($tempo = $db->sql_fetchrow($modules_attach)) 
 	{
 		   $module[$menu_counter] = $tempo['title'];
 	  $customtitle[$menu_counter] = (stripslashes($tempo['custom_title'])); //strip the fucking slashes

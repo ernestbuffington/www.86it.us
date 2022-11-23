@@ -97,7 +97,7 @@ if($conf['nameblock'] == "yes" && $Action != "UserBanned") {
 
 function searchHistory($where, $sbsearchtext, $results, $style, $order, $page) 
 {
-	global $db, $prefix, $username, $userinfo, $board_config;
+	global $db, $sitename, $prefix, $username, $userinfo, $board_config;
     include_once(NUKE_BASE_DIR.'header.php');
 
     $sbsearchtext = htmlspecialchars($sbsearchtext, ENT_QUOTES);
@@ -113,11 +113,13 @@ function searchHistory($where, $sbsearchtext, $results, $style, $order, $page)
 
     OpenTable();
 	echo '<br /><br />';
-	if ($results > 50)  
-	$results = 50; 
-    
-	if ($results < 10) 
-	$results = 10;
+	if ($results > 50) {
+        $results = 50;
+    }
+
+    if ($results < 10) {
+        $results = 10;
+    }
 
     echo "<table cellpadding=\"0\" cellspacing=\"0\" width=\"90%\" border=\"0\" align=\"center\">\n";
    // echo "<tr><td align=\"center\"><span class=\"title\">"._SEARCHRESULTS."</span></td></tr>\n";
@@ -204,12 +206,14 @@ function searchHistory($where, $sbsearchtext, $results, $style, $order, $page)
 
         while ($row = $db->sql_fetchrow($result)) 
 		{
-            if ($flag == 1) 
-			$bgcolor = $rowColor['menuColor1']; 
-            if ($flag == 2) 
-			$bgcolor = $rowColor['menuColor2']; 
-            
-			$comment = str_replace('src=', 'src="', $row['comment']);
+            if ($flag == 1) {
+                $bgcolor = $rowColor['menuColor1'];
+            }
+            if ($flag == 2) {
+                $bgcolor = $rowColor['menuColor2'];
+            }
+
+            $comment = str_replace('src=', 'src="', $row['comment']);
             $comment = str_replace('.gif>', '.gif" alt="" />', $comment);
             $comment = str_replace('.jpg>', '.jpg" alt="" />', $comment);
             $comment = str_replace('.png>', '.png" alt="" />', $comment);
@@ -237,7 +241,7 @@ function searchHistory($where, $sbsearchtext, $results, $style, $order, $page)
             // Disallow Anonymous users from seeing links to users' accounts
             if ($username == "Anonymous") 
 			{
-                if (!empty($rowN['user_avatar']) && $rowN['user_avatar'] != "blank.gif" && ($rowN['user_avatar'] != "gallery/blank.gif") && (stristr($rowN['user_avatar'],'.') == TRUE)) 
+                if (!empty($rowN['user_avatar']) && $rowN['user_avatar'] != "blank.png" && ($rowN['user_avatar'] != "gallery/blank.png") && (stristr($rowN['user_avatar'],'.') == TRUE)) 
 				{
                     echo "<tr><td style=\"background-color: $bgcolor;\">";
                     echo "<table cellpadding=\"1\" cellspacing=\"0\" width=\"100%\" border=\"0\">";
@@ -314,7 +318,7 @@ function searchHistory($where, $sbsearchtext, $results, $style, $order, $page)
                 // check to see if nickname is a user in the DB && not Anonymous
                 if (is_array($rowN) && $rowN['username'] != "Anonymous") 
 				{
-                    if (($rowN['user_avatar']) && ($rowN['user_avatar'] != "blank.gif") && ($rowN['user_avatar'] != "gallery/blank.gif") && (stristr($rowN['user_avatar'],'.') == TRUE)) 
+                    if (($rowN['user_avatar']) && ($rowN['user_avatar'] != "blank.png") && ($rowN['user_avatar'] != "gallery/blank.png") && (stristr($rowN['user_avatar'],'.') == TRUE)) 
 					{
                         echo "<tr><td style=\"background-color: $bgcolor;\">";
                         echo "<table cellpadding=\"1\" cellspacing=\"0\" width=\"100%\" border=\"0\">";
@@ -791,7 +795,7 @@ function findAvatar($row_avatar)
     if (preg_match('#http://#i',$row_avatar) == TRUE) 
 	{
         // offsite avatars
-        $AvatarFound = "<img height=\"40\" src=\"$row_avatar\" alt=\"\" /></td>";
+        $AvatarFound = "<img class=\"rounded-corners-profile\" height=\"40\" src=\"$row_avatar\" alt=\"\" /></td>";
     } 
 	else 
 	{
@@ -808,7 +812,7 @@ function findAvatar($row_avatar)
         } 
 		else 
 		{
-            $AvatarFound = "<img height=\"40\" src=\"".$avatar_path['config_value']."/blank.gif\" alt=\"\" /></td>";
+            $AvatarFound = "<img height=\"40\" src=\"".$avatar_path['config_value']."/blank.png\" alt=\"\" /></td>";
         }
     }
     return $AvatarFound;
@@ -816,7 +820,7 @@ function findAvatar($row_avatar)
 
 function showHistory($page) 
 {
-    global $db, $prefix, $username, $userinfo, $board_config;
+    global $db, $sitename, $prefix, $username, $userinfo, $board_config;
     include_once(NUKE_BASE_DIR.'header.php');
     global $conf;
 
@@ -902,7 +906,7 @@ function showHistory($page)
         // Disallow Anonymous users from seeing links to users' accounts
         if ($username == "Anonymous") 
 		{
-            if (!empty($rowN['user_avatar']) && ($rowN['user_avatar'] != "blank.gif") && ($rowN['user_avatar'] != "gallery/blank.gif") && (stristr($rowN['user_avatar'],'.') == TRUE)) 
+            if (!empty($rowN['user_avatar']) && ($rowN['user_avatar'] != "blank.png") && ($rowN['user_avatar'] != "gallery/blank.png") && (stristr($rowN['user_avatar'],'.') == TRUE)) 
 			{
                 echo "<tr><td style=\"background-color: $bgcolor;\">";
                 echo "<table cellpadding=\"1\" cellspacing=\"0\" width=\"100%\" border=\"0\">";
@@ -964,7 +968,7 @@ function showHistory($page)
         } else {
             // check to see if nickname is a user in the DB && not Anonymous
             if (is_array($rowN) && ($rowN['username'] != "Anonymous")) {
-                if (!empty($rowN['user_avatar']) && ($rowN['user_avatar'] != "blank.gif") && ($rowN['user_avatar'] != "gallery/blank.gif") && (stristr($rowN['user_avatar'],'.') == TRUE)) {
+                if (!empty($rowN['user_avatar']) && ($rowN['user_avatar'] != "blank.png") && ($rowN['user_avatar'] != "gallery/blank.png") && (stristr($rowN['user_avatar'],'.') == TRUE)) {
                     echo "<tr><td style=\"background-color: $bgcolor;\">";
                     echo "<table cellpadding=\"1\" cellspacing=\"0\" width=\"100%\" border=\"0\">";
                     echo "<tr><td valign='top' style=\"background-color: $bgcolor;\">";
@@ -1095,13 +1099,7 @@ function showHistory($page)
     echo "</td></tr></table></form>";
     // End menu build
     CloseTable();
-	
-	OpenTable();
-	?>
 
-    <?
-	CloseTable();
-	
     include_once(NUKE_BASE_DIR.'footer.php');
 }
 
@@ -1152,4 +1150,3 @@ switch($Action) {
 
 }
 
-?>

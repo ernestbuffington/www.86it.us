@@ -1,7 +1,6 @@
 <?php
-
 /*=======================================================================
- Nuke-Evolution Xtreme: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium : Enhanced and Advanced PHP-Nuke Web Portal System
  =======================================================================*/
 /************************************************************************
   Nuke-Evolution: Advanced Installer
@@ -12,7 +11,7 @@
   Author             : Technocrat
   Design Layout      : The Mortal (RealmDesignz.com)
   Code Modifications : The Mortal
-  Version            : 1.0.2
+  Version            : 1.0.3
   Date               : 01.05.2019 (mm.dd.yyyy)
 
   Notes              : You may NOT use this installer for your own
@@ -29,9 +28,13 @@ if (!$open_data = @fopen($data_file, 'r')){
 }
 
 $data = @fread($open_data, @filesize($data_file));
+
 @fclose($open_data);
+
 list($required_files, $chmods) = explode("\n###", $data);
+
 $required_files = explode("\n", $required_files);
+
 $chmods = explode("\n", $chmods);
 
 if (!isset($directory_mode)){
@@ -225,8 +228,8 @@ function validate_data($post){
     $user_prefix = (isset($_POST['user_prefix'])) ? $_POST['user_prefix'] : $error .= '<font color="red">'.$install_lang['uprefix_error'].'</font><br />';
     $dbtype = (isset($_POST['dbtype'])) ? $_POST['dbtype'] : $error .= '<font color="red">'.$install_lang['dbtype_error'].'</font><br />';
     if (!empty($error)){
-        $error .= '<center><input type="hidden" name="step" value="'.$next_step.'" /><input type="submit" class="button" name="submit" value="'.$install_lang['continue'].' '.$next_step.'" disabled="disabled" /></center>';
-        return $error;
+    $error .= '<div align="center"><input type="hidden" name="step" value="'.$next_step.'" /><input type="submit" class="button" name="submit" value="'.$install_lang['continue'].' '.$next_step.'" disabled="disabled" /></div>';
+    return $error;
     }
 
     if (!($server_check = @mysqli_connect($dbhost, $dbuser, $dbpass, $dbname))){
@@ -257,6 +260,7 @@ function validate_data($post){
 }
 
 function do_sql($install_file){
+
     global $nuke_name, $next_step, $step, $install_lang, $prefix, $user_prefix, $server_check;
 
     if(!$handle = @fopen($install_file, 'r')){
@@ -302,7 +306,8 @@ function do_sql($install_file){
             } else {
                 $last_char = $current_char;
             }
-        } while (!$started_query && (!feof($fp) || strlen($buffer)));
+        } 
+		while (!$started_query && (!feof($fp) || strlen($buffer)));
 
         if ($inside_quote && $current_char == $quote_inside && $last_char != '\\'){
             $inside_quote = 0;
@@ -312,10 +317,12 @@ function do_sql($install_file){
             $inside_quote = 1;
             $quote_inside = $current_char;
         } elseif (!$inside_quote && $current_char == ';'){
-            if ($user_prefix != "nuke" && !empty($user_prefix)){
+        
+		    if ($user_prefix != "nuke" && !empty($user_prefix)){
                 $data_buffer = str_replace("`nuke_users`", "`" . $user_prefix . "_users`", $data_buffer);
             }
-            if($prefix != "nuke" && !empty($prefix)) {
+        
+		    if($prefix != "nuke" && !empty($prefix)) {
                 $data_buffer = str_replace("`nuke_", "`".$prefix."_", $data_buffer);
             }
 
@@ -324,7 +331,8 @@ function do_sql($install_file){
             if ($errors && mysqli_errno($server_check)){
                 $message .= '<font color="red">' . $install_lang['sql_error'] . mysqli_errno($server_check).': '.mysqli_error($server_check).'<br />'.$data_buffer.'<br />';
             }
-            $data_buffer = '';
+        
+		    $data_buffer = '';
             $last_char = "\n";
             $started_query = 0;
         }
@@ -354,53 +362,45 @@ function validate_admin(){
 		$message .= '<font color="red">'.$install_lang['admin_fail'].'</font><br />';
 		$message .= '<input type="hidden" name="step" value="6" /><br /><input type="submit" class="button" name="submit" value="'.$install_lang['go_back'].'" />';
 		return $message;
-	} else {
+	} 
+	else 
+	{
 		if (strlen($_POST['admin_nick']) < 4 || strlen($_POST['admin_nick']) > 25 || preg_match('/[^a-zA-Z0-9_-]/', trim($_POST['admin_nick']))){
 			$message .= '<font color="red">'.$install_lang['admin_nfail'].'</font><br />';
 			$message .= '<input type="hidden" name="step" value="6" /><br /><input type="submit" class="button" name="submit" value="'.$install_lang['go_back'].'" />';
 			return $message;
 		}
+		
 		if (strlen($_POST['admin_email']) < 7 || !preg_match('/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/', $_POST['admin_email'])){
 			$message .= '<font color="red">'.$install_lang['admin_efail'].'</font><br />';
 			$message .= '<input type="hidden" name="step" value="6" /><br /><input type="submit" class="button" name="submit" value="'.$install_lang['go_back'].'" />';
 			return $message;
 		}
 
-/*****[BEGIN]******************************************
- [ Mod:    Auto Admin Protection               v2.0.0 ]
- ******************************************************/
 		if (!mysqli_query($server_check, "INSERT INTO `" . $_SESSION['prefix'] . "_nsnst_admins` (`aid`, `login`, `protected`) VALUES ('".$_POST['admin_nick']."', '".$_POST['admin_nick']."', '1')")){
 			$error = true;
 			$message .= '<font color="red">'.$install_lang['nsnst_fail'].'</font><br />';
 		}
-/*****[END]********************************************
- [ Mod:    Auto Admin Protection               v2.0.0 ]
- ******************************************************/
+
 		$cookie_location = str_replace('/install.php', '', $_SERVER['PHP_SELF']);
 		$user_nick = $_POST['admin_nick'];
 		$user_pass = md5($_POST['admin_pass']);
-/*****[BEGIN]******************************************
- [ Mod:    Auto Admin Login                    v2.0.0 ]
- ******************************************************/
+
 		$cookiedata_admin = base64_encode("$user_nick:$user_pass:english:1:new");
 		setcookie('admin',$cookiedata_admin,time()+2592000,$cookie_location);
-/******************************************************
- [ Mod:    Auto Admin Login                    v2.0.0 ]
- ******************************************************/
-/*****[BEGIN]******************************************
- [ Mod:    Auto First User Login               v1.0.0 ]
- ******************************************************/
+
         $cookiedata = base64_encode("2:$user_nick:$user_pass");
         setcookie('user',$cookiedata,time()+2592000,$cookie_location);
-/*****[END]********************************************
- [ Mod:    Auto First User Login               v1.0.0 ]
- ******************************************************/
+
         $user_regdate = date('M d, Y');
-        $user_avatar = 'blank.gif';
+        $user_avatar = 'blank.png';
         $commentlimit = 4096;
+
         if ($_POST['admin_website'] == 'http://'){
 			$url = '';
-		} else {
+		} 
+		else 
+		{
 			$url = $_POST['admin_website'];
 		}
 
@@ -409,15 +409,46 @@ function validate_admin(){
             $message .= '<font color="red">'.$install_lang['god_fail'].'</font><br />';
         }
 
-        if (!mysqli_query($server_check, "INSERT INTO " . $_SESSION['user_prefix'] . "_users (`user_id`, `username`, `user_email`, `user_website`, `user_avatar`, `user_regdate`, `user_password`, `theme`, `commentmax`, `user_level`, `user_lang`, `user_dateformat`, `user_color_gc`, `user_color_gi`, `user_posts`) VALUES (NULL,'$user_nick','".$_POST['admin_email']."','".$url."','".$user_avatar."','".$user_regdate."','$user_pass','XtremeV4','".$commentlimit."', '2', 'english','D M d, Y g:i a','d12727','--1--', '1')")){
+        if (!mysqli_query($server_check, "INSERT INTO " . $_SESSION['user_prefix'] . "_users (`user_id`, 
+		                                                                                     `username`, 
+																						   `user_email`, 
+																						 `user_website`, 
+																						  `user_avatar`, 
+																						 `user_regdate`, 
+																						`user_password`, 
+																						        `theme`, 
+																						   `commentmax`, 
+																						   `user_level`, 
+																						    `user_lang`, 
+																					  `user_dateformat`, 
+																					    `user_color_gc`, 
+																						`user_color_gi`, 
+																						   `user_posts`) 
+																						   
+		VALUES (2,
+		'$user_nick',
+		'".$_POST['admin_email']."',
+		'".$url."','".$user_avatar."',
+		'".$user_regdate."',
+		'$user_pass',
+		'Titanium_Core',
+		'".$commentlimit."', 
+		'2', 
+		'english',
+		'D M d, Y g:i a',
+		'd12727',
+		'--1--', 
+		'1')")){
 			$error = true;
 			$message .= '<font color="red">'.$install_lang['user_fail'].'</font><br />';
 		}
+		
 		if ($error){
 			return $message.'<input type="hidden" name="step" value="6" /><br /><input type="submit" class="button" name="submit" value="'.$install_lang['go_back'].'" />';
 		} else {
 			$_SESSION['admin_email'] = $_POST['admin_email'];
-			return '<font color="green">'.$install_lang['admin_success'].'</font><br /><br /><input type="hidden" name="step" value="'.$next_step.'" /><input type="submit" name="confirm" class="button" value="'.$install_lang['continue'].' '.$next_step.'" />';
+			return '<font color="green">'.$install_lang['admin_success'].'</font><br /><br /><input type="hidden" name="step" value="'.$next_step.'" /><input 
+			type="submit" name="confirm" class="button" value="'.$install_lang['continue'].' '.$next_step.'" />';
 		}
 	}
 }
@@ -461,7 +492,15 @@ function site_form($display=1,$return=false){
     }
 
 	if ($submit){
-		$sql = "UPDATE " . $_SESSION['prefix'] . "_config SET sitename='".$_POST['nsitename']."', nukeurl='".$_POST['nukeurl']."', slogan='".$_POST['slogan']."', startdate='".$_POST['startdate']."', adminmail='".$_POST['adminmail']."'";
+		
+		
+		$fuck_apostrophes = str_replace("'", "''", $_POST['nsitename']);
+		$fuck_apostrophes_again = str_replace("'", "''", $_POST['slogan']);
+		
+		$sql = "UPDATE " . $_SESSION['prefix'] . "_config 
+		
+		SET sitename='".$fuck_apostrophes."', nukeurl='".$_POST['nukeurl']."', slogan='".$fuck_apostrophes_again."', startdate='".$_POST['startdate']."', adminmail='".$_POST['adminmail']."'";
+		
 		if (!mysqli_query($server_check, $sql)){
 			return $install_lang['update_fail'].' nuke config<br />'.mysqli_error($server_check);
 		}
@@ -487,74 +526,103 @@ function site_form($display=1,$return=false){
 	mysqli_free_result($result);
 
     if (!$display){
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['site_name'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($sitename) ? $sitename : 'My Site') : '<input type="text" name="nsitename" size="40" class="input" value="'.(($return) ? $sitename : 'My Site').'" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['site_url'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($nukeurl) ? $nukeurl : $http_scheme.'://'.$_SERVER['HTTP_HOST'].str_replace('/install.php', '', $_SERVER['PHP_SELF'])) : '<input type="text" name="nukeurl" size="40" class="input" value="'.(($return) ? $nukeurl : $http_scheme.'://'.$_SERVER['HTTP_HOST'].str_replace('/install.php', '', $_SERVER['PHP_SELF'])).'" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['site_slogan'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($slogan) ? $slogan : '&nbsp;') : '<input type="text" name="slogan" size="40" class="input" value="'.(($return) ? $slogan : '').'" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['start_date'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($startdate) ? $startdate : date('F Y')) : '<input type="text" name="startdate" size="40" class="input" value="'.(($return) ? $startdate : date('F Y')).'" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['admin_email'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($adminmail) ? $adminmail : $_SESSION['admin_email']) : '<input type="text" name="adminmail" size="40" class="input" value="'.(($return) ? $adminmail : $_SESSION['admin_email']).'" />').'</dd>';
-		$form .= '  </dl>';
-        $form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['sitename'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($new['sitename']) ? $new['sitename'] : $http_scheme.'://'.$_SERVER['SERVER_NAME']) : '<input type="text" name="sitename" size="40" class="input" value="'.(($return) ? $new['sitename'] : $http_scheme.'://'.$_SERVER['SERVER_NAME']).'" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['sitedescr'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($new['site_desc']) ? $new['site_desc'] : '&nbsp;') : '<input type="text" value="'.(($return) ? $new['site_desc'] : '').'" name="site_desc" size="40" class="input" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['cookie_name'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($new['cookie_name']) ? $new['cookie_name'] : '&nbsp;') : '<input type="text" value="'.(($return) ? $new['cookie_name'] : $get_cookie_name).'" name="cookie_name" size="40" class="input" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['cookie_path'].'</label></dt>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['site_name'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($sitename) ? $sitename : 'My Site') : '<input type="text" name="nsitename" size="40" class="input" value="'.(($return) ? $sitename : 'My Site').'" />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['site_url'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($nukeurl) ? $nukeurl : $http_scheme.'://'.$_SERVER['HTTP_HOST'].str_replace('/install.php', '', $_SERVER['PHP_SELF'])) : '<input 
+		type="text" name="nukeurl" size="40" class="input" value="'.(($return) ? $nukeurl : $http_scheme.'://'.$_SERVER['HTTP_HOST'].str_replace('/install.php', '', $_SERVER['PHP_SELF'])).'" />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['site_slogan'].'</label></dt>';
+		$form .= '<dd>'.(($submit) ? (!empty($slogan) ? $slogan : '&nbsp;') : '<input type="text" name="slogan" size="40" class="input" value="'.(($return) ? $slogan : '').'" />').'</dd>';
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['start_date'].'</label></dt>';
+		$form .= '<dd>'.(($submit) ? (!empty($startdate) ? $startdate : date('F Y')) : '<input type="text" name="startdate" size="40" class="input" value="'.(($return) ? $startdate : date('F Y')).'" />').'</dd>';
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['admin_email'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($adminmail) ? $adminmail : $_SESSION['admin_email']) : '<input type="text" name="adminmail" size="40" class="input" 
+		value="'.(($return) ? $adminmail : $_SESSION['admin_email']).'" />').'</dd>';
+		
+		$form .= '</dl>';
+        $form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['sitename'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($new['sitename']) ? $new['sitename'] : $http_scheme.'://'.$_SERVER['SERVER_NAME']) : '<input type="text" 
+		name="sitename" size="40" class="input" value="'.(($return) ? $new['sitename'] : $http_scheme.'://'.$_SERVER['SERVER_NAME']).'" />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['sitedescr'].'</label></dt>';
+		$form .= '<dd>'.(($submit) ? (!empty($new['site_desc']) ? $new['site_desc'] : '&nbsp;') : '<input type="text" value="'.(($return) ? $new['site_desc'] : '').'" name="site_desc" size="40" class="input" />').'</dd>';
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['cookie_name'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($new['cookie_name']) ? $new['cookie_name'] : '&nbsp;') : '<input type="text" value="'.(($return) ? $new['cookie_name'] : $get_cookie_name).'" name="cookie_name" 
+		size="40" class="input" />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['cookie_path'].'</label></dt>';
 		$path2cookie = str_replace('/install.php', '', $_SERVER['PHP_SELF']);
 		$cookie_path = (!empty($path2cookie)) ? $path2cookie : '/';
-		$form .= '    <dd>'.(($submit) ? (!empty($new['cookie_path']) ? $new['cookie_path'] : $cookie_path) : '<input type="text" value="'.(($return) ? $new['cookie_path'] : $cookie_path).'" name="cookie_path" size="40" class="input" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['cookie_domain'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($new['cookie_domain']) ? $new['cookie_domain'] : $_SERVER['HTTP_HOST']) : '<input type="text" value="'.(($return) ? $new['cookie_domain'] : preg_replace('/^www\./', '', $_SERVER['HTTP_HOST'])).'" name="cookie_domain" size="40" class="input" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($new['cookie_path']) ? $new['cookie_path'] : $cookie_path) : '<input type="text" value="'.(($return) ? $new['cookie_path'] : $cookie_path).'" name="cookie_path" 
+		size="40" class="input" />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['cookie_domain'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($new['cookie_domain']) ? $new['cookie_domain'] : $_SERVER['HTTP_HOST']) : '<input type="text" 
+		value="'.(($return) ? $new['cookie_domain'] : preg_replace('/^www\./', '', $_SERVER['HTTP_HOST'])).'" name="cookie_domain" size="40" class="input" />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
 		$namechange_checked = ($new['allow_namechange']) ? 'checked="checked"' : '';
 		$namechange_not_checked = (!$new['allow_namechange']) ? 'checked="checked"' : '';
-		$form .= '    <dt><label>'.$install_lang['namechange'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (($new['allow_namechange']) ? 'Yes' : 'No') : $install_lang['yes'].' <input type="radio" value="1" name="allow_namechange" '.$namechange_checked.' /> '. $install_lang['no'].' <input type="radio" value="0" name="allow_namechange" '.$namechange_not_checked.' />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['email_sig'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($new['board_email_sig']) ? $new['board_email_sig'] : '&nbsp;') : '<textarea name="board_email_sig" style="width: 100%; height: 100px;">'.$new['board_email_sig'].'</textarea>').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['site_email'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($new['board_email']) ? $new['board_email'] : $_SESSION['admin_email']) : '<input type="text" name="board_email" value="'.(($return) ? $new['board_email'] : $_SESSION['admin_email']).'" size="40" class="input" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['default_lang'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? $new['default_lang'] : language_select('english', 'default_lang')).'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['server_name'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? (!empty($new['server_name']) ? $new['server_name'] : $_SERVER['SERVER_NAME']) : '<input type="text" name="server_name" value="'.(($return) ? $new['server_name'] : rtrim($_SERVER['SERVER_NAME'].$cookie_path, '/')).'" size="40" class="input" />').'</dd>';
-		$form .= '  </dl>';
-		$form .= '  <dl>';
-		$form .= '    <dt><label>'.$install_lang['server_port'].'</label></dt>';
-		$form .= '    <dd>'.(($submit) ? $new['server_port'] : '<input type="text" name="server_port" value="'.$new['server_port'].'" size="40" class="input" />').'</dd>';
-		$form .= '  </dl>';
+		$form .= '<dt><label>'.$install_lang['namechange'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (($new['allow_namechange']) ? 'Yes' : 'No') : $install_lang['yes'].' <input type="radio" value="1" 
+		name="allow_namechange" '.$namechange_checked.' /> '. $install_lang['no'].' <input type="radio" value="0" name="allow_namechange" '.$namechange_not_checked.' />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['email_sig'].'</label></dt>';
+		$form .= '<dd>'.(($submit) ? (!empty($new['board_email_sig']) ? $new['board_email_sig'] : '&nbsp;') : '<textarea name="board_email_sig" style="width: 100%; height: 100px;">'.$new['board_email_sig'].'</textarea>').'</dd>';
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['site_email'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($new['board_email']) ? $new['board_email'] : $_SESSION['admin_email']) : '<input type="text" name="board_email" 
+		value="'.(($return) ? $new['board_email'] : $_SESSION['admin_email']).'" size="40" class="input" />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['default_lang'].'</label></dt>';
+		$form .= '<dd>'.(($submit) ? $new['default_lang'] : language_select('english', 'default_lang')).'</dd>';
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['server_name'].'</label></dt>';
+		
+		$form .= '<dd>'.(($submit) ? (!empty($new['server_name']) ? $new['server_name'] : $_SERVER['SERVER_NAME']) : '<input type="text" name="server_name" 
+		value="'.(($return) ? $new['server_name'] : rtrim($_SERVER['SERVER_NAME'].$cookie_path, '/')).'" size="40" class="input" />').'</dd>';
+		
+		$form .= '</dl>';
+		$form .= '<dl>';
+		$form .= '<dt><label>'.$install_lang['server_port'].'</label></dt>';
+		$form .= '<dd>'.(($submit) ? $new['server_port'] : '<input type="text" name="server_port" value="'.$new['server_port'].'" size="40" class="input" />').'</dd>';
+		$form .= '</dl>';
         return $form;
     } else {
         return;

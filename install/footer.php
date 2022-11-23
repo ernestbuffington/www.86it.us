@@ -43,7 +43,7 @@
   </div>
 </div>
 
-<div style="text-align: center; margin-top: -10px;">PHP-Nuke Titanium (US Version) Installer 4.0.0 Dev 4 Copyright &copy; 2022 The 86it Developers Network</div>
+<div style="text-align: center; margin-top: -10px;">PHP-Nuke Titanium v4.0.3 (US Version) Installer Copyright &copy; 2022 Technocrat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
  </body>
 </html>

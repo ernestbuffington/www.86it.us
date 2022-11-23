@@ -3,6 +3,21 @@
   PHP-Nuke Titanium | Nuke-Evolution Xtreme : PHP-Nuke Web Portal System
  =======================================================================*/
 
+/*======================================================================= 
+  This is used when you read everyones private messages in the admin panel! 
+  modules/Forums/admin/admin_priv_msgs.php?sid=(some-number)
+ =======================================================================*/
+
+/***************************************************************************
+*                      $RCSfile: admin_priv_msgs.php,v $
+*                            -------------------
+*   end                  : November 2nd 2022
+*   copyright            : (C) 2005-2022 www.86it.us
+*   email                : support@86it.us
+*
+*   $Id: admin_priv_msgs.php,v 1.4 2022/11/02 23:54:41 86it Exp $
+*
+***************************************************************************/
 
 /***************************************************************************
 *                      $RCSfile: admin_priv_msgs.php,v $

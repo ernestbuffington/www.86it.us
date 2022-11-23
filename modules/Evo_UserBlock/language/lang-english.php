@@ -1,7 +1,7 @@
 <?php
 
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium | Nuke-Evolution Basic : Enhanced and Advanced
  =======================================================================*/
 
 if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
@@ -78,7 +78,7 @@ $lang_evo_userblock['BLOCK']['USERS']['NEW_YESTERDAY'] = 'New Yesterday';
 $lang_evo_userblock['BLOCK']['USERS']['WAITING'] = 'Waiting';
 $lang_evo_userblock['BLOCK']['USERS']['HIDDEN'] = 'Ghost Mode';
 $lang_evo_userblock['BLOCK']['USERS']['TOTAL'] = 'Total';
-$lang_evo_userblock['BLOCK']['USERS']['LATEST'] = 'Latest';
+$lang_evo_userblock['BLOCK']['USERS']['LATEST'] = 'New';
 
 //Posts
 $lang_evo_userblock['BLOCK']['POSTS']['FORUMS'] = 'Forums';

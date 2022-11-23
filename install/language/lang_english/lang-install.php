@@ -44,8 +44,8 @@ $install_lang['server_check'] = "Server Check";
 $install_lang['sql_install'] = "Importing PHP-Nuke Titanium Database";
 $install_lang['sql2_install'] = "Importing PHP-Nuke Titanium IP to Country Database";
 
-$install_lang['sql_install_success'] = "Importing PHP-Nuke Titanium Database Successful";
-$install_lang['sql2_install_success'] = "Importing PHP-Nuke Titanium IP to Country Database Successful";
+$install_lang['sql_install_success'] = "Importing PHP-Nuke Titanium Database Was Successful";
+$install_lang['sql2_install_success'] = "Importing PHP-Nuke Titanium IP to Country Database Was Successful";
 
 $install_lang['retry_sql'] = "Retry SQL Installation";
 $install_lang['setup_admin'] = "Setup Your First Admin Account";

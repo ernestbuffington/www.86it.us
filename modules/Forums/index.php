@@ -593,9 +593,9 @@ if( ( $total_categories = count($category_rows) ) )
  [ Mod:    Forum Index Avatar Mod                 v1.0]
  ******************************************************/
                                             // if ($forum_data[$j]['user_avatar'] == "")
-                                            //     $poster_avatar = $board_config['avatar_path']."/blank.gif";
-                                            // elseif ($forum_data[$j]['user_avatar'] == "gallery/blank.gif")
-                                            //     $poster_avatar = $board_config['avatar_path']."/blank.gif";
+                                            //     $poster_avatar = $board_config['avatar_path']."/blank.png";
+                                            // elseif ($forum_data[$j]['user_avatar'] == "gallery/blank.png")
+                                            //     $poster_avatar = $board_config['avatar_path']."/blank.png";
                                             // elseif (preg_match('#http://#i', $forum_data[$j]['user_avatar']))
                                             //     $poster_avatar = $forum_data[$j]['user_avatar'];
                                             // elseif (preg_match('#gallery/#i', $forum_data[$j]['user_avatar'])) 
@@ -614,7 +614,7 @@ if( ( $total_categories = count($category_rows) ) )
                                                     break;
                                                 case USER_AVATAR_GALLERY:
                                                     $poster_avatar = $board_config['avatar_gallery_path'] . '/' . (($forum_data[$j]['user_avatar'] 
-													== 'blank.gif' || $forum_data[$j]['user_avatar'] == 'gallery/blank.gif') ? 'blank.png' : $forum_data[$j]['user_avatar']);
+													== 'blank.png' || $forum_data[$j]['user_avatar'] == 'gallery/blank.png') ? 'blank.png' : $forum_data[$j]['user_avatar']);
                                                     break;
                                             }                                  
 /*****[END]********************************************
@@ -796,7 +796,14 @@ if( ( $total_categories = count($category_rows) ) )
  [ Mod:    Forum Icons                         v1.0.4 ]
  ******************************************************/ 
 								                                'FORUM_FOLDER_IMG' => ( $forum_data[$j]['title_is_link'] == 1 && $forum_data[$j]['forum_link_icon'] != '' ) ? $forum_data[$j]['forum_link_icon'] : $folder_image,
-																'FORUM_ICON_IMG' => ($icon) ? '<img src="' . $phpbb_root_path . $icon . '" alt="'.$forum_data[$j]['forum_name'].'" title="'.$forum_data[$j]['forum_name'].'" />' : '',
+############################################################################################################################################
+# Forum Icon Path Mod - 09/26/2022 by Ernest Buffington - START                                                                            #       
+############################################################################################################################################
+'FORUM_ICON_IMG' => ($icon) 
+? '<img src="' . forum_icon_img_path($forum_rows[$j]['forum_icon'], 'Forums') . $icon . '" alt="'.$forum_data[$j]['forum_name'].'" title="'.$forum_data[$j]['forum_name'].'" />' : '',
+############################################################################################################################################
+# Forum Icon Path Mod - 09/26/2022 by Ernest Buffington - END                                                                              #       
+############################################################################################################################################
 								                                'FORUM_LINK_COUNT' => ( $forum_data[$j]['title_is_link'] == 1 ) ? sprintf($lang['Forum_link_count'], $forum_data[$j]['forum_link_count']) : '',
 								                                'FORUM_LINK_TARGET' => ($forum_data[$j]['forum_link_target']) ? 'target="_blank"' : '',
 /*****[END]********************************************

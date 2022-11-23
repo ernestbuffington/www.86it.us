@@ -1,8 +1,7 @@
 <?php
-/*======================================================================= 
-  PHP-Nuke Titanium | Nuke-Evolution Xtreme : PHP-Nuke Web Portal System
+/*=======================================================================
+ PHP-Nuke Titanium: Enhanced and Advanced PHP-Nuke Web Portal System
  =======================================================================*/
-
 
 /***************************************************************************
  *                             comments_list.php
@@ -38,10 +37,11 @@ include($phpbb_root_path .'extension.inc');
 include($phpbb_root_path . 'common.'.$phpEx);
 require_once('includes/bbcode.' . $phpEx);
 
+global $userinfo;
 //
 // Start session management
 //
-$userdata = session_pagestart($user_ip, PAGE_INDEX, $nukeuser);
+$userdata = session_pagestart($user_ip, PAGE_INDEX);
 init_userprefs($userdata);
 //
 // End session management

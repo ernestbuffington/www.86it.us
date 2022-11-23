@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium | Nuke-Evolution Basic : Enhanced and Advanced
  =======================================================================*/
 
 /************************************************************************/
@@ -19,23 +19,26 @@
 /*                           2003 chatserv                              */
 /*      http://www.nukefixes.com -- http://www.nukeresources.com        */
 /************************************************************************/
+
 /********************************************************/
-/* NSN News                                             */
+/* NSN Blogs                                            */
 /* By: NukeScripts Network (webmaster@nukescripts.net)  */
+/* Contributer(s): Ernest Buffington aka TheGhost       */
 /* http://www.nukescripts.net                           */
-/* Copyright (c) 2000-2005 by NukeScripts Network         */
+/* Copyright (c) 2000-2005 by NukeScripts Network       */
 /********************************************************/
 
-if (!defined('ADMIN_FILE')) 
-   exit ("Access Denied");
+if (!defined('ADMIN_FILE')) {
+    exit("Access Denied");
+}
 
 
 global $prefix, $db, $admdata;
 $module_name = basename(dirname(dirname(__FILE__)));
 if(is_mod_admin($module_name)) {
 
-include_once(NUKE_INCLUDE_DIR.'nsnne_func.php');
-$ne_config = ne_get_configs();
+include_once(NUKE_INCLUDE_DIR.'functions_blog.php');
+$pnt_blogs_config = get_blog_configs();
 
 /*********************************************************/
 /* Topics Manager Functions                              */
@@ -88,35 +91,36 @@ function topicsmanager()
     echo "<strong>"._TOPICIMAGE . ":</strong><br />";
 
     # display the topic image using JQuery 
-    ?>
-    <script>
-    $(document).ready(function() {
-    $("#imageSelector").change(function() {
-        var src = $(this).val();
-        $("#imagePreview").html(src ? "<img src=<?php echo $tipath ?>" + src + ">" : "");
-    });
-    });
-    </script>
-    <?
-
+    echo '<script>';
+    echo '$(document).ready(function() {';
+    echo '$("#imageSelector").change(function() {';
+    echo '    var src = $(this).val();';
+    echo '    $("#imagePreview").html(src ? "<img src='.$tipath.'" + src + ">" : "");';
+    echo '});';
+    echo '});';
+    echo '</script>';
+    
+     
     echo "<select id=\"imageSelector\" name=\"topicimage\" required>";
 	$handle=opendir($tipath);
     
 	while($file = readdir($handle)): 
-      if((preg_match("~^([_0-9a-zA-Z]+)([.]{1})([_0-9a-zA-Z]{3})$~",$file)) AND $file != "AllTopics.gif") 
-      $tlist .= "$file ";
-    endwhile;
+            if ((preg_match("~^([_0-9a-zA-Z]+)([.]{1})([_0-9a-zA-Z]{3})$~", $file)) AND $file != "AllTopics.gif") {
+                $tlist .= "$file ";
+            }
+        endwhile;
     closedir($handle);
     $tlist = explode(" ", $tlist);
     sort($tlist);
     for ($i=0; $i < count($tlist); $i++): 
-      if(!empty($tlist[$i])) 
-      echo "<option name=\"topicimage\" value=\"$tlist[$i]\">$tlist[$i]\n";
-    endfor;
+        if (!empty($tlist[$i])) {
+                echo "<option name=\"topicimage\" value=\"$tlist[$i]\">$tlist[$i]\n";
+            }
+        endfor;
  
     echo "</select>";
 	echo '<div align="center" id="imagePreview"></div>';
-    echo '<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>';
+    echo '<script src="assets/jquery/jquery.js"></script>';
     
 	echo "<input type=\"hidden\" name=\"op\" value=\"topicmake\">";
     
@@ -133,6 +137,7 @@ function topicsmanager()
 	
     CloseTable();
     include(NUKE_BASE_DIR."footer.php");
+  
 }
 
 function topicedit($topicid) 
@@ -168,25 +173,26 @@ function topicedit($topicid)
     echo "<strong>"._TOPICIMAGE.":</strong><br />";
 
     # display the topic image using JQuery 
-    ?>
-    <script>
-    $(document).ready(function() {
-    $("#imageSelector").change(function() {
-        var src = $(this).val();
-        $("#imagePreview").html(src ? "<img src=<?php echo $tipath ?>" + src + ">" : "");
-    });
-    });
-    </script>
-    <?
-
+    
+    echo '<script>';
+    echo '$(document).ready(function() {';
+    echo '$("#imageSelector").change(function() {';
+    echo '    var src = $(this).val();';
+    echo '    $("#imagePreview").html(src ? "<img src='.$tipath.'" + src + ">" : "");';
+    echo '});';
+    echo '});';
+    echo '</script>';
+    
+   
     echo "<select id=\"imageSelector\" name=\"topicimage\">";
     
 	$handle=opendir($tipath);
     
 	while ($file = readdir($handle)):
-      if ( (preg_match("#^([_0-9a-zA-Z]+)([.]{1})([_0-9a-zA-Z]{3})$#",$file)) AND $file != "AllTopics.gif") 
-      $tlist .= "$file ";
-    endwhile;
+            if ((preg_match("#^([_0-9a-zA-Z]+)([.]{1})([_0-9a-zA-Z]{3})$#", $file)) AND $file != "AllTopics.gif") {
+                $tlist .= "$file ";
+            }
+        endwhile;
     
 	closedir($handle);
     
@@ -196,16 +202,17 @@ function topicedit($topicid)
     
 	for($i=0; $i < count($tlist); $i++): 
       if(!empty($tlist[$i])): 
-        if ($topicimage == $tlist[$i]) 
-        $sel = "selected";
-        else
-        $sel = "";
-        echo "<option name=\"topicimage\" value=\"$tlist[$i]\" $sel>$tlist[$i]\n";
+          if ($topicimage == $tlist[$i]) {
+                    $sel = "selected";
+                } else {
+                    $sel = "";
+                }
+                echo "<option name=\"topicimage\" value=\"$tlist[$i]\" $sel>$tlist[$i]\n";
       endif;
     endfor;
     echo "</select><br /><br />";
 	echo '<div align="center" id="imagePreview"></div>';
-    echo '<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>';
+    echo '<script src="assets/jquery/jquery.js"></script>';
 
     echo "<strong>"._ADDRELATED . ":</strong><br />";
     
@@ -225,9 +232,10 @@ function topicedit($topicid)
     $res = $db->sql_query("SELECT rid, name, url from ".$prefix . "_related where tid='$topicid'");
     $num = $db->sql_numrows($res);
     
-	if ($num == 0) 
-    echo "<tr><td><span class=\"tiny\">"._NORELATED . "</span></td></tr>";
-    
+    if ($num == 0) {
+            echo "<tr><td><span class=\"tiny\">" . _NORELATED . "</span></td></tr>";
+        }
+
         while($row2 = $db->sql_fetchrow($res)):
             $rid = intval($row2['rid']);
             $name = $row2['name'];
@@ -332,13 +340,13 @@ function topicchange($topicid, $topicname, $topicimage, $topictext, $name, $url)
 }
 
 function topicdelete($topicid, $ok=0) {
-    global $prefix, $db, $ne_config, $admin_file;
+    global $prefix, $db, $pnt_blogs_config, $admin_file;
     $topicid = intval($topicid);
     if ($ok==1) {
     $row = $db->sql_fetchrow($db->sql_query("SELECT sid from " . $prefix . "_stories where topic='$topicid'"));
         $sid = intval($row['sid']);
         // Copyright (c) 2000-2005 by NukeScripts Network
-        if($ne_config['hometopic'] == $topicid) { ne_save_config("hometopic", "0"); }
+        if($pnt_blogs_config['hometopic'] == $topicid) { blog_save_config("hometopic", "0"); }
         // Copyright (c) 2000-2005 by NukeScripts Network
         $db->sql_query("delete from " . $prefix . "_stories where topic='$topicid'");
         $db->sql_query("delete from " . $prefix . "_topics where topicid='$topicid'");
@@ -426,4 +434,3 @@ else
         include(NUKE_BASE_DIR."footer.php");
 }
 
-?>

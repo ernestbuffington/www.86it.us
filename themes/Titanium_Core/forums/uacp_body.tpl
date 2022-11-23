@@ -1,6 +1,6 @@
 <strong><div align="center">{L_UACP} :: {USERNAME}</div></strong>
 
-<script language="Javascript" type="text/javascript">
+<script>
     //
     // Should really check the browser to stop this whining ...
     //
@@ -24,7 +24,7 @@
 </table>
         </td>
       <td align="right" nowrap="nowrap"><span class="genmed">{L_SELECT_SORT_METHOD}:&nbsp;{S_MODE_SELECT}&nbsp;&nbsp;{L_ORDER}&nbsp;{S_ORDER_SELECT}&nbsp;&nbsp; 
-        <input type="submit" name="submit" value="{L_SUBMIT}" class="liteoption" />
+        <input type="submit" name="submit" value="{L_SUBMIT}" class="titaniumbutton" />
         </span>
       </td>
     </tr>
@@ -57,7 +57,7 @@
     <!-- END attachrow -->
     <tr> 
       <td class="catBottom aright" colspan="9"> 
-        <input type="submit" name="delete" value="{L_DELETE_MARKED}" class="liteoption" />
+        <input type="submit" name="delete" value="{L_DELETE_MARKED}" class="titaniumbutton" />
       </td>
     </tr>
   </table>

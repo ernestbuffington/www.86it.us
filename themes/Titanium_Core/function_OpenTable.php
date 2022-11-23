@@ -3,33 +3,22 @@
 # function OpenTable                                                                    #
 #---------------------------------------------------------------------------------------#
 # THEME INFO                                                                            #
-# Universal Theme v1.0 (Fixed & Full Width)                                             #
+# Titanium Core Theme v2.0 (Fixed & Full Width)                                         #
 #                                                                                       #
-# Final Build Date 03/16/2021 Tuesday 12:54am                                           #
+# Final Build Date 10/09/2022 Tuesday 12:54am                                           #
 #                                                                                       #
-# A Very Nice Fire and Brimstone Theme Design.                                          #
-# Copyright © 2021 By: TheGhost AKA EABuffington                                        #
-# e-Mail : ernest.buffington@gmail.com                                                  #
+# A Very Nice Gold Template Theme                                                       #
+# Copyright © 2021 : Brandon Maintenance Management                                     #
+# e-Mail : brandon.maintenance.management@gmail.com                                     #
 #---------------------------------------------------------------------------------------#
-# CREATION INFO                                                                         #
-# Created On: 03/16/2021 Tuesday 12:54am (v1.0)                                         #
-#                                                                                       #
-# Credit goes to Lonestar On: 1st August, 2019 (v3.0)                                   #
-# HTML5 Theme Code By: Lonestar (Lonestar-Modules.com)                                  #
-#                                                                                       #
-# Credit goes to TheMortal                                                              #
-# For his CSS MENU                                                                      #
-#                                                                                       #
-# Read CHANGELOG File for Updates & Upgrades Info                                       #
-#                                                                                       #
-# Designed By: TheGhost & Sebastian                                                     #
-# Web Site: https://www.86it.us                                                         #
-# Purpose: PHP-Nuke Titanium | Nuke Evolution Xtreme                                    #
+# Designed By: Ernest Buffington                                                        #
+# Web Site: https://www.theghost.86it.us                                                #
+# Purpose: PHP-Nuke Titanium v4.0.2                                                     #
 #---------------------------------------------------------------------------------------#
 # CMS INFO                                                                              #
-# PHP-Nuke Copyright (c) 2006 by Francisco Burzi phpnuke.org                            #
+# PHP-Nuke Copyright (c) 2002    : Francisco Burzi phpnuke.org                          #
 # Nuke Evolution Xtreme (c) 2010 : Enhanced PHP-Nuke Web Portal System                  #
-# PHP-Nuke Titanium (c) 2021     : Enhanced PHP-Nuke Web Portal System                  #
+# PHP-Nuke Titanium (c) 2022     : Enhanced and Advanced PHP-Nuke Web Portal System     #
 #---------------------------------------------------------------------------------------#
 #                                                                                       #
 # Special Honorable Mentions                                                            #
@@ -67,28 +56,27 @@ function OpenTable()
 global $theme_name, $bgcolor4;
 
 echo "\n\n<!-- function_OpenTable START -->\n";
-print '<table class=blockz cellSpacing="0" cellPadding="0" border="0" width="100%">'."\n";
+print '<table class=table100">'."\n";
 
-print '<tr><td width="39" style="background: repeat-x; background-image: url('.HTTPS.'themes/'.$theme_name.'/images/TABLES/invisible_pixel.gif);">'."\n";
+print '<tr><td class="tableSB_width_definedLT">'."\n";
 
-print '<img src="'.HTTPS.'themes/'.$theme_name.'/images/TABLES/top_left_corner.png" border="0" width="39" height="50"></td>'."\n";
+print '<img src="'.HTTPS.'themes/'.$theme_name.'/images/TABLES/top_left_corner.png" width="39px" height="50px"></td>'."\n";
 
-print '<td align="center" style="background: repeat-x; background-image: url('.HTTPS.'themes/'.$theme_name.'/images/TABLES/top_middle_piece.png);"></td>'."\n";
+print '<td class="opentable_width_definedTM"></td>'."\n";
 
-print '<td align="right" width="39">'."\n";
-
-print '<img src="'.HTTPS.'themes/'.$theme_name.'/images/TABLES/top_right_corner_10.png" border="0" width="39" height="50"></td>'."\n";
+print '<td class="tableSB_width_definedLT">'."\n";
+print '<img src="'.HTTPS.'themes/'.$theme_name.'/images/TABLES/top_right_corner_10.png" width="39px" height="50px"></td>'."\n";
 
 print '</tr>'."\n";
 print '<tr><td colSpan="3">'."\n";
-print '<table cellSpacing="0" cellPadding="0" width="100%" border="0">'."\n";
+print '<table class="table100">'."\n";
 print '<tr>'."\n";
 
-print '<td width="39" height="3" background="'.HTTPS.'themes/'.$theme_name.'/images/TABLES/left_side_middle_151515.png">'."\n";
-print '<img src="'.HTTPS.'themes/'.$theme_name.'/images/TABLES/left_side_middle_151515.png" border="0" width="39" height="3"></td>'."\n";
+print '<td class="table1_width_definedLSM">'."\n";
+print '<img src="'.HTTPS.'themes/'.$theme_name.'/images/TABLES/left_side_middle_151515.png" width="39px" height="3px"></td>'."\n";
 
 print '<td width="100%">'."\n";
-print '<table cellSpacing="0" cellPadding="8" width="100%" border="0" style="border-collapse: collapse" bordercolor="#111111">'."\n";
+print '<table class="table100">'."\n";
 print '<tr>'."\n";
 print '<td width="100%" bgcolor="'.$bgcolor4.'">'."\n";
 echo "<!-- function_OpenTable top END -->\n\n\n\n\n";

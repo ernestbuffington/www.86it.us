@@ -72,7 +72,8 @@ static $has_echoed;
 if(isset($has_echoed) && $has_echoed == 1) return; 
 
 # powered by information and credits START
-global $powered_by;
+global $powered_by, $ThemeSel;
+	
 $powered_by = '<font size="3">PHP-Nuke Titanium (US Version) Copyright &copy; 2010 2021<br /> by Ernest Allen Buffington and The 86it Developers Network.<br /> 
  All logos, trademarks and posts in this site are property of their respective owners, all the rest <br />&copy; '.date('l jS \of F Y h:i:s A').' by Brandon Maintenance Management, LLC.<br />
  Powered by PHP-Nuke Titanium v4.0.0b (US Version)<br /><br />
@@ -91,7 +92,7 @@ $powered_by = '<font size="3">PHP-Nuke Titanium (US Version) Copyright &copy; 20
 $footmsg = "<span class=\"footmsg\">\n";
 
 # Google Site Map v1.0 START	    
-$footmsg .= '<font size="5"><strong><a class="greatminds" href="modules.php?name=Google-Site-Map" target="_self"><font color="#4285f4">G</font><font color="#ea4335">o</font><font color="#fbbc05">o</font><font color="#4285f4">g</font><font color="#34a853">l</font><font color="#ea4335">e</font> <font color="#4285f4">S</font><font color="#ea4335">i</font><font color="#fbbc05">t</font><font color="#4285f4">e</font><font color="#ea4335">m</font><font color="#34a853">a</font><font color="#ea4335">p</font></a></strong></font><br />';
+$footmsg .= '<a class="googleminds" href="modules.php?name=Google-Site-Map" target="_self"><span style="color:#4285f4">G</span><span style="color:#ea4335">o</span><span style="color:"#fbbc05">o</span><span style="color:#4285f4">g</span><span style="color:#34a853">l</span><span style="color:#ea4335">e</span> <span style="color:#4285f4">S</span><span style="color:#ea4335">i</span><span style="color:#fbbc05">t</span><span style="color:#4285f4">e</span><span style="color:#ea4335">m</span><span style="color:#34a853">a</span><span style="color:#ea4335">p</span></a><br />';
 # Google Site Map v1.0 END
 
 # footer messages from databae START
@@ -105,7 +106,7 @@ $footmsg .= $foot2."<br/>";
 if($use_cache && $usrclearcache): 
 $footmsg .= "<form method='post' name='clear_cache' action='".$_SERVER['REQUEST_URI']."'>";
 $footmsg .= "<input type='hidden' name='clear_cache' value='1'>";
-$footmsg .= ""._SITECACHED . "</span> <a href=\"javascript:clear_cache.submit()\">" . _UPDATECACHE . "</a>";
+$footmsg .= ""._SITECACHED . "</span> <a class=\"poweredby\" href=\"javascript:clear_cache.submit()\">" . _UPDATECACHE . "</a>";
 $footmsg .= "</form>";
 endif;
 # END user clear cache updated 09/12/2019 Ernest Allen Buffington
@@ -116,25 +117,25 @@ endif;
 # PLAY FAIR AND SUPPORT THE DEVELOPERS, PLEASE!
 global $theme_business, $theme_title, $theme_author, $theme_date, $theme_name, $theme_download_link, $name; 
 if(($name) && $name === 'Forums'):
-$footmsg .= '<br />';
-$footmsg .= 'Forums Powered by <a href="http://dev-phpbb2.86it.us/" target="_tab">phpBB Titanium v2.0.23n</a> | Core &copy; 2001, 2019 phpBB Group<br />';
+$footmsg .= '<a class="poweredby" href="http://www.php-nuke-titanium.86it.us/" target="_blank">Forums Powered by phpBB Titanium v'.PHPBB_TITANIUM.' | Core &copy; 2005, 2022 phpBB Titanium Group</a><br />';
 endif;
+
 $footmsg .= '<a class="tooltip-html copyright" href="'.$theme_download_link.'" data-toggle="modal" data-target="'.$theme_download_link.'" title="'.$theme_title; 
-$footmsg .= '<br/>Designed By '.$theme_author.'<br />Created '.$theme_date.'<br />'.$theme_business.'<br/>All Rights Reserved">'.$theme_title.'</a><br/><br/>';
+$footmsg .= '<br/>Designed By '.$theme_author.'<br />Created '.$theme_date.'<br />'.$theme_business.'<br/>All Rights Reserved">'.$theme_title.'</a><br />';
 # Copyright Information END
 		
 # Network About us START
-$footmsg .= "<font size=\"+1\">";
+$footmsg .= "<span style=\"font-size: 14px\">";
 $footmsg .= "[ "
-         . "<a href=\"".HTTPS."modules.php?name=Network&file=about\">"
+         . "<a class='disclaimer' href=\"".HTTPS."modules.php?name=Network&file=about\">"
          . "About Us</a> ] - [ "
-         . "<a href=\"".HTTPS."modules.php?name=Network&file=disclaimer\">"
+         . "<a class='disclaimer' href=\"".HTTPS."modules.php?name=Network&file=disclaimer\">"
          . "Disclaimer Statement</a> ] - [ "
-         . "<a href=\"".HTTPS."modules.php?name=Network&file=privacy\">"
+         . "<a class='disclaimer' href=\"".HTTPS."modules.php?name=Network&file=privacy\">"
          . "Privacy Statement</a> ] - [ "
-         . "<a href=\"".HTTPS."modules.php?name=Network&file=terms\">"
+         . "<a class='disclaimer' href=\"".HTTPS."modules.php?name=Network&file=terms\">"
          . "Terms of Use</a> ]\n";
-$footmsg .= "</font><br><br>";
+$footmsg .= "</span><br>";
 # Network About us END
 
 # footer message 3 from the database START
@@ -143,16 +144,15 @@ $footmsg .= $foot3."<br/><br/>";
 # footer message 3 from the database END
 
 global $digits_color;
-$total_time = (get_microtime() - $start_time);                                              # I'm lying right here can you figure out how?
-$total_time = '<span class="copyright"> '._PAGEGENERATION."<strong><font color='".$digits_color."'> ".(substr($total_time,0,4)-0.04)."</font></strong> "._SECONDS."";
+$total_time = (get_microtime() - $start_time);                                              
+$total_time = '<span class="copyright"> '._PAGEGENERATION.'<strong><span style="color:'.$digits_color.'"> '.substr($total_time,0,4).'</span></strong> '._SECONDS.'';
         
 if ($start_mem > 0): 
 $total_mem = memory_get_usage()-$start_mem;
-$total_time .= ' | Memory Usage: <strong><font color="'.$digits_color.'">'.(($total_mem >= 1048576) 
-? round((round($total_mem / 1048576 * 100) / 100), 2).'</font></strong> MB<strong><font color="'.$digits_color.'">' : (($total_mem >= 1024) 
-? round((round($total_mem / 1024 * 100) / 100), 2).'</font></strong> KB<strong><font 
-color="'.$digits_color.'">' : $total_mem.'</font></strong> Bytes<strong><font color="'.$digits_color.'">')); 
-$total_time .= '</font></strong>';
+$total_time .= ' | Memory Usage: <strong><span style="color:'.$digits_color.'">'.(($total_mem >= 1048576) 
+? round((round($total_mem / 1048576 * 100) / 100), 2).'</span></strong> MB<strong><span style="color:'.$digits_color.'">' : (($total_mem >= 1024) 
+? round((round($total_mem / 1024 * 100) / 100), 2).'</span></strong> KB<strong><span style="color:'.$digits_color.'">' : $total_mem.'</span></strong> Bytes<strong><span style="color:'.$digits_color.'">')); 
+$total_time .= '</span></strong>';
 endif;
 
 # MariaDB version at bottom of footer START
@@ -161,13 +161,13 @@ $footmsg .= $db->mariadb_version().'<br/>';
 
 # START Queries Count v2.0.1
 if($queries_count):
-$total_time .= ' | DB Queries: <strong><font color="'.$digits_color.'">' . $db->num_queries;
-$total_time .= '</font></strong>';
+$total_time .= ' | DB Queries: <strong><span style="color:'.$digits_color.'">' . $db->num_queries;
+$total_time .= '</span></strong>';
 endif;
 # END Queries Count v2.0.1
 
-$total_time .= ' ';
-$total_time .= '</span>';
+//$total_time .= ' ';
+//$total_time .= '</span>';
 
 # Auto Optimize v1.0.0 START
 if(is_admin()): 
@@ -200,7 +200,7 @@ endif;
     # START Debugger v1.0.0
     if(is_admin() && $debugger->debug && count($debugger->errors) > 0): 
        $footmsg .= "<br /><div align=\"center\"><strong>Debugging:</strong></div>";
-       $footmsg .= "<table border='0' width='80%' align='center'><tr><td>";
+       $footmsg .= "<table style='width: 80%; text-align: center; border-collapse: collapse;'><tr><td>";
        $footmsg .= $debugger->return_errors();
        $footmsg .= "</td></tr></table>";
     endif;
@@ -246,9 +246,9 @@ endif;
 
 echo "\n<!-- START facebook connector -->\n";
 if(defined('facebook')):
-echo '<div id="status">'."\n";
-echo '</div>'."\n";
-echo '<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>'."\n";
+echo '<div id="status">'.PHP_EOL;
+echo '</div>'.PHP_EOL;
+echo '<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>'.PHP_EOL;
 endif;
 echo "<!-- END facebook connector -->\n\n";
 
@@ -287,7 +287,7 @@ $pageURL = "".HTTPS."modules/".$module_name."/copyright.php";
 
 if (defined('MODULE_FILE') && !defined("HOME_FILE") AND file_exists("modules/".$module_name."/copyright.php")) 
 {
-    echo "<script type=\"text/javascript\">\n";
+    echo "<script>\n";
     echo "<!--\n";
     echo "function openwindow(w,h){\n";
     echo "var left = (screen.width/2)-(w/2);\n";

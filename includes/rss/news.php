@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium | Nuke-Evolution Basic : Enhanced and Advanced
  =======================================================================*/
 
 /************************************************************************
@@ -56,7 +56,7 @@ echo "<generator>".$sitename." Evo RSS 2.0 Parser</generator>\n";
 echo "<ttl>60</ttl>\n\n";
 echo "<image>\n";
 echo "<title>".$sitename."</title>\n";
-echo "<url>".$nukeurl."/images/evo/minilogo.gif</url>\n";
+echo "<url>".$nukeurl."/images/titanium/button.png</url>\n";
 echo "<link>".$nukeurl."</link>\n";
 echo "<width>94</width>\n";
 echo "<height>15</height>\n";
