@@ -1,14 +1,6 @@
-# Security Policy
+# PHP-AN602 Security Policy
 
-## Supported Versions
+Please use the [security issue form](https://www.an602.86it.us/security) to report to us any security issue you find in PHP-AN602.
+DO NOT use the issue tracker or discuss it in the public forum as it will cause more damage than help.
 
-These are the versions currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 4.0.2   | :white_check_mark: |
-| < 4.0.2 | :x:                |
-
-## Reporting 
-Use the following link to make reports...<br/>
-(https://www.php-nuke-titanium.86it.us/modules.php?name=Network_Projects&op=ReportSubmit&project_id=76)
+Please note that as a non-commercial OpenSource project we are not able to pay bounties at the moment.

@@ -1,4 +1,0 @@
-&home=index.php
-&downloads=modules.php?name=Groups
-&forums=modules.php?name=Forums
-&account=modules.php?name=Top

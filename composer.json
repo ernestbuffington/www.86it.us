@@ -1,5 +1,123 @@
 {
+    "name": "php-an602/php-an602",
+    "description": "PHP-AN602 - An Enhanced and Advanced CMS",
+    "keywords": ["an602", "php-an602", "yii2", "framework"],
+    "homepage": "https://www.metamz.network/",
+    "type": "project",
+    "license": "AGPL-3.0-only",
+    "support": {
+        "issues": "https://github.com/php-an602/php-an602/issues?state=open",
+        "forum": "https://community.metamz.network",
+        "wiki": "https://community.metamz.network",
+        "source": "https://github.com/php-an602/php-an602"
+    },
+    "minimum-stability": "dev",
     "require": {
-        "mobiledetect/mobiledetectlib": "^2.8"
+        "php": ">=7.4",
+        "ext-exif": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-zip": "*",
+        "cebe/markdown": "^1.2.1",
+        "codeception/phpunit-wrapper": ">6.0.15 <6.1.0 | ^6.6.1 | ^7.7.1 | ^8.1.1 | ^9.0",
+        "codeception/stub": "^2.0 | ^3.0",
+        "firebase/php-jwt": "^6.0",
+        "jbroadway/urlify": "^1.0",
+        "kartik-v/yii2-widgets": "^3.4",
+        "laminas/laminas-escaper": "^2.6",
+        "laminas/laminas-http": "^2.14",
+        "laminas/laminas-ldap": "^2.10",
+        "laminas/laminas-zendframework-bridge": "^1.4",
+        "matthewbdaly/zendsearch": "^0.0.3",
+        "mistic100/randomcolor": "^1.0",
+        "php-an602/npm-asset": "*",
+        "phpoffice/phpspreadsheet": "^1.0",
+        "raoul2000/yii2-jcrop-widget": "^1.0",
+        "symfony/amazon-mailer": "^5.4",
+        "symfony/google-mailer": "^5.4",
+        "symfony/mailchimp-mailer": "^5.4",
+        "symfony/mailer": "^5.4",
+        "symfony/mailgun-mailer": "^5.4",
+        "symfony/mailjet-mailer": "^5.4",
+        "symfony/oh-my-smtp-mailer": "^5.4",
+        "symfony/postmark-mailer": "^5.4",
+        "symfony/sendgrid-mailer": "^5.4",
+        "symfony/sendinblue-mailer": "^5.4",
+        "twig/twig": "^3.4.1",
+        "web-token/jwt-checker": ">=1.0 <3.0",
+        "web-token/jwt-signature": ">=1.0 <3.0",
+        "web-token/jwt-signature-algorithm-ecdsa": ">=1.0 <3.0",
+        "web-token/jwt-signature-algorithm-hmac": ">=1.0 <3.0",
+        "web-token/jwt-signature-algorithm-rsa": ">=1.0 <3.0",
+        "xj/yii2-jplayer-widget": "^2.7",
+        "yiisoft/yii2": "dev-master",
+        "yiisoft/yii2-authclient": "^2.2.0",
+        "yiisoft/yii2-bootstrap": "^2.0.0",
+        "yiisoft/yii2-httpclient": "^2.0.0",
+        "yiisoft/yii2-imagine": "^2.3.0",
+        "yiisoft/yii2-jui": "^2.0.0",
+        "yiisoft/yii2-queue": "^2.3.0",
+        "yiisoft/yii2-redis": "^2.0.0",
+        "yiisoft/yii2-symfonymailer": "^2.0"
+    },
+    "replace": {
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "codeception/codeception": "^4.0",
+        "codeception/module-asserts": "^1.0",
+        "codeception/module-filesystem": "^1.0",
+        "codeception/module-rest": "^1.2",
+        "codeception/module-webdriver": "^1.1",
+        "codeception/module-yii2": "^1.0",
+        "codeception/specify": "^1.0",
+        "codeception/verify": "~0.5.0 || ^1.1.0",
+        "phpcompatibility/php-compatibility": "^9.0",
+        "symfony/browser-kit": ">=2.7 <=4.2.4",
+        "yiisoft/yii2-debug": "^2.1.0",
+        "yiisoft/yii2-faker": "^2.0.0",
+        "yiisoft/yii2-gii": "^2.2.2"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "config": {
+        "process-timeout": 1800,
+        "vendor-dir": "protected/vendor",
+        "sort-packages": true,
+        "fxp-asset": {
+            "enabled": false
+        },
+        "platform-check": false,
+        "platform": {
+            "php": "7.4"
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "protected/runtime": "0777",
+                    "assets": "0777",
+                    "protected/yii": "0755",
+                    "protected/modules": "0755"
+                }
+            ],
+            "generateCookieValidationKey": [
+                "protected/config/web.php"
+            ]
+        }
     }
 }
