@@ -9,7 +9,7 @@ return [
     'Done' => 'Hotovo',
     'Error' => 'Chyba',
     'Flush entries' => 'Smazat položky',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 je momentálně ve vývojářském režimu (debug mode). Pokud jde o produkční prostředí, nezapomeňte jej vypnout!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 je momentálně ve vývojářském režimu (debug mode). Pokud jde o produkční prostředí, nezapomeňte jej vypnout!',
     'Last run (daily):' => 'Poslední spuštění (daily):',
     'Last run (hourly):' => 'Poslední spuštění (hourly):',
     'Licences' => 'Licence',

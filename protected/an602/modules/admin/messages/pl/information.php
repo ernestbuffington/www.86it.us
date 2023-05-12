@@ -21,7 +21,7 @@ return [
     'Dynamic Config' => 'Ustawienia dynamiczne',
     'Error' => 'Błąd',
     'Flush entries' => 'Wyczyść wpisy',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 jest w trybie debugowania. Wyłącz go gdy udostępnisz stronę użytkownikom!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 jest w trybie debugowania. Wyłącz go gdy udostępnisz stronę użytkownikom!',
     'ICU Data Version ({version})' => 'Wersja Danych ICU ({version})',
     'ICU Data {icuMinVersion} or higher is required' => 'Wersja Danych ICU  {icuMinVersion} lub wyższa jest wymagana',
     'ICU Version ({version})' => 'Wersja ICU  ({version})',

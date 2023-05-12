@@ -16,7 +16,7 @@ return [
     'Driver' => 'Driver',
     'Error' => 'Greška',
     'Flush entries' => 'Ispraznite unose',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 je trenutačno u načinu otklanjanja pogrešaka. Onemogućite ga prilikom produkcije!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 je trenutačno u načinu otklanjanja pogrešaka. Onemogućite ga prilikom produkcije!',
     'Info' => 'Info',
     'Last run (daily):' => 'Zadnji put pokrenuto (daily):',
     'Last run (hourly):' => 'Zadnji put pokrenuto (hourly):',

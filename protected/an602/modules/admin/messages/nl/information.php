@@ -24,7 +24,7 @@ return array (
   'Flush entries' => 'Flush berichten',
   'an602' => 'an602',
   'an602 Documentation' => 'an602 documentatie',
-  'an602 is currently in debug mode. Disable it when running on production!' => 'an602 bevindt zich momenteel in de foutopsporingsmodus. Schakel dit uit wanneer u in productie draait!',
+  'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 bevindt zich momenteel in de foutopsporingsmodus. Schakel dit uit wanneer u in productie draait!',
   'ICU Data Version ({version})' => 'ICU-gegevensversie ({version})',
   'ICU Data {icuMinVersion} or higher is required' => 'ICU-gegevensversie {icuMinVersion} of hoger is vereist',
   'ICU Version ({version})' => 'ICU-versie ({version})',

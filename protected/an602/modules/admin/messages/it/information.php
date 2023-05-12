@@ -23,7 +23,7 @@ return [
     'Error' => 'Errore',
     'Flush entries' => 'Pulisci log',
     'an602' => 'an602',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 è attualmente in modalità debug. Disabilitala nel momento in cui sarà in modalità produzione!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 è attualmente in modalità debug. Disabilitala nel momento in cui sarà in modalità produzione!',
     'ICU Data Version ({version})' => 'Versione dati ICU ({version}). (International Components for Unicode)',
     'ICU Data {icuMinVersion} or higher is required' => 'E\' richiesta una versione dati ICU {icuMinVersion} o successiva.',
     'ICU Version ({version})' => 'Versione ICU ({version})',

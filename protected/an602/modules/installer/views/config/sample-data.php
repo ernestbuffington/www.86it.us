@@ -14,7 +14,7 @@ use yii\bootstrap\Html;
 
     <div class="panel-body">
 
-        <p><?php echo Yii::t('InstallerModule.base', 'To avoid a blank dashboard after your initial login, an602 can install example contents for you. Those will give you a nice general view of how an602 works. You can always delete the individual contents.'); ?></p>
+        <p><?php echo Yii::t('InstallerModule.base', 'To avoid a blank dashboard after your initial login, PHP-AN602 can install example contents for you. Those will give you a nice general view of how PHP-AN602 works. You can always delete the individual contents.'); ?></p>
         <br>
 
         <?php $form = ActiveForm::begin(); ?>

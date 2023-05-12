@@ -23,7 +23,7 @@ return [
     'Error' => 'Erro',
     'Flush entries' => 'Flush entradas',
     'an602' => 'an602',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 está em modo debug. Desabilite isso quando no mode de produção!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 está em modo debug. Desabilite isso quando no mode de produção!',
     'ICU Data Version ({version})' => 'Versão dos dados da ICU ({version})',
     'ICU Data {icuMinVersion} or higher is required' => 'Dados ICU {icuMinVersion} ou superior são necessários',
     'ICU Version ({version})' => 'Versão de ICU ({version})',

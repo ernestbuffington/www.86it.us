@@ -21,7 +21,7 @@ return [
     'Dynamic Config' => 'Dinamik Yapılandırma',
     'Error' => 'Hata',
     'Flush entries' => 'Tüm girdileri sil',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 şu anda hata ayıklama modunda. İşlem yaparken devre dışı bırakın!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 şu anda hata ayıklama modunda. İşlem yaparken devre dışı bırakın!',
     'Info' => 'Bilgi',
     'Install {phpExtension} Extension' => '{phpExtension} Uzantısını yükleyin',
     'Install {phpExtension} Extension for APC Caching' => 'APC Caching için {phpExtension} uzantısını yükleyin',

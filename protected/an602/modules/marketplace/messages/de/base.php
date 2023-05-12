@@ -38,7 +38,7 @@ The license was successfully removed!
   'Categories' => 'Kategorien',
   'Changelog' => 'Änderungsprotokoll',
   'Community' => 'Community',
-  'Could not connect to an602 API!
+  'Could not connect to the PHP-AN602 API!
 ' => 'Konnte keine Verbindung zur an602 API herstellen!',
   'Could not connect to licence server!' => 'Verbindung zu Lizenzserver ist nicht möglich!',
   'Could not extract module!' => 'Konnte Modul nicht entpacken!',

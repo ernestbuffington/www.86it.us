@@ -52,7 +52,7 @@ The license was successfully removed!
     'Categories' => '',
     'Changelog' => '',
     'Community' => '',
-    'Could not connect to an602 API!
+    'Could not connect to the PHP-AN602 API!
 ' => '',
     'Could not connect to licence server!' => '',
     'Could not extract module!' => '',

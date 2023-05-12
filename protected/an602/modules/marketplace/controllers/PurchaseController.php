@@ -51,7 +51,7 @@ class PurchaseController extends Controller
             $result = an602API::request('v1/modules/registerPaid', ['licenceKey' => $licenceKey]);
             if (!isset($result['status'])) {
                 $hasError = true;
-                $message = 'Could not connect to an602 API!';
+                $message = 'Could not connect to the PHP-AN602 API!';
             } elseif ($result['status'] == 'ok' || $result['status'] == 'created') {
                 $message = 'Module licence added!';
                 $licenceKey = '';

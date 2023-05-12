@@ -21,7 +21,7 @@ return [
     'Dynamic Config' => 'Dynamisk konfiguration',
     'Error' => 'Error',
     'Flush entries' => 'Flush entries',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 är för närvarande i felsökningsläge. Inaktivera det när du kör i produktion!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 är för närvarande i felsökningsläge. Inaktivera det när du kör i produktion!',
     'ICU Data Version ({version})' => 'ICU Dataversion ({version})',
     'ICU Data {icuMinVersion} or higher is required' => 'ICU-data {icuMinVersion} eller högre krävs',
     'ICU Version ({version})' => 'ICU-version ({version})',

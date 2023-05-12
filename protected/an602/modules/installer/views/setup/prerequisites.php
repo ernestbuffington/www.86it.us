@@ -10,7 +10,7 @@ use an602\modules\admin\widgets\PrerequisitesList;
     </div>
 
     <div class="panel-body">
-        <p><?php echo Yii::t('InstallerModule.base', 'This overview shows all system requirements of an602.'); ?></p>
+        <p><?php echo Yii::t('InstallerModule.base', 'This overview shows all of the system requirements for PHP-AN602.'); ?></p>
 
         <hr/>
         <?= PrerequisitesList::widget(); ?>

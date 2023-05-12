@@ -476,7 +476,7 @@ class SelfTest
                     $checks[] = [
                         'title' => $title,
                         'state' => 'WARNING',
-                        'hint' => Html::a(Yii::t('AdminModule.information', 'an602 Documentation'), 'https://docs.an602.org/docs/admin/installation#pretty-urls'),
+                        'hint' => Html::a(Yii::t('AdminModule.information', 'an602 Documentation'), 'https://docs.an602.86it.us/docs/admin/installation#pretty-urls'),
                     ];
                 }
             }

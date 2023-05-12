@@ -264,7 +264,7 @@ class MarketplaceController extends Controller
         $result = an602API::request('v1/modules/registerPaid', ['licenceKey' => $licenceKey]);
 
         if (!isset($result['status'])) {
-            $this->stdout(Yii::t('MarketplaceModule.base', 'Could not connect to an602 API!' . "\n"), Console::FG_RED, Console::BOLD);
+            $this->stdout(Yii::t('MarketplaceModule.base', 'Could not connect to the PHP-AN602 API!' . "\n"), Console::FG_RED, Console::BOLD);
             return 1;
         }
 

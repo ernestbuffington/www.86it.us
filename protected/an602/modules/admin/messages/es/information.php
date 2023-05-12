@@ -24,7 +24,7 @@ return array (
   'Flush entries' => 'Limpiar entradas',
   'an602' => 'an602',
   'an602 Documentation' => 'Documentación de an602',
-  'an602 is currently in debug mode. Disable it when running on production!' => 'an602 está actualmente en modo de depuración. ¡Deshabilitarlo cuando se ejecute en la producción!',
+  'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 está actualmente en modo de depuración. ¡Deshabilitarlo cuando se ejecute en la producción!',
   'ICU Data Version ({version})' => 'Versión de datos ICU ({version})',
   'ICU Data {icuMinVersion} or higher is required' => 'Se requiere una versión de datos ICU {icuMinVersion} o superior',
   'ICU Version ({version})' => 'Versión ICU ({version})',

@@ -15,7 +15,7 @@ return [
     'Driver' => 'Ohelmisto',
     'Error' => 'Virhe',
     'Flush entries' => 'Poista kohteet',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'Järjestelmä on tällä hetkellä debug-tilassa. Poista se ennen käyttöä!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'Järjestelmä on tällä hetkellä debug-tilassa. Poista se ennen käyttöä!',
     'Info' => 'Info',
     'Last run (daily):' => 'Viimeisin tehty tehtävä (Päivä):',
     'Last run (hourly):' => 'Viimeisin tehty tehtävä (Tunti):',

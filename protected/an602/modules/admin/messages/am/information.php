@@ -14,7 +14,7 @@ return [
     'Driver' => 'አንቀሳቃሽ',
     'Error' => 'ስህተት',
     'Flush entries' => 'የገቡ ማስወገጃ ',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 በአሁኑ ጊዜ በእርማት ሞድ ላይ ይገኛል። ወደስራ ሂደት ሲገቡ እንዳይሰራ ያድርጉት።',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 በአሁኑ ጊዜ በእርማት ሞድ ላይ ይገኛል። ወደስራ ሂደት ሲገቡ እንዳይሰራ ያድርጉት።',
     'Last run (daily):' => 'የመጨረሻ እንቅስቃሴ (ዕለታዊ)',
     'Last run (hourly):' => 'የመጨረሻ እንቅስቃሴ (በየሰዓቱ)',
     'Licences' => 'ፈቃዶች',

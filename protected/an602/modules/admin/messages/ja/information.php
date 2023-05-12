@@ -24,7 +24,7 @@ return array (
   'Flush entries' => 'エントリをフラッシュする',
   'an602' => 'an602',
   'an602 Documentation' => 'an602 ドキュメント',
-  'an602 is currently in debug mode. Disable it when running on production!' => 'an602は現在デバッグモードです。本番環境で実行する場合は無効にすべきです。',
+  'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602は現在デバッグモードです。本番環境で実行する場合は無効にすべきです。',
   'ICU Data Version ({version})' => 'ICUデータバージョン（{version}）',
   'ICU Data {icuMinVersion} or higher is required' => 'ICUデータ{icuMinVersion}以上が必要です',
   'ICU Version ({version})' => 'ICUバージョン（{version}）',

@@ -38,7 +38,7 @@ The license was successfully removed!
   'Categories' => 'Categorias',
   'Changelog' => 'Log de alterações',
   'Community' => 'Comunidade',
-  'Could not connect to an602 API!
+  'Could not connect to the PHP-AN602 API!
 ' => 'Não foi possível conectar à API an602!',
   'Could not connect to licence server!' => 'Comprar (% price%)',
   'Could not extract module!' => 'Não foi possível extrair módulo!',
@@ -47,7 +47,7 @@ The license was successfully removed!
   'Download of module failed!' => 'Download do módulo falhou!',
   'Edit licence' => 'Editar licença',
   'Featured' => 'Destaque',
-  'If this Module is additionally marked as <strong>"Community"</strong> it is neither tested nor monitored by the an602 project team.' => 'Se este Módulo for adicionalmente marcado como <strong> "Comunidade" </strong>, ele não será testado nem monitorado pela equipe do projeto an602.',
+  'If this Module is additionally marked as <strong>"Community"</strong> it is neither tested nor monitored by the an602 project team.' => 'Se este Módulo for adicionalmente marcado como <strong> "Comunidade" </strong>, ele não será testado nem monitorado pela equipe do projeto PHP-AN602.',
   'Install' => 'Instalar',
   'Installed' => 'Instalado',
   'Installing module...' => 'Instalando módulo...',
@@ -88,7 +88,7 @@ The license was successfully removed!
   'Save and update' => 'Salvar e atualizar',
   'Stop updating' => 'Parar de atualizar',
   'Tags' => 'Tags',
-  'The an602 project does not guarantee the functionality, quality or the continuous development of this Module.' => 'O projeto an602 não garante a funcionalidade, qualidade ou o desenvolvimento contínuo deste Módulo.',
+  'The an602 project does not guarantee the functionality, quality or the continuous development of this Module.' => 'O projeto PHP-AN602 não garante a funcionalidade, qualidade ou o desenvolvimento contínuo deste Módulo.',
   'Third-party' => 'Terceiro',
   'Third-party Modules are not covered by Professional Edition agreements.' => 'Módulos de terceiros não são cobertos por contratos da Edição Profissional',
   'Third-party disclaimer' => 'Aviso de Terceiro',

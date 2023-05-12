@@ -15,7 +15,7 @@ return [
     'Driver' => 'Драйвер',
     'Error' => 'Ошибка',
     'Flush entries' => 'Очистить журнал',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 в данный момент находится в режиме отладки. Отключите его при работе на действующем проекте!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 в данный момент находится в режиме отладки. Отключите его при работе на действующем проекте!',
     'Info' => 'Информация',
     'Last run (daily):' => 'Последний запуск (ежедневный):',
     'Last run (hourly):' => 'Последный запуск (ежечасный):',

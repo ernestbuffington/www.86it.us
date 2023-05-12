@@ -31,7 +31,7 @@ use an602\modules\admin\widgets\IncompleteSetupWarning;
         </ul>
         <br />
         <?php if (Yii::$app->user->isAdmin()): ?>
-            <?= Html::a(Yii::t('AdminModule.base', 'Open documentation'), 'https://docs.an602.org/docs/admin/cron-jobs', ['class' => 'btn btn-danger', 'target' => '_blank']); ?>
+            <?= Html::a(Yii::t('AdminModule.base', 'Open documentation'), 'https://docs.an602.86it.us/docs/admin/cron-jobs', ['class' => 'btn btn-danger', 'target' => '_blank']); ?>
         <?php endif; ?>
     </div>
 </div>

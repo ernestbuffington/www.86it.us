@@ -8,7 +8,7 @@ return [
     'Done' => 'Færdig',
     'Error' => 'Fejl',
     'Flush entries' => 'Fjern alle opslag',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 er på nuværende tidspunkt i fejlsøgnings tilstand. Deaktiver dette når du skal køre normalt.',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 er på nuværende tidspunkt i fejlsøgnings tilstand. Deaktiver dette når du skal køre normalt.',
     'Last run (daily):' => 'Seneste kørsel (Daglig):',
     'Last run (hourly):' => 'Seneste kørsel (time):',
     'Licences' => 'Licenser',

@@ -73,7 +73,7 @@ The license was successfully removed!
     'Categories' => '',
     'Changelog' => '',
     'Community' => '',
-    'Could not connect to an602 API!
+    'Could not connect to the PHP-AN602 API!
 ' => '',
     'Featured' => '',
     'If this Module is additionally marked as <strong>"Community"</strong> it is neither tested nor monitored by the an602 project team.' => '',

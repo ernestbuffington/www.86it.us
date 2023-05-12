@@ -14,7 +14,7 @@ use yii\helpers\Json;
 use an602\libs\CURLHelper;
 
 /**
- * an602API provides access to an602.com for fetching available modules or latest version.
+ * an602API provides access to PHP-AN602.com for fetching available modules or latest version.
  *
  * @author luke
  */

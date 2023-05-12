@@ -82,11 +82,11 @@ class DatabaseForm extends \yii\base\Model
     public function attributeHints()
     {
         return [
-            'hostname' => Yii::t('InstallerModule.base', 'Hostname of your MySQL Database Server (e.g. localhost if MySQL is running on the same machine)'),
+            'hostname' => Yii::t('InstallerModule.base', 'Hostname of your MySQLi Database Server (e.g. localhost if MySQLi is running on the same machine)'),
             'port' => Yii::t('InstallerModule.base', 'Optional: Port of your MySQL Database Server. Leave empty to use default port.'),
-            'username' => Yii::t('InstallerModule.base', 'Your MySQL username'),
-            'password' => Yii::t('InstallerModule.base', 'Your MySQL password.'),
-            'database' => Yii::t('InstallerModule.base', 'The name of the database you want to run an602 in.'),
+            'username' => Yii::t('InstallerModule.base', 'Your MySQLi username'),
+            'password' => Yii::t('InstallerModule.base', 'Your MySQLi password.'),
+            'database' => Yii::t('InstallerModule.base', 'The name of the database that you want to run PHP-AN602 in.'),
         ];
     }
 

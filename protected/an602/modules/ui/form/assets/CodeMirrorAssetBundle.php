@@ -16,7 +16,7 @@ class CodeMirrorAssetBundle extends AssetBundle
     /**
      * v1.5 compatibility defer script loading
      *
-     * Migrate to an602 AssetBundle once minVersion is >=1.5
+     * Migrate to PHP-AN602 AssetBundle once minVersion is >=1.5
      *
      * @var bool
      */

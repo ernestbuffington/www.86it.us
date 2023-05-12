@@ -15,7 +15,7 @@ return [
     'Driver' => 'Driver',
     'Error' => 'Feil',
     'Flush entries' => 'Tøm oppføringer',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 er for tiden i feilsøkingsmodus. Deaktiver den når du kjører på produksjon.',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 er for tiden i feilsøkingsmodus. Deaktiver den når du kjører på produksjon.',
     'Last run (daily):' => 'Siste kjøring (daglig):',
     'Last run (hourly):' => 'Siste kjøring (per time):',
     'Licences' => 'Lisens',

@@ -24,7 +24,7 @@ return array (
   'Flush entries' => 'Bejegyzések ürítése',
   'an602' => 'an602',
   'an602 Documentation' => 'an602 Dokumentáció',
-  'an602 is currently in debug mode. Disable it when running on production!' => 'A an602 jelenleg hibakeresési módban fut. Tiltsd le ezt a módot, amikor már nyilvános a program.',
+  'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'A an602 jelenleg hibakeresési módban fut. Tiltsd le ezt a módot, amikor már nyilvános a program.',
   'ICU Data Version ({version})' => 'ICU Data verzió ({version})',
   'ICU Data {icuMinVersion} or higher is required' => 'ICU Data {icuMinVersion} vagy magasabb verzió szükséges',
   'ICU Version ({version})' => 'ICU verzió ({version})',

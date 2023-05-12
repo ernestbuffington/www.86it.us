@@ -15,7 +15,7 @@ return [
     'Driver' => 'Driver',
     'Error' => 'Lỗi',
     'Flush entries' => 'Flush entries',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 is currently in debug mode. Disable it when running on production!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'PHP-AN602 is currently in debug mode. Disable it when running on production!',
     'Last run (daily):' => 'Last run (daily):',
     'Last run (hourly):' => 'Last run (hourly):',
     'Licences' => 'Licences',

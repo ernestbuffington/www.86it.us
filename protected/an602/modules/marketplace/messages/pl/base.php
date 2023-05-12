@@ -33,7 +33,7 @@ The license was successfully removed!
     'All {moduleId} module content will be deleted. Continue?' => 'Całą zawartość modułu {moduleId} zostanie usunięta. Kontynuować?',
     'Buy' => 'Kup',
     'Buy (%price%)' => 'Kup (%price%)',
-    'Could not connect to an602 API!
+    'Could not connect to the PHP-AN602 API!
 ' => 'Nie można połączyć z API an602!',
     'Could not connect to licence server!' => 'Nie można połączyć z serwerem licencyjnym!',
     'Could not extract module!' => 'Nie można wypakować modułu!',

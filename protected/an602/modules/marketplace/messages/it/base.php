@@ -38,7 +38,7 @@ The license was successfully removed!
   'Categories' => 'Categorie',
   'Changelog' => 'Registro delle modifiche',
   'Community' => 'Comunità',
-  'Could not connect to an602 API!
+  'Could not connect to the PHP-AN602 API!
 ' => 'Impossibile connettersi all\'API an602!',
   'Could not connect to licence server!' => 'Impossibile connettersi al server delle licenze!',
   'Could not extract module!' => 'Non posso estrarre il modulo!',
@@ -47,7 +47,7 @@ The license was successfully removed!
   'Download of module failed!' => 'Scaricamento del modulo fallito!',
   'Edit licence' => 'Modifica licenza',
   'Featured' => 'In primo piano',
-  'If this Module is additionally marked as <strong>"Community"</strong> it is neither tested nor monitored by the an602 project team.' => 'Se questo modulo è inoltre contrassegnato come <strong> "Community" </strong> non viene né testato né monitorato dal team del progetto an602.',
+  'If this Module is additionally marked as <strong>"Community"</strong> it is neither tested nor monitored by the an602 project team.' => 'Se questo modulo è inoltre contrassegnato come <strong> "Community" </strong> non viene né testato né monitorato dal team del progetto PHP-AN602.',
   'Install' => 'Installa',
   'Installed' => 'Installato',
   'Installing module...' => 'Sto installando il modulo...',
@@ -88,7 +88,7 @@ The license was successfully removed!
   'Save and update' => 'Salva e aggiorna',
   'Stop updating' => 'Smetti di aggiornare',
   'Tags' => 'Tag',
-  'The an602 project does not guarantee the functionality, quality or the continuous development of this Module.' => 'Il progetto an602 non garantisce la funzionalità, la qualità o lo sviluppo continuo di questo modulo.',
+  'The an602 project does not guarantee the functionality, quality or the continuous development of this Module.' => 'Il progetto PHP-AN602 non garantisce la funzionalità, la qualità o lo sviluppo continuo di questo modulo.',
   'Third-party' => 'Terze parti',
   'Third-party Modules are not covered by Professional Edition agreements.' => 'I moduli di terze parti non sono coperti dagli accordi della Professional Edition.',
   'Third-party disclaimer' => 'Liberatoria terze parti',

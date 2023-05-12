@@ -16,7 +16,7 @@ return [
     'Driver' => 'คนขับ',
     'Error' => 'ผิดพลาด',
     'Flush entries' => 'รายการล้าง',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'ขณะนี้ an602 อยู่ในโหมดแก้ไขข้อบกพร่อง ปิดการใช้งานเมื่อใช้งานจริง!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'ขณะนี้ an602 อยู่ในโหมดแก้ไขข้อบกพร่อง ปิดการใช้งานเมื่อใช้งานจริง!',
     'Info' => 'ข้อมูล',
     'Last run (daily):' => 'รันล่าสุด (รายวัน):',
     'Last run (hourly):' => 'เรียกใช้ล่าสุด (รายชั่วโมง):',

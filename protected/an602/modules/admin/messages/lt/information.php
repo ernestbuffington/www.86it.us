@@ -35,7 +35,7 @@ return [
     'Dynamic Config' => '',
     'an602' => '',
     'an602 Documentation' => '',
-    'an602 is currently in debug mode. Disable it when running on production!' => '',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => '',
     'ICU Data Version ({version})' => '',
     'ICU Data {icuMinVersion} or higher is required' => '',
     'ICU Version ({version})' => '',

@@ -16,7 +16,7 @@ return [
     'Driver' => 'Οδηγός',
     'Error' => 'Σφάλμα',
     'Flush entries' => 'Ξέπλυμα καταχωρήσεων',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'Το an602 βρίσκεται αυτήν τη στιγμή σε λειτουργία εντοπισμού σφαλμάτων. Απενεργοποιήστε το αν τρέχετε σε παραγωγή!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'Το an602 βρίσκεται αυτήν τη στιγμή σε λειτουργία εντοπισμού σφαλμάτων. Απενεργοποιήστε το αν τρέχετε σε παραγωγή!',
     'Info' => 'Πληροφορίες',
     'Last run (daily):' => 'Τελευταία εκτέλεση (ημερήσια):',
     'Last run (hourly):' => 'Τελευταία εκτέλεση (ωριαία):',

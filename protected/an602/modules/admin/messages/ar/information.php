@@ -15,7 +15,7 @@ return [
     'Driver' => 'سائق',
     'Error' => 'خطأ',
     'Flush entries' => '@Flush entries@',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 حاليًا في وضع التصحيح. قم بتعطيله عند تشغيل الإنتاج!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 حاليًا في وضع التصحيح. قم بتعطيله عند تشغيل الإنتاج!',
     'Info' => 'معلومات',
     'Last run (daily):' => 'الجولة الأخيرة (يوميًا):',
     'Last run (hourly):' => 'الجولة الأخيرة (كل ساعة):',

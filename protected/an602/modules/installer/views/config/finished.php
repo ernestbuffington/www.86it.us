@@ -9,7 +9,7 @@ use yii\helpers\Html;
         <br>
         <p class="lead"><?= Yii::t('InstallerModule.base', "<strong>Congratulations</strong>. You're done."); ?></p>
 
-        <p><?= Yii::t('InstallerModule.base', "The installation completed successfully! Have fun with your new social network."); ?></p>
+        <p><?= Yii::t('InstallerModule.base', "The installation has completed successfully! Enjoy your new 86it network node."); ?></p>
 
         <div class="text-center">
             <br>

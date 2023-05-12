@@ -9,7 +9,7 @@ return [
     'Done' => '执行',
     'Error' => '错误',
     'Flush entries' => '清除条目',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602目前在调试模式。请在生产环境时禁用它！',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602目前在调试模式。请在生产环境时禁用它！',
     'Last run (daily):' => '最后运行（天）',
     'Last run (hourly):' => '最后运行（小时）',
     'Licences' => '许可证',

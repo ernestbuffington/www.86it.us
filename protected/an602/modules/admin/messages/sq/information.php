@@ -14,7 +14,7 @@ return [
     'Driver' => 'Driver',
     'Error' => 'Gabim',
     'Flush entries' => 'Hyrjet e ndezura',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 është momentalisht në mundësinë e korigjimit (debug mode). Çaktivizojeni kur uebsajti futet në funksion!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 është momentalisht në mundësinë e korigjimit (debug mode). Çaktivizojeni kur uebsajti futet në funksion!',
     'Info' => 'Informata',
     'Last run (daily):' => 'Aktivizimi i fundit (ditorë):',
     'Last run (hourly):' => 'Aktivizimi i fundit (çdo orë)',

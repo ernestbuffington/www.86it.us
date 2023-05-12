@@ -12,7 +12,7 @@ return [
     'Driver' => 'راه‌انداز',
     'Error' => 'خطا',
     'Flush entries' => 'تخلیه‌ی مطالب',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'هام‌هاب هم اکنون در حالت خطایابی (debug) است.',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'هام‌هاب هم اکنون در حالت خطایابی (debug) است.',
     'Last run (daily):' => 'آخرین اجرا (روزانه):',
     'Last run (hourly):' => 'آخرین اجرا (ساعت):',
     'Licences' => 'گواهینامه‌ها',

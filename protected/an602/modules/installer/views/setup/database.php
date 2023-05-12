@@ -14,7 +14,7 @@ use an602\modules\ui\form\widgets\ActiveForm;
     </div>
 
     <div class="panel-body">
-        <p><?= Yii::t('InstallerModule.base', 'Below you have to enter your database connection details. If you’re not sure about these, please contact your system administrator.'); ?></p>
+        <p><?= Yii::t('InstallerModule.base', 'Below you must enter your database connection details. If you’re not sure about these, please contact your system administrator.'); ?></p>
 
         <?php $form = ActiveForm::begin(); ?>
 

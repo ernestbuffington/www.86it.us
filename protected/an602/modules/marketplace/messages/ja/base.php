@@ -38,7 +38,7 @@ The license was successfully removed!
   'Categories' => 'カテゴリ',
   'Changelog' => '変更ログ',
   'Community' => 'コミュニティ',
-  'Could not connect to an602 API!
+  'Could not connect to the PHP-AN602 API!
 ' => 'an602 API に接続できませんでした',
   'Could not connect to licence server!' => 'ライセンス サーバーに接続できませんでした',
   'Could not extract module!' => 'モジュールを抽出できませんでした！',

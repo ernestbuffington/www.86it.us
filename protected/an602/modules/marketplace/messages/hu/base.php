@@ -38,7 +38,7 @@ The license was successfully removed!
   'Categories' => 'Kategóriák',
   'Changelog' => 'Változási napló',
   'Community' => 'Közösség',
-  'Could not connect to an602 API!
+  'Could not connect to the PHP-AN602 API!
 ' => 'Nem tudott csatlakozni a an602 API-hoz!',
   'Could not connect to licence server!' => 'Nem sikerült csatlakozni a licenckiszolgálóhoz!',
   'Could not extract module!' => 'Modul kibontása sikertelen!',

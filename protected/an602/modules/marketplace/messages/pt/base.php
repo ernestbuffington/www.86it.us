@@ -38,7 +38,7 @@ The license was successfully removed!
   'Categories' => 'Categorias',
   'Changelog' => 'Relatório de Alterações',
   'Community' => 'Comunidade',
-  'Could not connect to an602 API!
+  'Could not connect to the PHP-AN602 API!
 ' => 'Não foi possível conectar ao API do an602!',
   'Could not connect to licence server!' => 'Não foi posssível conectar ao servidor de licenças!',
   'Could not extract module!' => 'Não foi possível extrair o módulo!',
@@ -47,7 +47,7 @@ The license was successfully removed!
   'Download of module failed!' => 'O descarregamento do módulo falhou!',
   'Edit licence' => 'Editar licença',
   'Featured' => 'Apresentado',
-  'If this Module is additionally marked as <strong>"Community"</strong> it is neither tested nor monitored by the an602 project team.' => 'Se o módulo está marcado como <strong>"Community"</strong> este não é testado nem monitorizado pela equipa do projeto an602.',
+  'If this Module is additionally marked as <strong>"Community"</strong> it is neither tested nor monitored by the an602 project team.' => 'Se o módulo está marcado como <strong>"Community"</strong> este não é testado nem monitorizado pela equipa do projeto PHP-AN602.',
   'Install' => 'Instalar',
   'Installed' => 'Instalado',
   'Installing module...' => 'A instalar módulo...',
@@ -88,7 +88,7 @@ The license was successfully removed!
   'Save and update' => 'Guardar e atualizar',
   'Stop updating' => 'Parar atualização',
   'Tags' => 'Etiquetas',
-  'The an602 project does not guarantee the functionality, quality or the continuous development of this Module.' => 'O projecto an602 não garante o funcionamento, qualidade ou desenvolvimento contínuo deste Módulo.',
+  'The an602 project does not guarantee the functionality, quality or the continuous development of this Module.' => 'O projecto PHP-AN602 não garante o funcionamento, qualidade ou desenvolvimento contínuo deste Módulo.',
   'Third-party' => 'Terceiros',
   'Third-party Modules are not covered by Professional Edition agreements.' => 'Módulos de terceiros não são cobertos por acordos da Edição Profissional.',
   'Third-party disclaimer' => 'Aviso Legal de Terceiros',

@@ -49,7 +49,7 @@ class RegistrationCest
         $I->see('Registration successful!');
 
         $I->assertMailSent(1);
-        $I->assertEqualsLastEmailSubject('Welcome to an602 Test');
+        $I->assertEqualsLastEmailSubject('Welcome to PHP-AN602 Test');
 
         $matches = [];
         preg_match('/(index-test.php.*)/', $I->grapLastEmailText(), $matches);

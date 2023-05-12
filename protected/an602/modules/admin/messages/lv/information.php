@@ -5,7 +5,7 @@ return [
     'Base URL' => 'Pamata URL',
     'Database' => 'Datubāze',
     'Error' => 'Kļūda',
-    'an602 is currently in debug mode. Disable it when running on production!' => 'an602 pašlaik ir atkļūdošanas režīmā. Atslēdz ja darbojas produkcijas vidē!',
+    'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 pašlaik ir atkļūdošanas režīmā. Atslēdz ja darbojas produkcijas vidē!',
     'Licences' => 'Licences',
     'Logging' => 'Žurnalēšana',
     'Never' => 'Nekad',

@@ -28,7 +28,7 @@ use yii\helpers\Html;
 
 <?php if (YII_DEBUG) : ?>
     <p class="alert alert-danger">
-        <strong><?= Yii::t('AdminModule.information', 'an602 is currently in debug mode. Disable it when running on production!'); ?></strong><br>
+        <strong><?= Yii::t('AdminModule.information', 'PHP-AN602 is currently in debug mode. Disable it when running on production!'); ?></strong><br>
         <?= Yii::t('AdminModule.information', 'See installation manual for more details.'); ?>
     </p>
 <?php endif; ?>

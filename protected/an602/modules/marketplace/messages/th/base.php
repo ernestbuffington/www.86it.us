@@ -33,7 +33,7 @@ The license was successfully removed!
     'All {moduleId} module content will be deleted. Continue?' => 'เนื้อหาโมดูล {moduleId} ทั้งหมดจะถูกลบออก ดำเนินการต่อ',
     'Buy' => 'ซื้อ',
     'Buy (%price%)' => 'ซื้อ (%ราคา%)',
-    'Could not connect to an602 API!
+    'Could not connect to the PHP-AN602 API!
 ' => 'ไม่สามารถเชื่อมต่อกับ an602 API!',
     'Could not connect to licence server!' => 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ใบอนุญาต',
     'Could not extract module!' => 'ไม่สามารถแยกโมดูลได้',

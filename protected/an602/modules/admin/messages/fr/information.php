@@ -24,7 +24,7 @@ return array (
   'Flush entries' => 'Vider le journal',
   'an602' => 'an602',
   'an602 Documentation' => 'Documentation de an602',
-  'an602 is currently in debug mode. Disable it when running on production!' => 'an602 est actuellement en mode débogage. Désactivez cette option quand le site est en production.',
+  'PHP-AN602 is currently in debug mode. Disable it when running on production!' => 'an602 est actuellement en mode débogage. Désactivez cette option quand le site est en production.',
   'ICU Data Version ({version})' => 'Version des données ICU ({version})',
   'ICU Data {icuMinVersion} or higher is required' => 'Les données ICU {icuMinVersion} ou ultérieures sont requises',
   'ICU Version ({version})' => 'Version d’ICU ({version})',

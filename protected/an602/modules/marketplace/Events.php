@@ -107,7 +107,7 @@ class Events extends BaseObject
         }
 
         if (version_compare($latestVersion, Yii::$app->version, '>')) {
-            $updateUrl = 'https://docs.an602.org/docs/admin/updating/';
+            $updateUrl = 'https://docs.an602.86it.us/docs/admin/updating/';
             if (Yii::$app->hasModule('updater')) {
                 $updateUrl = Url::to(['/updater/update']);
             }
